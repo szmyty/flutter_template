@@ -32,7 +32,7 @@ Future<void> bootstrap(AppBuilder builder) async {
             await HydratedBloc.storage.clear();
         }
 
-          final sharedPreferences = await SharedPreferences.getInstance();
+        final sharedPreferences = await SharedPreferences.getInstance();
 
         runApp(
             await builder(

@@ -66,6 +66,7 @@ dependencies:
     path: packages/notifications_repository
   package_info_client:
     path: packages/package_info_client
+  package_info_plus: ^7.0.0
   path_provider: ^2.1.2
   permission_client:
     path: packages/permission_client

@@ -23,29 +23,29 @@ class App extends StatelessWidget {
   const App({
     required UserRepository userRepository,
     required NewsRepository newsRepository,
-    required NotificationsRepository notificationsRepository,
-    required ArticleRepository articleRepository,
-    required InAppPurchaseRepository inAppPurchaseRepository,
+    // required NotificationsRepository notificationsRepository,
+    // required ArticleRepository articleRepository,
+    // required InAppPurchaseRepository inAppPurchaseRepository,
     required AnalyticsRepository analyticsRepository,
-    required AdsConsentClient adsConsentClient,
+    // required AdsConsentClient adsConsentClient,
     required User user,
     super.key,
   })  : _userRepository = userRepository,
         _newsRepository = newsRepository,
-        _notificationsRepository = notificationsRepository,
-        _articleRepository = articleRepository,
-        _inAppPurchaseRepository = inAppPurchaseRepository,
+        // _notificationsRepository = notificationsRepository,
+        // _articleRepository = articleRepository,
+        // _inAppPurchaseRepository = inAppPurchaseRepository,
         _analyticsRepository = analyticsRepository,
-        _adsConsentClient = adsConsentClient,
+        // _adsConsentClient = adsConsentClient,
         _user = user;
 
   final UserRepository _userRepository;
   final NewsRepository _newsRepository;
-  final NotificationsRepository _notificationsRepository;
-  final ArticleRepository _articleRepository;
-  final InAppPurchaseRepository _inAppPurchaseRepository;
+  // final NotificationsRepository _notificationsRepository;
+  // final ArticleRepository _articleRepository;
+  // final InAppPurchaseRepository _inAppPurchaseRepository;
   final AnalyticsRepository _analyticsRepository;
-  final AdsConsentClient _adsConsentClient;
+  // final AdsConsentClient _adsConsentClient;
   final User _user;
 
   @override
@@ -54,18 +54,18 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider.value(value: _userRepository),
         RepositoryProvider.value(value: _newsRepository),
-        RepositoryProvider.value(value: _notificationsRepository),
-        RepositoryProvider.value(value: _articleRepository),
+        // RepositoryProvider.value(value: _notificationsRepository),
+        // RepositoryProvider.value(value: _articleRepository),
         RepositoryProvider.value(value: _analyticsRepository),
-        RepositoryProvider.value(value: _inAppPurchaseRepository),
-        RepositoryProvider.value(value: _adsConsentClient),
+        // RepositoryProvider.value(value: _inAppPurchaseRepository),
+        // RepositoryProvider.value(value: _adsConsentClient),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (_) => AppBloc(
               userRepository: _userRepository,
-              notificationsRepository: _notificationsRepository,
+              // notificationsRepository: _notificationsRepository,
               user: _user,
             )..add(const AppOpened()),
           ),

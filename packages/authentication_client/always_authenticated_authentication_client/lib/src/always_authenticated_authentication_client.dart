@@ -9,12 +9,9 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
   /// {@macro always_authenticated_authentication_client}
   AlwaysAuthenticatedAuthenticationClient({
     required TokenStorage tokenStorage,
-    firebase_auth.FirebaseAuth? firebaseAuth,
-  })  : _tokenStorage = tokenStorage,
-        _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance;
+  })  : _tokenStorage = tokenStorage;
 
   final TokenStorage _tokenStorage;
-  final firebase_auth.FirebaseAuth _firebaseAuth;
 
   /// Stream of [AuthenticationUser] which will emit the current user when
   /// the authentication state changes.
@@ -22,11 +19,8 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
   /// Emits [AuthenticationUser.anonymous] if the user is not authenticated.
   @override
   Stream<AuthenticationUser> get user {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser == null
-          ? AuthenticationUser.anonymous
-          : firebaseUser.toUser;
-    });
+    // Create a stream that emits the anonymous user immediately
+    return Stream.value(AuthenticationUser.anonymous);
   }
 
   /// Sends an authentication link to the provided [email].
@@ -56,10 +50,10 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
         androidInstallApp: true,
       );
 
-      await _firebaseAuth.sendSignInLinkToEmail(
-        email: email,
-        actionCodeSettings: actionCodeSettings,
-      );
+      // await _firebaseAuth.sendSignInLinkToEmail(
+      //   email: email,
+      //   actionCodeSettings: actionCodeSettings,
+      // );
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(SendLoginEmailLinkFailure(error), stackTrace);
     }
@@ -71,7 +65,7 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
   @override
   bool isLogInWithEmailLink({required String emailLink}) {
     try {
-      return _firebaseAuth.isSignInWithEmailLink(emailLink);
+      return true;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(IsLogInWithEmailLinkFailure(error), stackTrace);
     }
@@ -86,10 +80,10 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
     required String emailLink,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailLink(
-        email: email,
-        emailLink: emailLink,
-      );
+      // await _firebaseAuth.signInWithEmailLink(
+      //   email: email,
+      //   emailLink: emailLink,
+      // );
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(LogInWithEmailLinkFailure(error), stackTrace);
     }
@@ -103,7 +97,7 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
   Future<void> logOut() async {
     try {
       await Future.wait([
-        _firebaseAuth.signOut(),
+        // _firebaseAuth.signOut(),
       ]);
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(LogOutFailure(error), stackTrace);
@@ -114,14 +108,7 @@ class AlwaysAuthenticatedAuthenticationClient implements AuthenticationClient {
   @override
   Future<void> deleteAccount() async {
     try {
-      final user = _firebaseAuth.currentUser;
-      if (user == null) {
-        throw DeleteAccountFailure(
-          Exception("User is not authenticated"),
-        );
-      }
-
-      await user.delete();
+      // await _firebaseAuth.currentUser?.delete();
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(DeleteAccountFailure(error), stackTrace);
     }

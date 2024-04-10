@@ -57,18 +57,18 @@ class UserRepository {
     required FlutterTemplateApiClient apiClient,
     required AuthenticationClient authenticationClient,
     required PackageInfoClient packageInfoClient,
-    required DeepLinkClient deepLinkClient,
+    // required DeepLinkClient deepLinkClient,
     required UserStorage storage,
   })  : _apiClient = apiClient,
         _authenticationClient = authenticationClient,
         _packageInfoClient = packageInfoClient,
-        _deepLinkClient = deepLinkClient,
+        // _deepLinkClient = deepLinkClient,
         _storage = storage;
 
   final FlutterTemplateApiClient _apiClient;
   final AuthenticationClient _authenticationClient;
   final PackageInfoClient _packageInfoClient;
-  final DeepLinkClient _deepLinkClient;
+  // final DeepLinkClient _deepLinkClient;
   final UserStorage _storage;
 
   /// Stream of [User] which will emit the current user when
@@ -93,11 +93,12 @@ class UserRepository {
   ///
   /// Emits when a new email link is emitted on [DeepLinkClient.deepLinkStream],
   /// which is validated using [AuthenticationClient.isLogInWithEmailLink].
-  Stream<Uri> get incomingEmailLinks => _deepLinkClient.deepLinkStream.where(
-        (deepLink) => _authenticationClient.isLogInWithEmailLink(
-          emailLink: deepLink.toString(),
-        ),
-      );
+  // Stream<Uri> get incomingEmailLinks => _deepLinkClient.deepLinkStream.where(
+  //       (deepLink) => _authenticationClient.isLogInWithEmailLink(
+  //         emailLink: deepLink.toString(),
+  //       ),
+  //     );
+  Stream<Uri> get incomingEmailLinks => Stream<Uri>.empty();
 
   /// Starts the Sign In with Apple Flow.
   ///
