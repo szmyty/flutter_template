@@ -101,6 +101,15 @@ class LogOutFailure extends AuthenticationException {
   const LogOutFailure(super.error);
 }
 
+
+/// {@template delete_account_failure}
+/// Thrown during the delete account process if a failure occurs.
+/// {@endtemplate}
+class DeleteAccountFailure extends AuthenticationException {
+  /// {@macro delete_account_failure}
+  const DeleteAccountFailure(super.error);
+}
+
 /// A generic Authentication Client Interface.
 abstract class AuthenticationClient {
   /// Stream of [AuthenticationUser] which will emit the current user when

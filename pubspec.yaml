@@ -8,6 +8,8 @@ environment:
 dependencies:
   ads_consent_client:
     path: packages/ads_consent_client
+  always_authenticated_authentication_client:
+    path: packages/authentication_client/always_authenticated_authentication_client
   analytics_repository:
     path: packages/analytics_repository
   app_ui:
@@ -29,8 +31,6 @@ dependencies:
   firebase_auth_platform_interface: ^7.0.9
   firebase_authentication_client:
     path: packages/authentication_client/firebase_authentication_client
-  always_authenticated_authentication_client:
-    path: packages/authentication_client/always_authenticated_authentication_client
   firebase_core: ^2.24.2
   firebase_crashlytics: ^3.0.3
   firebase_dynamic_links: ^5.0.3
@@ -43,9 +43,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^2.0.5
   flutter_template_api:
     path: api
-  flutter_svg: ^2.0.5
   font_awesome_flutter: ^10.1.0
   form_inputs:
     path: packages/form_inputs
@@ -66,7 +66,7 @@ dependencies:
     path: packages/notifications_repository
   package_info_client:
     path: packages/package_info_client
-  path_provider: ^2.0.2
+  path_provider: ^2.1.2
   permission_client:
     path: packages/permission_client
   persistent_storage:
