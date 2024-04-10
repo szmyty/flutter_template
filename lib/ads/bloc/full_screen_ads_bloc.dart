@@ -1,13 +1,13 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart' as ads;
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:platform/platform.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart" as ads;
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:platform/platform.dart";
 
-part 'full_screen_ads_event.dart';
-part 'full_screen_ads_state.dart';
+part "full_screen_ads_event.dart";
+part "full_screen_ads_state.dart";
 
 /// Signature for the interstitial ad loader.
 typedef InterstitialAdLoader = Future<void> Function({

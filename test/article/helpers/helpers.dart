@@ -1,1 +1,1 @@
-export 'fake_video_player_platform.dart';
+export "fake_video_player_platform.dart";

@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/newsletter/newsletter.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:form_inputs/form_inputs.dart';
+import "package:flutter_template/newsletter/newsletter.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:form_inputs/form_inputs.dart";
 
 void main() {
-  group('NewsletterState', () {
-    test('initial has correct status', () {
+  group("NewsletterState", () {
+    test("initial has correct status", () {
       expect(
         NewsletterState().status,
         equals(NewsletterStatus.initial),
       );
     });
 
-    group('copyWith', () {
+    group("copyWith", () {
       test(
-          'returns same object '
-          'when no properties are passed', () {
+          "returns same object "
+          "when no properties are passed", () {
         expect(
           NewsletterState().copyWith(),
           equals(NewsletterState()),
@@ -24,8 +24,8 @@ void main() {
       });
 
       test(
-          'returns object with updated status '
-          'when status is passed', () {
+          "returns object with updated status "
+          "when status is passed", () {
         expect(
           NewsletterState().copyWith(
             status: NewsletterStatus.loading,
@@ -39,23 +39,23 @@ void main() {
       });
 
       test(
-          'returns object with updated email '
-          'when status is passed', () {
+          "returns object with updated email "
+          "when status is passed", () {
         expect(
           NewsletterState().copyWith(
-            email: Email.dirty('email'),
+            email: Email.dirty("email"),
           ),
           equals(
             NewsletterState(
-              email: Email.dirty('email'),
+              email: Email.dirty("email"),
             ),
           ),
         );
       });
 
       test(
-          'returns object with updated isValid '
-          'when status is passed', () {
+          "returns object with updated isValid "
+          "when status is passed", () {
         expect(
           NewsletterState().copyWith(
             isValid: true,

@@ -1,21 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/analytics/analytics.dart' as analytics;
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:flutter_template/onboarding/onboarding.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:analytics_repository/analytics_repository.dart";
+import "package:article_repository/article_repository.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/analytics/analytics.dart" as analytics;
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/home/home.dart";
+import "package:flutter_template/onboarding/onboarding.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 // ignore: must_be_immutable
 class MockUser extends Mock implements User {}
@@ -45,7 +45,7 @@ class MockAnalyticsBloc
 void main() {
   initMockHydratedStorage();
 
-  group('App', () {
+  group("App", () {
     late UserRepository userRepository;
     late NewsRepository newsRepository;
     late NotificationsRepository notificationsRepository;
@@ -74,7 +74,7 @@ void main() {
           .thenAnswer((_) async {});
     });
 
-    testWidgets('renders AppView', (tester) async {
+    testWidgets("renders AppView", (tester) async {
       await tester.pumpWidget(
         App(
           userRepository: userRepository,
@@ -92,7 +92,7 @@ void main() {
     });
   });
 
-  group('AppView', () {
+  group("AppView", () {
     late AppBloc appBloc;
     late analytics.AnalyticsBloc analyticsBloc;
     late UserRepository userRepository;
@@ -103,7 +103,7 @@ void main() {
       userRepository = MockUserRepository();
     });
 
-    testWidgets('navigates to OnboardingPage when onboardingRequired',
+    testWidgets("navigates to OnboardingPage when onboardingRequired",
         (tester) async {
       final user = MockUser();
       when(() => appBloc.state).thenReturn(AppState.onboardingRequired(user));
@@ -116,7 +116,7 @@ void main() {
       expect(find.byType(OnboardingPage), findsOneWidget);
     });
 
-    testWidgets('navigates to HomePage when unauthenticated', (tester) async {
+    testWidgets("navigates to HomePage when unauthenticated", (tester) async {
       when(() => appBloc.state).thenReturn(AppState.unauthenticated());
       await tester.pumpApp(
         const AppView(),
@@ -127,7 +127,7 @@ void main() {
       expect(find.byType(HomePage), findsOneWidget);
     });
 
-    testWidgets('navigates to HomePage when authenticated', (tester) async {
+    testWidgets("navigates to HomePage when authenticated", (tester) async {
       final user = MockUser();
       when(() => user.isAnonymous).thenReturn(false);
       when(() => appBloc.state).thenReturn(AppState.authenticated(user));
@@ -140,10 +140,10 @@ void main() {
       expect(find.byType(HomePage), findsOneWidget);
     });
 
-    group('adds TrackAnalyticsEvent to AnalyticsBloc', () {
+    group("adds TrackAnalyticsEvent to AnalyticsBloc", () {
       testWidgets(
-          'with RegistrationEvent '
-          'when user is authenticated and new', (tester) async {
+          "with RegistrationEvent "
+          "when user is authenticated and new", (tester) async {
         final user = MockUser();
         when(() => user.isAnonymous).thenReturn(false);
         when(() => user.isNewUser).thenReturn(true);
@@ -174,8 +174,8 @@ void main() {
       });
 
       testWidgets(
-          'with LoginEvent '
-          'when user is authenticated and not new', (tester) async {
+          "with LoginEvent "
+          "when user is authenticated and not new", (tester) async {
         final user = MockUser();
         when(() => user.isAnonymous).thenReturn(false);
         when(() => user.isNewUser).thenReturn(false);

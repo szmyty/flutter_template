@@ -1,21 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('ArticleContentLoaderItem', () {
-    testWidgets('renders CircularProgressIndicator', (tester) async {
+  group("ArticleContentLoaderItem", () {
+    testWidgets("renders CircularProgressIndicator", (tester) async {
       await tester.pumpApp(ArticleContentLoaderItem());
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('executes onPresented callback', (tester) async {
+    testWidgets("executes onPresented callback", (tester) async {
       final completer = Completer<void>();
 
       await tester.pumpApp(

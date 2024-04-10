@@ -1,26 +1,26 @@
 // ignore_for_file: prefer_const_constructors, avoid_redundant_argument_values
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_template/search/search.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/home/home.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_template/search/search.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_repository/news_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
 
@@ -46,12 +46,12 @@ void main() {
 
   final feed = <Category, List<NewsBlock>>{
     Category.top: [
-      SectionHeaderBlock(title: 'Top'),
+      SectionHeaderBlock(title: "Top"),
       DividerHorizontalBlock(),
       SpacerBlock(spacing: Spacing.medium),
     ],
     Category.technology: [
-      SectionHeaderBlock(title: 'Technology'),
+      SectionHeaderBlock(title: "Technology"),
       DividerHorizontalBlock(),
       SpacerBlock(spacing: Spacing.medium),
     ],
@@ -93,8 +93,8 @@ void main() {
 
     when(() => cubit.state).thenReturn(HomeState.topStories);
   });
-  group('HomeView', () {
-    testWidgets('renders AppBar with AppLogo', (tester) async {
+  group("HomeView", () {
+    testWidgets("renders AppBar with AppLogo", (tester) async {
       when(() => cubit.state).thenReturn(HomeState.topStories);
 
       await pumpHomeView(
@@ -113,7 +113,7 @@ void main() {
       );
     });
 
-    testWidgets('renders UserProfileButton', (tester) async {
+    testWidgets("renders UserProfileButton", (tester) async {
       when(() => cubit.state).thenReturn(HomeState.topStories);
 
       await pumpHomeView(
@@ -128,8 +128,8 @@ void main() {
     });
 
     testWidgets(
-        'renders NavDrawer '
-        'when menu icon is tapped', (tester) async {
+        "renders NavDrawer "
+        "when menu icon is tapped", (tester) async {
       when(() => cubit.state).thenReturn(HomeState.topStories);
 
       await pumpHomeView(
@@ -148,7 +148,7 @@ void main() {
       expect(find.byType(NavDrawer), findsOneWidget);
     });
 
-    testWidgets('renders FeedView', (tester) async {
+    testWidgets("renders FeedView", (tester) async {
       await pumpHomeView(
         tester: tester,
         cubit: cubit,
@@ -159,7 +159,7 @@ void main() {
       expect(find.byType(FeedView), findsOneWidget);
     });
 
-    testWidgets('shows LoginOverlay when showLoginOverlay is true',
+    testWidgets("shows LoginOverlay when showLoginOverlay is true",
         (tester) async {
       whenListen(
         appBloc,
@@ -182,9 +182,9 @@ void main() {
     });
   });
 
-  group('BottomNavigationBar', () {
+  group("BottomNavigationBar", () {
     testWidgets(
-      'has selected index to 0 by default.',
+      "has selected index to 0 by default.",
       (tester) async {
         when(() => cubit.state).thenReturn(HomeState.topStories);
 
@@ -201,7 +201,7 @@ void main() {
     );
 
     testWidgets(
-      'set tab to selected index 0 when top stories is tapped.',
+      "set tab to selected index 0 when top stories is tapped.",
       (tester) async {
         await pumpHomeView(
           tester: tester,
@@ -217,7 +217,7 @@ void main() {
     );
 
     testWidgets(
-      'set tab to selected index 1 when search is tapped.',
+      "set tab to selected index 1 when search is tapped.",
       (tester) async {
         await pumpHomeView(
           tester: tester,
@@ -227,13 +227,13 @@ void main() {
           newsRepository: newsRepository,
         );
         await tester.ensureVisible(find.byType(BottomNavBar));
-        await tester.tap(find.byKey(Key('bottomNavBar_search')));
+        await tester.tap(find.byKey(Key("bottomNavBar_search")));
         verify(() => cubit.setTab(1)).called(1);
       },
     );
 
     testWidgets(
-      'unfocuses keyboard when tab is changed.',
+      "unfocuses keyboard when tab is changed.",
       (tester) async {
         final controller = StreamController<HomeState>();
         whenListen(
@@ -250,7 +250,7 @@ void main() {
         );
 
         await tester.ensureVisible(find.byType(BottomNavBar));
-        await tester.tap(find.byKey(Key('bottomNavBar_search')));
+        await tester.tap(find.byKey(Key("bottomNavBar_search")));
         verify(() => cubit.setTab(1)).called(1);
 
         controller.add(HomeState.search);

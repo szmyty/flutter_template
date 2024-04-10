@@ -1,11 +1,11 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
 
 class SlideshowView extends StatelessWidget {
   const SlideshowView({required this.block, super.key});
@@ -27,7 +27,7 @@ class SlideshowView extends StatelessWidget {
             children: [
               if (uri != null && uri.toString().isNotEmpty)
                 Padding(
-                  key: const Key('slideshowPage_shareButton'),
+                  key: const Key("slideshowPage_shareButton"),
                   padding: const EdgeInsets.only(right: AppSpacing.lg),
                   child: ShareButton(
                     shareText: context.l10n.shareText,
@@ -37,9 +37,9 @@ class SlideshowView extends StatelessWidget {
                     },
                   ),
                 ),
-              if (!isSubscriber) const ArticleSubscribeButton()
+              if (!isSubscriber) const ArticleSubscribeButton(),
             ],
-          )
+          ),
         ],
       ),
       backgroundColor: AppColors.darkBackground,

@@ -1,4 +1,4 @@
-part of 'theme_mode_bloc.dart';
+part of "theme_mode_bloc.dart";
 
 abstract class ThemeModeEvent extends Equatable {
   const ThemeModeEvent();

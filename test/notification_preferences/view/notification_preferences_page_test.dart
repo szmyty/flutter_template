@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockNotificationPreferencesBloc extends Mock
     implements NotificationPreferencesBloc {}
@@ -27,20 +27,20 @@ void main() {
       MockNotificationPreferencesRepository();
   final CategoriesBloc categoryBloc = MockCategoriesBloc();
 
-  group('NotificationPreferencesPage', () {
+  group("NotificationPreferencesPage", () {
     const populatedState = CategoriesState(
       status: CategoriesStatus.populated,
       categories: [Category.business, Category.entertainment],
     );
 
-    test('has a route', () {
+    test("has a route", () {
       expect(
         NotificationPreferencesPage.route(),
         isA<MaterialPageRoute<void>>(),
       );
     });
 
-    testWidgets('renders NotificationPreferencesView', (tester) async {
+    testWidgets("renders NotificationPreferencesView", (tester) async {
       whenListen(
         categoryBloc,
         Stream.value(populatedState),
@@ -61,8 +61,8 @@ void main() {
     });
   });
 
-  group('NotificationPreferencesView', () {
-    testWidgets('renders AppSwitch with state value', (tester) async {
+  group("NotificationPreferencesView", () {
+    testWidgets("renders AppSwitch with state value", (tester) async {
       const notificationState = NotificationPreferencesState(
         selectedCategories: {Category.business},
         status: NotificationPreferencesStatus.success,
@@ -97,8 +97,8 @@ void main() {
     });
 
     testWidgets(
-        'adds CategoriesPreferenceToggled to NotificationPreferencesBloc '
-        'on AppSwitch toggled', (tester) async {
+        "adds CategoriesPreferenceToggled to NotificationPreferencesBloc "
+        "on AppSwitch toggled", (tester) async {
       const notificationState = NotificationPreferencesState(
         selectedCategories: {Category.business},
         status: NotificationPreferencesStatus.success,

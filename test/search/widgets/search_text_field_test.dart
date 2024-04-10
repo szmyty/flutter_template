@@ -1,13 +1,13 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/search/search.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/search/search.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('SearchTextField', () {
-    testWidgets('changes controller.value when text input changes',
+  group("SearchTextField", () {
+    testWidgets("changes controller.value when text input changes",
         (tester) async {
       final controller = TextEditingController();
 
@@ -17,13 +17,13 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'text');
+      await tester.enterText(find.byType(AppTextField), "text");
 
-      expect(controller.value.text, equals('text'));
+      expect(controller.value.text, equals("text"));
     });
 
-    testWidgets('clears controller on IconButton pressed', (tester) async {
-      final controller = TextEditingController(text: 'text');
+    testWidgets("clears controller on IconButton pressed", (tester) async {
+      final controller = TextEditingController(text: "text");
 
       await tester.pumpApp(
         SearchTextField(
@@ -32,7 +32,7 @@ void main() {
       );
       await tester.tap(find.byType(IconButton));
 
-      expect(controller.value.text, equals(''));
+      expect(controller.value.text, equals(""));
     });
   });
 }

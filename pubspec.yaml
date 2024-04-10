@@ -3,8 +3,8 @@ version: 0.0.1+1
 publish_to: none
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: 3.10.2
+  sdk: ">=3.3.2 <4.0.0"
+  flutter: 3.19.4
 dependencies:
   ads_consent_client:
     path: packages/ads_consent_client
@@ -29,6 +29,8 @@ dependencies:
   firebase_auth_platform_interface: ^7.0.9
   firebase_authentication_client:
     path: packages/authentication_client/firebase_authentication_client
+  always_authenticated_authentication_client:
+    path: packages/authentication_client/always_authenticated_authentication_client
   firebase_core: ^2.24.2
   firebase_crashlytics: ^3.0.3
   firebase_dynamic_links: ^5.0.3

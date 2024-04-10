@@ -1,7 +1,7 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/terms_of_service/widgets/terms_of_service_body.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/terms_of_service/widgets/terms_of_service_body.dart";
 
 class TermsOfServiceModal extends StatelessWidget {
   const TermsOfServiceModal({super.key});
@@ -57,7 +57,7 @@ class TermsOfServiceModalHeader extends StatelessWidget {
             ),
           ),
           IconButton(
-            key: const Key('termsOfServiceModal_closeModal_iconButton'),
+            key: const Key("termsOfServiceModal_closeModal_iconButton"),
             constraints: const BoxConstraints.tightFor(width: 24, height: 36),
             padding: EdgeInsets.zero,
             onPressed: () => Navigator.pop(context),

@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
-part 'user_profile_event.dart';
-part 'user_profile_state.dart';
+part "user_profile_event.dart";
+part "user_profile_state.dart";
 
 class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
   UserProfileBloc({

@@ -1,12 +1,12 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:intl/intl.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:intl/intl.dart";
 
 class SubscriptionCard extends StatelessWidget {
   const SubscriptionCard({
@@ -26,11 +26,11 @@ class SubscriptionCard extends StatelessWidget {
     final theme = Theme.of(context);
     final monthlyCost = NumberFormat.currency(
       decimalDigits: subscription.cost.monthly % 100 == 0 ? 0 : 2,
-      symbol: r'$',
+      symbol: r"$",
     ).format(subscription.cost.monthly / 100);
     final annualCost = NumberFormat.currency(
       decimalDigits: subscription.cost.annual % 100 == 0 ? 0 : 2,
-      symbol: r'$',
+      symbol: r"$",
     ).format(
       subscription.cost.annual / 100,
     );
@@ -63,12 +63,12 @@ class SubscriptionCard extends StatelessWidget {
                   ?.copyWith(color: AppColors.secondary),
             ),
             Text(
-              '$monthlyCost/${l10n.monthAbbreviation} | $annualCost/${l10n.yearAbbreviation}',
+              "$monthlyCost/${l10n.monthAbbreviation} | $annualCost/${l10n.yearAbbreviation}",
               style: theme.textTheme.headlineSmall,
             ),
             if (isBestValue) ...[
               Assets.icons.bestValue
-                  .svg(key: const Key('subscriptionCard_bestValueSvg')),
+                  .svg(key: const Key("subscriptionCard_bestValueSvg")),
               const SizedBox(height: AppSpacing.md),
             ],
             if (isExpanded) ...[
@@ -112,7 +112,7 @@ class SubscriptionCard extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.md),
               AppButton.smallRedWine(
-                key: const Key('subscriptionCard_subscribe_appButton'),
+                key: const Key("subscriptionCard_subscribe_appButton"),
                 onPressed: isLoggedIn
                     ? () => context.read<SubscriptionsBloc>().add(
                           SubscriptionPurchaseRequested(
@@ -131,19 +131,19 @@ class SubscriptionCard extends StatelessWidget {
                     if (isLoggedIn)
                       Text(l10n.subscriptionPurchaseButton)
                     else
-                      Text(l10n.subscriptionUnauthenticatedPurchaseButton)
+                      Text(l10n.subscriptionUnauthenticatedPurchaseButton),
                   ],
                 ),
               ),
             ] else
               AppButton.smallOutlineTransparent(
-                key: const Key('subscriptionCard_viewDetails_appButton'),
+                key: const Key("subscriptionCard_viewDetails_appButton"),
                 onPressed: () => ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
                       key: const Key(
-                        'subscriptionCard_unimplemented_snackBar',
+                        "subscriptionCard_unimplemented_snackBar",
                       ),
                       content: Text(
                         l10n.subscriptionViewDetailsButtonSnackBar,

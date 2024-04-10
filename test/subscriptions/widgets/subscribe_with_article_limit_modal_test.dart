@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart' as ads;
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mockingjay/mockingjay.dart';
-import 'package:user_repository/user_repository.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart" as ads;
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mockingjay/mockingjay.dart";
+import "package:user_repository/user_repository.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
@@ -43,10 +43,10 @@ void main() {
   late ArticleBloc articleBloc;
 
   const subscribeButtonKey =
-      Key('subscribeWithArticleLimitModal_subscribeButton');
-  const logInButtonKey = Key('subscribeWithArticleLimitModal_logInButton');
+      Key("subscribeWithArticleLimitModal_subscribeButton");
+  const logInButtonKey = Key("subscribeWithArticleLimitModal_logInButton");
   const watchVideoButton =
-      Key('subscribeWithArticleLimitModal_watchVideoButton');
+      Key("subscribeWithArticleLimitModal_watchVideoButton");
 
   setUp(() {
     user = MockUser();
@@ -57,17 +57,17 @@ void main() {
     when(() => appBloc.state).thenReturn(AppState.unauthenticated());
 
     when(() => articleBloc.state).thenReturn(
-      ArticleState(status: ArticleStatus.initial, title: 'title'),
+      ArticleState(status: ArticleStatus.initial, title: "title"),
     );
 
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
 
-  group('SubscribeWithArticleLimitModal', () {
-    group('renders', () {
+  group("SubscribeWithArticleLimitModal", () {
+    group("renders", () {
       testWidgets(
-          'subscribe and watch video buttons '
-          'when user is authenticated', (tester) async {
+          "subscribe and watch video buttons "
+          "when user is authenticated", (tester) async {
         when(() => appBloc.state).thenReturn(AppState.authenticated(user));
         await tester.pumpApp(
           analyticsBloc: analyticsBloc,
@@ -83,8 +83,8 @@ void main() {
       });
 
       testWidgets(
-          'subscribe log in and watch video buttons '
-          'when user is unauthenticated', (tester) async {
+          "subscribe log in and watch video buttons "
+          "when user is unauthenticated", (tester) async {
         when(() => appBloc.state).thenReturn(AppState.unauthenticated());
         await tester.pumpApp(
           analyticsBloc: analyticsBloc,
@@ -100,7 +100,7 @@ void main() {
       });
     });
 
-    group('opens PurchaseSubscriptionDialog', () {
+    group("opens PurchaseSubscriptionDialog", () {
       late InAppPurchaseRepository inAppPurchaseRepository;
       late AnalyticsBloc analyticsBloc;
 
@@ -117,13 +117,13 @@ void main() {
         );
 
         when(() => articleBloc.state).thenReturn(
-          ArticleState(status: ArticleStatus.initial, title: 'title'),
+          ArticleState(status: ArticleStatus.initial, title: "title"),
         );
       });
 
       testWidgets(
-          'when tapped on subscribe button '
-          'adding PaywallPromptEvent.click to AnalyticsBloc', (tester) async {
+          "when tapped on subscribe button "
+          "adding PaywallPromptEvent.click to AnalyticsBloc", (tester) async {
         await tester.pumpApp(
           analyticsBloc: analyticsBloc,
           appBloc: appBloc,
@@ -141,7 +141,7 @@ void main() {
           () => analyticsBloc.add(
             TrackAnalyticsEvent(
               PaywallPromptEvent.click(
-                articleTitle: 'title',
+                articleTitle: "title",
               ),
             ),
           ),
@@ -150,8 +150,8 @@ void main() {
     });
 
     testWidgets(
-        'shows LoginModal '
-        'when tapped on log in button', (tester) async {
+        "shows LoginModal "
+        "when tapped on log in button", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.unauthenticated()),
@@ -174,8 +174,8 @@ void main() {
     });
 
     testWidgets(
-        'adds ShowRewardedAdRequested to FullScreenAdsBloc '
-        'when tapped on watch video button', (tester) async {
+        "adds ShowRewardedAdRequested to FullScreenAdsBloc "
+        "when tapped on watch video button", (tester) async {
       final fullScreenAdsBloc = MockFullScreenAdsBloc();
 
       await tester.pumpApp(
@@ -194,9 +194,9 @@ void main() {
     });
 
     testWidgets(
-        'adds TrackAnalyticsEvent to AnalyticsBloc '
-        'with PaywallPromptEvent.impression rewarded '
-        'when shown', (tester) async {
+        "adds TrackAnalyticsEvent to AnalyticsBloc "
+        "with PaywallPromptEvent.impression rewarded "
+        "when shown", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: articleBloc,
@@ -210,7 +210,7 @@ void main() {
         () => analyticsBloc.add(
           TrackAnalyticsEvent(
             PaywallPromptEvent.impression(
-              articleTitle: 'title',
+              articleTitle: "title",
               impression: PaywallPromptImpression.rewarded,
             ),
           ),

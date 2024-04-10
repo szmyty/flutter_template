@@ -1,22 +1,22 @@
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/theme_selector/theme_selector.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mockingjay/mockingjay.dart'
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:article_repository/article_repository.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_localizations/flutter_localizations.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/theme_selector/theme_selector.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mockingjay/mockingjay.dart"
     show MockNavigator, MockNavigatorProvider;
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {
   @override
@@ -117,7 +117,7 @@ extension AppTester on WidgetTester {
             ),
           ],
           child: MaterialApp(
-            title: 'Flutter Template',
+            title: "Flutter Template",
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -134,7 +134,7 @@ extension AppTester on WidgetTester {
                     ),
             ),
             navigatorObservers: [
-              if (navigatorObserver != null) navigatorObserver
+              if (navigatorObserver != null) navigatorObserver,
             ],
           ),
         ),

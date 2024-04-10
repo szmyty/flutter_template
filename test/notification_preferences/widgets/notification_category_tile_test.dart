@@ -1,17 +1,17 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('NotificationCategoryTile', () {
-    testWidgets('renders trailing', (tester) async {
+  group("NotificationCategoryTile", () {
+    testWidgets("renders trailing", (tester) async {
       await tester.pumpApp(
         const NotificationCategoryTile(
-          title: 'title',
+          title: "title",
           trailing: Icon(Icons.image),
         ),
       );
@@ -19,12 +19,12 @@ void main() {
       expect(find.byType(Icon), findsOneWidget);
     });
 
-    testWidgets('calls onTap on ListTile click', (tester) async {
+    testWidgets("calls onTap on ListTile click", (tester) async {
       final completer = Completer<void>();
 
       await tester.pumpApp(
         NotificationCategoryTile(
-          title: 'title',
+          title: "title",
           trailing: const Icon(Icons.image),
           onTap: completer.complete,
         ),

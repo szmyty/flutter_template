@@ -1,4 +1,4 @@
-part of 'user_profile_bloc.dart';
+part of "user_profile_bloc.dart";
 
 enum UserProfileStatus {
   initial,

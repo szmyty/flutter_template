@@ -1,1 +1,1 @@
-export 'categories_tab_bar.dart';
+export "categories_tab_bar.dart";

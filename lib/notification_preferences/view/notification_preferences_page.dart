@@ -1,10 +1,10 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
 class NotificationPreferencesPage extends StatelessWidget {
   const NotificationPreferencesPage({super.key});

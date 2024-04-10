@@ -1,4 +1,4 @@
-part of 'search_bloc.dart';
+part of "search_bloc.dart";
 
 enum SearchStatus {
   initial,

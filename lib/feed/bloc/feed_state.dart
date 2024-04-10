@@ -1,4 +1,4 @@
-part of 'feed_bloc.dart';
+part of "feed_bloc.dart";
 
 enum FeedStatus {
   initial,

@@ -1,13 +1,13 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:user_repository/user_repository.dart";
 
 Future<void> showPurchaseSubscriptionDialog({
   required BuildContext context,
@@ -67,7 +67,7 @@ class PurchaseSubscriptionDialogView extends StatelessWidget {
                         ),
                         IconButton(
                           key: const Key(
-                            'purchaseSubscriptionDialog_closeIconButton',
+                            "purchaseSubscriptionDialog_closeIconButton",
                           ),
                           icon: const Icon(Icons.close),
                           onPressed: () => Navigator.pop(context),

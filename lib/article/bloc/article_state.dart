@@ -1,4 +1,4 @@
-part of 'article_bloc.dart';
+part of "article_bloc.dart";
 
 enum ArticleStatus {
   initial,

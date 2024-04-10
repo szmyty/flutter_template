@@ -1,6 +1,6 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/l10n/l10n.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/l10n/l10n.dart";
 
 class ManageSubscriptionPage extends StatelessWidget {
   const ManageSubscriptionPage({super.key});
@@ -48,7 +48,7 @@ class ManageSubscriptionView extends StatelessWidget {
                 ),
               ),
               ListTile(
-                key: const Key('manageSubscription_subscriptions'),
+                key: const Key("manageSubscription_subscriptions"),
                 dense: true,
                 horizontalTitleGap: 0,
                 leading: const Icon(

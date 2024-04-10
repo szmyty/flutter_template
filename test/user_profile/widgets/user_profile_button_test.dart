@@ -1,16 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:flutter_template_api/client.dart' hide User;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:flutter_template_api/client.dart" hide User;
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
@@ -21,13 +21,13 @@ class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 class MockRoute extends Mock implements Route<dynamic> {}
 
 void main() {
-  group('UserProfileButton', () {
+  group("UserProfileButton", () {
     late AppBloc appBloc;
     late User user;
 
     setUp(() {
       appBloc = MockAppBloc();
-      user = User(id: 'id', subscriptionPlan: SubscriptionPlan.none);
+      user = User(id: "id", subscriptionPlan: SubscriptionPlan.none);
     });
 
     setUpAll(() {
@@ -35,8 +35,8 @@ void main() {
     });
 
     testWidgets(
-        'renders LoginButton '
-        'when user is unauthenticated', (tester) async {
+        "renders LoginButton "
+        "when user is unauthenticated", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.unauthenticated()),
@@ -53,8 +53,8 @@ void main() {
     });
 
     testWidgets(
-        'renders OpenProfileButton '
-        'when user is authenticated', (tester) async {
+        "renders OpenProfileButton "
+        "when user is authenticated", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.authenticated(user)),
@@ -71,8 +71,8 @@ void main() {
     });
 
     testWidgets(
-        'navigates to UserProfilePage '
-        'when tapped on OpenProfileButton', (tester) async {
+        "navigates to UserProfilePage "
+        "when tapped on OpenProfileButton", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.authenticated(user)),
@@ -91,8 +91,8 @@ void main() {
     });
 
     testWidgets(
-        'renders LoginButton '
-        'when user is unauthenticated', (tester) async {
+        "renders LoginButton "
+        "when user is unauthenticated", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.unauthenticated()),
@@ -109,8 +109,8 @@ void main() {
     });
 
     testWidgets(
-        'shows LoginModal '
-        'when tapped on LoginButton', (tester) async {
+        "shows LoginModal "
+        "when tapped on LoginButton", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.unauthenticated()),

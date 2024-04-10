@@ -1,7 +1,7 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
 
 /// {@template sticky_ad}
 /// A bottom-anchored, adaptive ad widget.
@@ -36,7 +36,7 @@ class _StickyAdState extends State<StickyAd> {
             children: [
               if (_adLoaded) const StickyAdCloseIconBackground(),
               StickyAdContainer(
-                key: const Key('stickyAd_container'),
+                key: const Key("stickyAd_container"),
                 shadowEnabled: _adLoaded,
                 child: BannerAdContent(
                   size: BannerAdSize.anchoredAdaptive,

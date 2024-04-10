@@ -1,6 +1,6 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/l10n/l10n.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/l10n/l10n.dart";
 
 class UserProfileSubscribeBox extends StatelessWidget {
   const UserProfileSubscribeBox({required this.onSubscribePressed, super.key});
@@ -31,7 +31,7 @@ class UserProfileSubscribeBox extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.lg),
           AppButton.smallRedWine(
-            key: const Key('userProfileSubscribeBox_appButton'),
+            key: const Key("userProfileSubscribeBox_appButton"),
             onPressed: onSubscribePressed,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

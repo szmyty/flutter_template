@@ -1,15 +1,15 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:bloc_concurrency/bloc_concurrency.dart";
+import "package:equatable/equatable.dart";
+import "package:hydrated_bloc/hydrated_bloc.dart";
+import "package:json_annotation/json_annotation.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_repository/news_repository.dart";
 
-part 'feed_bloc.g.dart';
-part 'feed_event.dart';
-part 'feed_state.dart';
+part "feed_bloc.g.dart";
+part "feed_event.dart";
+part "feed_state.dart";
 
 class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   FeedBloc({

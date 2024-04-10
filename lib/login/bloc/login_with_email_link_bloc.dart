@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:analytics_repository/analytics_repository.dart";
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:user_repository/user_repository.dart";
 
-part 'login_with_email_link_event.dart';
-part 'login_with_email_link_state.dart';
+part "login_with_email_link_event.dart";
+part "login_with_email_link_state.dart";
 
 class LoginWithEmailLinkBloc
     extends Bloc<LoginWithEmailLinkEvent, LoginWithEmailLinkState> {
@@ -36,33 +36,33 @@ class LoginWithEmailLinkBloc
       if (!currentUser.isAnonymous) {
         throw LogInWithEmailLinkFailure(
           Exception(
-            'The user is already logged in',
+            "The user is already logged in",
           ),
         );
       }
 
       final emailLink = event.emailLink;
-      if (!emailLink.queryParameters.containsKey('continueUrl')) {
+      if (!emailLink.queryParameters.containsKey("continueUrl")) {
         throw LogInWithEmailLinkFailure(
           Exception(
-            'No `continueUrl` parameter found in the received email link',
+            "No `continueUrl` parameter found in the received email link",
           ),
         );
       }
 
       final redirectUrl =
-          Uri.tryParse(emailLink.queryParameters['continueUrl']!);
+          Uri.tryParse(emailLink.queryParameters["continueUrl"]!);
 
-      if (!(redirectUrl?.queryParameters.containsKey('email') ?? false)) {
+      if (!(redirectUrl?.queryParameters.containsKey("email") ?? false)) {
         throw LogInWithEmailLinkFailure(
           Exception(
-            'No `email` parameter found in the received email link',
+            "No `email` parameter found in the received email link",
           ),
         );
       }
 
       await _userRepository.logInWithEmailLink(
-        email: redirectUrl!.queryParameters['email']!,
+        email: redirectUrl!.queryParameters["email"]!,
         emailLink: emailLink.toString(),
       );
 

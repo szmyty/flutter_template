@@ -1,23 +1,23 @@
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:app_ui/app_ui.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:flow_builder/flow_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart' hide LoginEvent;
-import 'package:flutter_template/theme_selector/theme_selector.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart' as ads;
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:platform/platform.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:analytics_repository/analytics_repository.dart";
+import "package:app_ui/app_ui.dart";
+import "package:article_repository/article_repository.dart";
+import "package:flow_builder/flow_builder.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart" hide LoginEvent;
+import "package:flutter_template/theme_selector/theme_selector.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart" as ads;
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:platform/platform.dart";
+import "package:user_repository/user_repository.dart";
 
 class App extends StatelessWidget {
   const App({

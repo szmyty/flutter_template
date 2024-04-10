@@ -1,4 +1,4 @@
-part of 'notification_preferences_bloc.dart';
+part of "notification_preferences_bloc.dart";
 
 abstract class NotificationPreferencesEvent extends Equatable {
   const NotificationPreferencesEvent();

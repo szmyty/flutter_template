@@ -1,14 +1,14 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:bloc/bloc.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:analytics_repository/analytics_repository.dart";
+import "package:bloc/bloc.dart";
+import "package:bloc_concurrency/bloc_concurrency.dart";
+import "package:equatable/equatable.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
-part 'onboarding_event.dart';
-part 'onboarding_state.dart';
+part "onboarding_event.dart";
+part "onboarding_state.dart";
 
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   OnboardingBloc({

@@ -1,5 +1,5 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
 
 class OnboardingViewItem extends StatelessWidget {
   const OnboardingViewItem({
@@ -42,7 +42,7 @@ class OnboardingViewItem extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    key: const Key('onboardingItem_pageNumberTitle'),
+                    key: const Key("onboardingItem_pageNumberTitle"),
                     pageNumberTitle,
                     style: theme.textTheme.labelSmall?.apply(
                       color: AppColors.secondary.shade600,
@@ -51,7 +51,7 @@ class OnboardingViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.lg + AppSpacing.sm),
                   Text(
-                    key: const Key('onboardingItem_title'),
+                    key: const Key("onboardingItem_title"),
                     title,
                     style: theme.textTheme.headlineMedium?.apply(
                       color: AppColors.highEmphasisSurface,
@@ -60,7 +60,7 @@ class OnboardingViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   Text(
-                    key: const Key('onboardingItem_subtitle'),
+                    key: const Key("onboardingItem_subtitle"),
                     subtitle,
                     style: theme.textTheme.titleMedium?.apply(
                       color: AppColors.mediumEmphasisSurface,
@@ -70,7 +70,7 @@ class OnboardingViewItem extends StatelessWidget {
                   const Spacer(),
                   primaryButton,
                   const SizedBox(height: AppSpacing.sm),
-                  secondaryButton
+                  secondaryButton,
                 ],
               ),
             ),

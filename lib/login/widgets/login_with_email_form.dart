@@ -1,12 +1,12 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/magic_link_prompt/magic_link_prompt.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:form_inputs/form_inputs.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/magic_link_prompt/magic_link_prompt.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:form_inputs/form_inputs.dart";
 
 class LoginWithEmailForm extends StatelessWidget {
   const LoginWithEmailForm({super.key});
@@ -67,7 +67,7 @@ class _HeaderTitle extends StatelessWidget {
     final theme = Theme.of(context);
     return Text(
       context.l10n.loginWithEmailHeaderText,
-      key: const Key('loginWithEmailForm_header_title'),
+      key: const Key("loginWithEmailForm_header_title"),
       style: theme.textTheme.displaySmall,
     );
   }
@@ -88,7 +88,7 @@ class _EmailInputState extends State<_EmailInput> {
     final state = context.watch<LoginBloc>().state;
 
     return AppEmailTextField(
-      key: const Key('loginWithEmailForm_emailInput_textField'),
+      key: const Key("loginWithEmailForm_emailInput_textField"),
       controller: _controller,
       readOnly: state.status.isInProgress,
       hintText: context.l10n.loginWithEmailTextFieldHint,
@@ -98,7 +98,7 @@ class _EmailInputState extends State<_EmailInput> {
         onPressed: !state.status.isInProgress
             ? () {
                 _controller.clear();
-                context.read<LoginBloc>().add(const LoginEmailChanged(''));
+                context.read<LoginBloc>().add(const LoginEmailChanged(""));
               }
             : null,
       ),
@@ -121,7 +121,7 @@ class _TermsAndPrivacyPolicyLinkTexts extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: AppSpacing.sm),
       child: RichText(
-        key: const Key('loginWithEmailForm_terms_and_privacy_policy'),
+        key: const Key("loginWithEmailForm_terms_and_privacy_policy"),
         text: TextSpan(
           children: <TextSpan>[
             TextSpan(
@@ -140,7 +140,7 @@ class _TermsAndPrivacyPolicyLinkTexts extends StatelessWidget {
                     ),
             ),
             TextSpan(
-              text: '.',
+              text: ".",
               style: theme.textTheme.bodyLarge,
             ),
           ],
@@ -159,7 +159,7 @@ class _NextButton extends StatelessWidget {
     final state = context.watch<LoginBloc>().state;
 
     return AppButton.darkAqua(
-      key: const Key('loginWithEmailForm_nextButton'),
+      key: const Key("loginWithEmailForm_nextButton"),
       onPressed: state.valid
           ? () => context.read<LoginBloc>().add(SendEmailLinkSubmitted())
           : null,
@@ -188,7 +188,7 @@ class ClearIconButton extends StatelessWidget {
         context.select((LoginBloc bloc) => bloc.state.email.value.isNotEmpty);
 
     return Padding(
-      key: const Key('loginWithEmailForm_clearIconButton'),
+      key: const Key("loginWithEmailForm_clearIconButton"),
       padding: const EdgeInsets.only(right: AppSpacing.md),
       child: Visibility(
         visible: suffixVisible,

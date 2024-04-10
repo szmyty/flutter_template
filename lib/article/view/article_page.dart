@@ -1,15 +1,15 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:share_launcher/share_launcher.dart';
+import "package:app_ui/app_ui.dart";
+import "package:article_repository/article_repository.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:share_launcher/share_launcher.dart";
 
 /// The supported behaviors for interstitial ad.
 enum InterstitialAdBehavior {
@@ -116,7 +116,7 @@ class ArticleView extends StatelessWidget {
                 actions: [
                   if (uri != null && uri.toString().isNotEmpty)
                     Padding(
-                      key: const Key('articlePage_shareButton'),
+                      key: const Key("articlePage_shareButton"),
                       padding: const EdgeInsets.only(right: AppSpacing.lg),
                       child: ShareButton(
                         shareText: context.l10n.shareText,
@@ -126,7 +126,7 @@ class ArticleView extends StatelessWidget {
                             .add(ShareRequested(uri: uri)),
                       ),
                     ),
-                  if (!isSubscriber) const ArticleSubscribeButton()
+                  if (!isSubscriber) const ArticleSubscribeButton(),
                 ],
               ),
               body: ArticleThemeOverride(

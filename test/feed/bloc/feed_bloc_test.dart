@@ -1,27 +1,27 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_repository/news_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockNewsRepository extends Mock implements NewsRepository {}
 
 void main() {
   initMockHydratedStorage();
 
-  group('FeedBloc', () {
+  group("FeedBloc", () {
     late NewsRepository newsRepository;
     late FeedBloc feedBloc;
 
     final feedResponse = FeedResponse(
       feed: [
-        SectionHeaderBlock(title: 'title'),
+        SectionHeaderBlock(title: "title"),
         DividerHorizontalBlock(),
       ],
       totalCount: 4,
@@ -49,23 +49,23 @@ void main() {
       feedBloc = FeedBloc(newsRepository: newsRepository);
     });
 
-    test('can be (de)serialized', () {
+    test("can be (de)serialized", () {
       final serialized = feedBloc.toJson(feedStatePopulated);
       final deserialized = feedBloc.fromJson(serialized!);
 
       expect(deserialized, feedStatePopulated);
     });
 
-    group('FeedRequested', () {
+    group("FeedRequested", () {
       blocTest<FeedBloc, FeedState>(
-        'emits [loading, populated] '
-        'when getFeed succeeds '
-        'and there are more news to fetch',
+        "emits [loading, populated] "
+        "when getFeed succeeds "
+        "and there are more news to fetch",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
-            limit: any(named: 'limit'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
+            limit: any(named: "limit"),
           ),
         ).thenAnswer((_) async => feedResponse),
         build: () => feedBloc,
@@ -87,16 +87,16 @@ void main() {
       );
 
       blocTest<FeedBloc, FeedState>(
-        'emits [loading, populated] '
-        'with appended feed for the given category '
-        'when getFeed succeeds '
-        'and there are no more news to fetch',
+        "emits [loading, populated] "
+        "with appended feed for the given category "
+        "when getFeed succeeds "
+        "and there are no more news to fetch",
         seed: () => feedStatePopulated,
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
-            limit: any(named: 'limit'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
+            limit: any(named: "limit"),
           ),
         ).thenAnswer((_) async => feedResponse),
         build: () => feedBloc,
@@ -118,18 +118,18 @@ void main() {
               ..addAll({
                 Category.entertainment: false,
               }),
-          )
+          ),
         ],
       );
 
       blocTest<FeedBloc, FeedState>(
-        'emits [loading, error] '
-        'when getFeed fails',
+        "emits [loading, error] "
+        "when getFeed fails",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
-            limit: any(named: 'limit'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
+            limit: any(named: "limit"),
           ),
         ).thenThrow(Exception()),
         build: () => feedBloc,
@@ -143,15 +143,15 @@ void main() {
       );
     });
 
-    group('FeedRefreshRequested', () {
+    group("FeedRefreshRequested", () {
       blocTest<FeedBloc, FeedState>(
-        'emits [loading, populated] '
-        'when getFeed succeeds '
-        'and there is more news to fetch',
+        "emits [loading, populated] "
+        "when getFeed succeeds "
+        "and there is more news to fetch",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
           ),
         ).thenAnswer((_) async => feedResponse),
         build: () => feedBloc,
@@ -173,12 +173,12 @@ void main() {
       );
 
       blocTest<FeedBloc, FeedState>(
-        'emits [loading, error] '
-        'when getFeed fails',
+        "emits [loading, error] "
+        "when getFeed fails",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
           ),
         ).thenThrow(Exception()),
         build: () => feedBloc,
@@ -192,16 +192,16 @@ void main() {
       );
     });
 
-    group('FeedResumed', () {
+    group("FeedResumed", () {
       blocTest<FeedBloc, FeedState>(
-        'emits [populated] '
-        'when getFeed succeeds '
-        'and there are more news to fetch for a single category',
+        "emits [populated] "
+        "when getFeed succeeds "
+        "and there are more news to fetch for a single category",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
-            limit: any(named: 'limit'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
+            limit: any(named: "limit"),
           ),
         ).thenAnswer((_) async => feedResponse),
         build: () => feedBloc,
@@ -232,14 +232,14 @@ void main() {
       );
 
       blocTest<FeedBloc, FeedState>(
-        'emits [populated] '
-        'when getFeed succeeds '
-        'and there are more news to fetch for multiple category',
+        "emits [populated] "
+        "when getFeed succeeds "
+        "and there are more news to fetch for multiple category",
         setUp: () => when(
           () => newsRepository.getFeed(
-            category: any(named: 'category'),
-            offset: any(named: 'offset'),
-            limit: any(named: 'limit'),
+            category: any(named: "category"),
+            offset: any(named: "offset"),
+            limit: any(named: "limit"),
           ),
         ).thenAnswer((_) async => feedResponse),
         build: () => feedBloc,

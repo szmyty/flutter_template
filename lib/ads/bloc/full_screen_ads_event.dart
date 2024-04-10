@@ -1,4 +1,4 @@
-part of 'full_screen_ads_bloc.dart';
+part of "full_screen_ads_bloc.dart";
 
 abstract class FullScreenAdsEvent extends Equatable {
   const FullScreenAdsEvent();

@@ -1,11 +1,11 @@
-part of 'search_bloc.dart';
+part of "search_bloc.dart";
 
 abstract class SearchEvent extends Equatable {
   const SearchEvent();
 }
 
 class SearchTermChanged extends SearchEvent {
-  const SearchTermChanged({this.searchTerm = ''});
+  const SearchTermChanged({this.searchTerm = ""});
 
   final String searchTerm;
 

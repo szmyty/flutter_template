@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockCategoriesBloc extends MockBloc<CategoriesEvent, CategoriesState>
     implements CategoriesBloc {}
 
 void main() {
-  group('NavDrawerSections', () {
+  group("NavDrawerSections", () {
     late CategoriesBloc categoriesBloc;
 
     const categories = [Category.top, Category.health];
@@ -32,7 +32,7 @@ void main() {
       );
     });
 
-    testWidgets('renders NavDrawerSectionsTitle', (tester) async {
+    testWidgets("renders NavDrawerSectionsTitle", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: categoriesBloc,
@@ -43,8 +43,8 @@ void main() {
     });
 
     testWidgets(
-        'renders NavDrawerSectionItem '
-        'for each category', (tester) async {
+        "renders NavDrawerSectionItem "
+        "for each category", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: categoriesBloc,
@@ -65,9 +65,9 @@ void main() {
       }
     });
 
-    group('NavDrawerSectionItem', () {
-      testWidgets('renders ListTile with title', (tester) async {
-        const title = 'title';
+    group("NavDrawerSectionItem", () {
+      testWidgets("renders ListTile with title", (tester) async {
+        const title = "title";
         await tester.pumpApp(
           NavDrawerSectionItem(
             title: title,
@@ -76,11 +76,11 @@ void main() {
         expect(find.widgetWithText(ListTile, title), findsOneWidget);
       });
 
-      testWidgets('calls onTap when tapped', (tester) async {
+      testWidgets("calls onTap when tapped", (tester) async {
         var tapped = false;
         await tester.pumpApp(
           NavDrawerSectionItem(
-            title: 'title',
+            title: "title",
             onTap: () => tapped = true,
           ),
         );
@@ -90,10 +90,10 @@ void main() {
         expect(tapped, isTrue);
       });
 
-      testWidgets('has correct selected color', (tester) async {
+      testWidgets("has correct selected color", (tester) async {
         await tester.pumpApp(
           NavDrawerSectionItem(
-            title: 'title',
+            title: "title",
             selected: true,
             onTap: () {},
           ),

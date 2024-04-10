@@ -1,37 +1,37 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockingjay/mockingjay.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mockingjay/mockingjay.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
   const termsOfServiceModalCloseButtonKey =
-      Key('termsOfServiceModal_closeModal_iconButton');
+      Key("termsOfServiceModal_closeModal_iconButton");
 
-  group('TermsOfServiceModal', () {
-    group('renders', () {
-      testWidgets('terms of service modal header', (tester) async {
+  group("TermsOfServiceModal", () {
+    group("renders", () {
+      testWidgets("terms of service modal header", (tester) async {
         await tester.pumpApp(TermsOfServiceModal());
         expect(find.byType(TermsOfServiceModalHeader), findsOneWidget);
       });
 
-      testWidgets('terms of service modal close button', (tester) async {
+      testWidgets("terms of service modal close button", (tester) async {
         await tester.pumpApp(TermsOfServiceModal());
         final closeButton = find.byKey(termsOfServiceModalCloseButtonKey);
         expect(closeButton, findsOneWidget);
       });
 
-      testWidgets('terms of service body', (tester) async {
+      testWidgets("terms of service body", (tester) async {
         await tester.pumpApp(TermsOfServiceModal());
         expect(find.byType(TermsOfServiceBody), findsOneWidget);
       });
     });
 
-    group('closes terms of service modal', () {
-      testWidgets('when the close icon button is pressed', (tester) async {
+    group("closes terms of service modal", () {
+      testWidgets("when the close icon button is pressed", (tester) async {
         final navigator = MockNavigator();
         when(navigator.pop).thenAnswer((_) async {});
         await tester.pumpApp(

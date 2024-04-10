@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
-part 'notification_preferences_state.dart';
-part 'notification_preferences_event.dart';
+part "notification_preferences_state.dart";
+part "notification_preferences_event.dart";
 
 class NotificationPreferencesBloc
     extends Bloc<NotificationPreferencesEvent, NotificationPreferencesState> {

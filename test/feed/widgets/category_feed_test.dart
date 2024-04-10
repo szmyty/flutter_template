@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/network_error/network_error.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/network_error/network_error.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockFeedBloc extends MockBloc<FeedEvent, FeedState> implements FeedBloc {}
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 
-const networkErrorButtonText = 'Try Again';
+const networkErrorButtonText = "Try Again";
 
 void main() {
   late FeedBloc feedBloc;
@@ -26,7 +26,7 @@ void main() {
     Category.top: [
       DividerHorizontalBlock(),
       SpacerBlock(spacing: Spacing.medium),
-    ]
+    ],
   };
 
   setUp(() {
@@ -37,8 +37,8 @@ void main() {
     registerFallbackValue(FeedRefreshRequested(category: Category.business));
   });
 
-  group('CategoryFeed', () {
-    group('when FeedStatus is failure and feed is populated', () {
+  group("CategoryFeed", () {
+    group("when FeedStatus is failure and feed is populated", () {
       setUpAll(() {
         registerFallbackValue(Category.top);
       });
@@ -53,7 +53,7 @@ void main() {
         );
       });
 
-      testWidgets('shows NetworkErrorAlert', (tester) async {
+      testWidgets("shows NetworkErrorAlert", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: feedBloc,
@@ -67,7 +67,7 @@ void main() {
         );
       });
 
-      testWidgets('requests feed refresh on NetworkErrorAlert press',
+      testWidgets("requests feed refresh on NetworkErrorAlert press",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -84,7 +84,7 @@ void main() {
             .called(1);
       });
 
-      testWidgets('renders a SelectionArea', (tester) async {
+      testWidgets("renders a SelectionArea", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: feedBloc,
@@ -95,7 +95,7 @@ void main() {
         expect(find.byType(SelectionArea), findsOneWidget);
       });
 
-      testWidgets('shows CategoryFeedItem for each feed block', (tester) async {
+      testWidgets("shows CategoryFeedItem for each feed block", (tester) async {
         final categoryFeed = feed[category]!;
 
         await tester.pumpApp(
@@ -121,7 +121,7 @@ void main() {
       });
     });
 
-    group('when FeedStatus is failure and feed is unpopulated', () {
+    group("when FeedStatus is failure and feed is unpopulated", () {
       setUpAll(() {
         registerFallbackValue(Category.top);
         registerFallbackValue(NetworkError.route());
@@ -137,7 +137,7 @@ void main() {
         );
       });
 
-      testWidgets('pushes NetworkErrorAlert on Scaffold', (tester) async {
+      testWidgets("pushes NetworkErrorAlert on Scaffold", (tester) async {
         final navigatorObserver = MockNavigatorObserver();
 
         await tester.pumpApp(
@@ -159,7 +159,7 @@ void main() {
         );
       });
 
-      testWidgets('requests feed refresh on NetworkErrorAlert press',
+      testWidgets("requests feed refresh on NetworkErrorAlert press",
           (tester) async {
         final navigatorObserver = MockNavigatorObserver();
 
@@ -184,7 +184,7 @@ void main() {
       });
     });
 
-    group('when FeedStatus is populated', () {
+    group("when FeedStatus is populated", () {
       setUp(() {
         whenListen(
           feedBloc,
@@ -195,7 +195,7 @@ void main() {
         );
       });
 
-      testWidgets('shows CategoryFeedItem for each feed block', (tester) async {
+      testWidgets("shows CategoryFeedItem for each feed block", (tester) async {
         final categoryFeed = feed[category]!;
 
         await tester.pumpApp(
@@ -220,7 +220,7 @@ void main() {
         }
       });
 
-      testWidgets('refreshes on pull to refresh', (tester) async {
+      testWidgets("refreshes on pull to refresh", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: feedBloc,
@@ -246,13 +246,13 @@ void main() {
       });
     });
 
-    group('CategoryFeedLoaderItem', () {
+    group("CategoryFeedLoaderItem", () {
       final hasMoreNews = <Category, bool>{
         Category.top: true,
       };
 
-      group('is shown', () {
-        testWidgets('when FeedStatus is initial', (tester) async {
+      group("is shown", () {
+        testWidgets("when FeedStatus is initial", (tester) async {
           whenListen(
             feedBloc,
             Stream.fromIterable([
@@ -270,7 +270,7 @@ void main() {
           expect(find.byType(CategoryFeedLoaderItem), findsOneWidget);
         });
 
-        testWidgets('when FeedStatus is loading', (tester) async {
+        testWidgets("when FeedStatus is loading", (tester) async {
           whenListen(
             feedBloc,
             Stream.fromIterable([
@@ -289,8 +289,8 @@ void main() {
         });
 
         testWidgets(
-            'when FeedStatus is populated and '
-            'hasMoreNews is true', (tester) async {
+            "when FeedStatus is populated and "
+            "hasMoreNews is true", (tester) async {
           whenListen(
             feedBloc,
             Stream.fromIterable([
@@ -299,7 +299,7 @@ void main() {
                 status: FeedStatus.populated,
                 feed: feed,
                 hasMoreNews: hasMoreNews,
-              )
+              ),
             ]),
           );
 
@@ -315,9 +315,9 @@ void main() {
       });
 
       testWidgets(
-          'is not shown '
-          'when FeedStatus is populated and '
-          'hasMoreNews is false', (tester) async {
+          "is not shown "
+          "when FeedStatus is populated and "
+          "hasMoreNews is false", (tester) async {
         whenListen(
           feedBloc,
           Stream.fromIterable([
@@ -328,7 +328,7 @@ void main() {
               hasMoreNews: {
                 category: false,
               },
-            )
+            ),
           ]),
         );
 
@@ -342,7 +342,7 @@ void main() {
         expect(find.byType(CategoryFeedLoaderItem), findsNothing);
       });
 
-      testWidgets('adds FeedRequested to FeedBloc', (tester) async {
+      testWidgets("adds FeedRequested to FeedBloc", (tester) async {
         whenListen(
           feedBloc,
           Stream.fromIterable([
@@ -351,7 +351,7 @@ void main() {
               status: FeedStatus.populated,
               feed: feed,
               hasMoreNews: hasMoreNews,
-            )
+            ),
           ]),
         );
 

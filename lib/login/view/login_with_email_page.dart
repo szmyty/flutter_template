@@ -1,8 +1,8 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/login/login.dart";
+import "package:user_repository/user_repository.dart";
 
 class LoginWithEmailPage extends StatelessWidget {
   const LoginWithEmailPage({super.key});
@@ -21,10 +21,10 @@ class LoginWithEmailPage extends StatelessWidget {
           leading: const AppBackButton(),
           actions: [
             IconButton(
-              key: const Key('loginWithEmailPage_closeIcon'),
+              key: const Key("loginWithEmailPage_closeIcon"),
               icon: const Icon(Icons.close),
               onPressed: () => Navigator.pop(context),
-            )
+            ),
           ],
         ),
         body: const LoginWithEmailForm(),

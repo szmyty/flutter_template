@@ -1,13 +1,13 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
-part 'app_event.dart';
-part 'app_state.dart';
+part "app_event.dart";
+part "app_state.dart";
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({

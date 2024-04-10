@@ -1,13 +1,13 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/network_error/network_error.dart';
-import 'package:flutter_template_api/client.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/network_error/network_error.dart";
+import "package:flutter_template_api/client.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
 class ArticleContent extends StatelessWidget {
   const ArticleContent({super.key});
@@ -21,7 +21,7 @@ class ArticleContent extends StatelessWidget {
 
     if (status == ArticleStatus.initial) {
       return const ArticleContentLoaderItem(
-        key: Key('articleContent_empty_loaderItem'),
+        key: Key("articleContent_empty_loaderItem"),
       );
     }
 
@@ -64,7 +64,7 @@ class ArticleContent extends StatelessWidget {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          key: const Key('articleContent_shareFailure_snackBar'),
+          key: const Key("articleContent_shareFailure_snackBar"),
           content: Text(
             context.l10n.shareFailure,
           ),
@@ -134,7 +134,7 @@ class ArticleContentItemList extends StatelessWidget {
                     ),
                     child: ArticleContentLoaderItem(
                       key: const Key(
-                        'articleContent_moreContent_loaderItem',
+                        "articleContent_moreContent_loaderItem",
                       ),
                       onPresented: () {
                         if (status != ArticleStatus.loading) {

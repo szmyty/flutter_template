@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/onboarding/onboarding.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/onboarding/onboarding.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
@@ -20,18 +20,18 @@ void main() {
   late AppBloc appBloc;
   late OnboardingBloc onboardingBloc;
 
-  const onboardingViewTitleKey = Key('onboardingView_onboardingTitle');
-  const onboardingViewSubtitleKey = Key('onboardingView_onboardingSubtitle');
-  const onboardingViewPageTwoKey = Key('onboarding_pageTwo');
+  const onboardingViewTitleKey = Key("onboardingView_onboardingTitle");
+  const onboardingViewSubtitleKey = Key("onboardingView_onboardingSubtitle");
+  const onboardingViewPageTwoKey = Key("onboarding_pageTwo");
   const onboardingViewPageOnePrimaryButtonKey =
-      Key('onboardingItem_primaryButton_pageOne');
+      Key("onboardingItem_primaryButton_pageOne");
   const onboardingViewPageOneSecondaryButtonKey =
-      Key('onboardingItem_secondaryButton_pageOne');
+      Key("onboardingItem_secondaryButton_pageOne");
 
   const onboardingViewPageTwoPrimaryButtonKey =
-      Key('onboardingItem_primaryButton_pageTwo');
+      Key("onboardingItem_primaryButton_pageTwo");
   const onboardingViewPageTwoSecondaryButtonKey =
-      Key('onboardingItem_secondaryButton_pageTwo');
+      Key("onboardingItem_secondaryButton_pageTwo");
 
   setUp(() {
     appBloc = MockAppBloc();
@@ -44,8 +44,8 @@ void main() {
     );
   });
 
-  group('renders', () {
-    testWidgets('Onboarding title', (tester) async {
+  group("renders", () {
+    testWidgets("Onboarding title", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: onboardingBloc,
@@ -55,7 +55,7 @@ void main() {
       expect(find.byKey(onboardingViewTitleKey), findsOneWidget);
     });
 
-    testWidgets('Onboarding subtitle', (tester) async {
+    testWidgets("Onboarding subtitle", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: onboardingBloc,
@@ -65,7 +65,7 @@ void main() {
       expect(find.byKey(onboardingViewSubtitleKey), findsOneWidget);
     });
 
-    testWidgets('Onboarding PageView', (tester) async {
+    testWidgets("Onboarding PageView", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: onboardingBloc,
@@ -76,8 +76,8 @@ void main() {
     });
   });
 
-  group('navigates', () {
-    testWidgets('to onboarding page two when button page one is tapped',
+  group("navigates", () {
+    testWidgets("to onboarding page two when button page one is tapped",
         (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
@@ -102,8 +102,8 @@ void main() {
     });
 
     testWidgets(
-        'to onboarding page two '
-        'when state is EnablingAdTrackingSucceeded', (tester) async {
+        "to onboarding page two "
+        "when state is EnablingAdTrackingSucceeded", (tester) async {
       whenListen(
         onboardingBloc,
         Stream.fromIterable([
@@ -126,8 +126,8 @@ void main() {
     });
 
     testWidgets(
-        'to onboarding page two '
-        'when state is EnablingAdTrackingFailed', (tester) async {
+        "to onboarding page two "
+        "when state is EnablingAdTrackingFailed", (tester) async {
       whenListen(
         onboardingBloc,
         Stream.fromIterable([
@@ -149,7 +149,7 @@ void main() {
       expect(find.byKey(onboardingViewPageTwoKey), findsOneWidget);
     });
 
-    testWidgets('to home when onboarding is complete', (tester) async {
+    testWidgets("to home when onboarding is complete", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: onboardingBloc,
@@ -187,8 +187,8 @@ void main() {
   });
 
   testWidgets(
-      'adds EnableNotificationsRequested to OnboardingBloc '
-      'when subscribe to notifications now button is pressed', (tester) async {
+      "adds EnableNotificationsRequested to OnboardingBloc "
+      "when subscribe to notifications now button is pressed", (tester) async {
     await tester.pumpApp(
       BlocProvider.value(
         value: onboardingBloc,
@@ -231,8 +231,8 @@ void main() {
   });
 
   testWidgets(
-      'adds AppOnboardingCompleted to AppBloc '
-      'when OnboardingState is EnablingNotificationsSucceeded', (tester) async {
+      "adds AppOnboardingCompleted to AppBloc "
+      "when OnboardingState is EnablingNotificationsSucceeded", (tester) async {
     final onboardingStateController = StreamController<OnboardingState>();
 
     whenListen(
@@ -257,8 +257,8 @@ void main() {
     verify(() => appBloc.add(AppOnboardingCompleted())).called(1);
   });
 
-  group('does nothing', () {
-    testWidgets('when personalized my ads button is pressed', (tester) async {
+  group("does nothing", () {
+    testWidgets("when personalized my ads button is pressed", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: onboardingBloc,

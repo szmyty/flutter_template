@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/onboarding/onboarding.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/onboarding/onboarding.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
 class MockNotificationsRepository extends Mock
     implements NotificationsRepository {}
@@ -13,7 +13,7 @@ class MockNotificationsRepository extends Mock
 class MockAdsConsentClient extends Mock implements AdsConsentClient {}
 
 void main() {
-  group('OnboardingBloc', () {
+  group("OnboardingBloc", () {
     late NotificationsRepository notificationsRepository;
     late AdsConsentClient adsConsentClient;
 
@@ -22,11 +22,11 @@ void main() {
       adsConsentClient = MockAdsConsentClient();
     });
 
-    group('EnableAdTrackingRequested', () {
+    group("EnableAdTrackingRequested", () {
       blocTest<OnboardingBloc, OnboardingState>(
-        'emits '
-        '[EnablingAdTracking, EnablingAdTrackingSucceeded] '
-        'when AdsConsentClient.requestConsent returns true',
+        "emits "
+        "[EnablingAdTracking, EnablingAdTrackingSucceeded] "
+        "when AdsConsentClient.requestConsent returns true",
         setUp: () =>
             when(adsConsentClient.requestConsent).thenAnswer((_) async => true),
         build: () => OnboardingBloc(
@@ -42,9 +42,9 @@ void main() {
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        'emits '
-        '[EnablingAdTracking, EnablingAdTrackingFailed] '
-        'when AdsConsentClient.requestConsent returns false',
+        "emits "
+        "[EnablingAdTracking, EnablingAdTrackingFailed] "
+        "when AdsConsentClient.requestConsent returns false",
         setUp: () => when(adsConsentClient.requestConsent)
             .thenAnswer((_) async => false),
         build: () => OnboardingBloc(
@@ -60,9 +60,9 @@ void main() {
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        'emits '
-        '[EnablingNotifications, EnablingNotificationsFailed] '
-        'when AdsConsentClient.requestConsent fails',
+        "emits "
+        "[EnablingNotifications, EnablingNotificationsFailed] "
+        "when AdsConsentClient.requestConsent fails",
         setUp: () =>
             when(adsConsentClient.requestConsent).thenThrow(Exception()),
         build: () => OnboardingBloc(
@@ -77,19 +77,19 @@ void main() {
       );
     });
 
-    group('EnableNotificationsRequested', () {
+    group("EnableNotificationsRequested", () {
       setUp(() {
         when(
           () => notificationsRepository.toggleNotifications(
-            enable: any(named: 'enable'),
+            enable: any(named: "enable"),
           ),
         ).thenAnswer((_) async {});
       });
 
       blocTest<OnboardingBloc, OnboardingState>(
-        'emits '
-        '[EnablingNotifications, EnablingNotificationsSucceeded] '
-        'when NotificationsRepository.toggleNotifications succeeds',
+        "emits "
+        "[EnablingNotifications, EnablingNotificationsSucceeded] "
+        "when NotificationsRepository.toggleNotifications succeeds",
         build: () => OnboardingBloc(
           notificationsRepository: notificationsRepository,
           adsConsentClient: adsConsentClient,
@@ -105,12 +105,12 @@ void main() {
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        'emits '
-        '[EnablingNotifications, EnablingNotificationsFailed] '
-        'when NotificationsRepository.toggleNotifications fails',
+        "emits "
+        "[EnablingNotifications, EnablingNotificationsFailed] "
+        "when NotificationsRepository.toggleNotifications fails",
         setUp: () => when(
           () => notificationsRepository.toggleNotifications(
-            enable: any(named: 'enable'),
+            enable: any(named: "enable"),
           ),
         ).thenThrow(Exception()),
         build: () => OnboardingBloc(

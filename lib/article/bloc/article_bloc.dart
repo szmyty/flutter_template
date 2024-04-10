@@ -1,18 +1,18 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:clock/clock.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:share_launcher/share_launcher.dart';
+import "package:analytics_repository/analytics_repository.dart";
+import "package:article_repository/article_repository.dart";
+import "package:bloc_concurrency/bloc_concurrency.dart";
+import "package:clock/clock.dart";
+import "package:equatable/equatable.dart";
+import "package:hydrated_bloc/hydrated_bloc.dart";
+import "package:json_annotation/json_annotation.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:share_launcher/share_launcher.dart";
 
-part 'article_event.dart';
-part 'article_state.dart';
-part 'article_bloc.g.dart';
+part "article_event.dart";
+part "article_state.dart";
+part "article_bloc.g.dart";
 
 class ArticleBloc extends HydratedBloc<ArticleEvent, ArticleState> {
   ArticleBloc({

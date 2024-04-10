@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  const tapMeText = 'Tap Me';
+  const tapMeText = "Tap Me";
 
-  group('TermsOfServicePage', () {
-    group('route', () {
-      test('has a route', () {
+  group("TermsOfServicePage", () {
+    group("route", () {
+      test("has a route", () {
         expect(TermsOfServicePage.route(), isA<MaterialPageRoute<void>>());
       });
 
-      testWidgets('router returns a valid navigation route', (tester) async {
+      testWidgets("router returns a valid navigation route", (tester) async {
         await tester.pumpApp(
           Scaffold(
             body: Builder(
@@ -39,20 +39,20 @@ void main() {
       });
     });
 
-    group('renders', () {
-      testWidgets('terms of service page header', (tester) async {
+    group("renders", () {
+      testWidgets("terms of service page header", (tester) async {
         await tester.pumpApp(TermsOfServicePage());
         expect(find.byType(TermsOfServiceHeader), findsOneWidget);
       });
 
-      testWidgets('terms of service body', (tester) async {
+      testWidgets("terms of service body", (tester) async {
         await tester.pumpApp(TermsOfServicePage());
         expect(find.byType(TermsOfServiceBody), findsOneWidget);
       });
     });
 
-    group('navigates', () {
-      testWidgets('back when tapped on back icon', (tester) async {
+    group("navigates", () {
+      testWidgets("back when tapped on back icon", (tester) async {
         await tester.pumpApp(TermsOfServicePage());
 
         await tester.tap(find.byType(AppBackButton));

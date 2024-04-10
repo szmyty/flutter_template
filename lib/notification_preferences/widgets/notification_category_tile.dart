@@ -1,6 +1,6 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
 
 class NotificationCategoryTile extends StatelessWidget {
   const NotificationCategoryTile({
@@ -28,7 +28,7 @@ class NotificationCategoryTile extends StatelessWidget {
       horizontalTitleGap: 0,
       onTap: onTap,
       title: Text(
-        toBeginningOfSentenceCase(title) ?? '',
+        toBeginningOfSentenceCase(title) ?? "",
         style: Theme.of(context).textTheme.titleMedium,
       ),
     );

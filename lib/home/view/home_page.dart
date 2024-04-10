@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/home/home.dart";
+import "package:news_repository/news_repository.dart";
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             newsRepository: context.read<NewsRepository>(),
           ),
         ),
-        BlocProvider(create: (_) => HomeCubit())
+        BlocProvider(create: (_) => HomeCubit()),
       ],
       child: const HomeView(),
     );

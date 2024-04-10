@@ -1,7 +1,7 @@
-import 'dart:developer';
+import "dart:developer";
 
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:bloc/bloc.dart';
+import "package:analytics_repository/analytics_repository.dart";
+import "package:bloc/bloc.dart";
 
 class AppBlocObserver extends BlocObserver {
   AppBlocObserver({
@@ -16,13 +16,13 @@ class AppBlocObserver extends BlocObserver {
     Transition<dynamic, dynamic> transition,
   ) {
     super.onTransition(bloc, transition);
-    log('onTransition ${bloc.runtimeType}: $transition');
+    log("onTransition ${bloc.runtimeType}: $transition");
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    log('onError ${bloc.runtimeType}', error: error, stackTrace: stackTrace);
+    log("onError ${bloc.runtimeType}", error: error, stackTrace: stackTrace);
   }
 
   @override

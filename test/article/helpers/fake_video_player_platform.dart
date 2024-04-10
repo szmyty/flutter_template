@@ -1,8 +1,8 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:video_player_platform_interface/video_player_platform_interface.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:video_player_platform_interface/video_player_platform_interface.dart";
 
 class FakeVideoPlayerPlatform extends VideoPlayerPlatform {
   Completer<bool> initialized = Completer<bool>();
@@ -16,14 +16,14 @@ class FakeVideoPlayerPlatform extends VideoPlayerPlatform {
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    calls.add('create');
+    calls.add("create");
     final stream = StreamController<VideoEvent>();
     streams[nextTextureId] = stream;
     if (forceInitError) {
       stream.addError(
         PlatformException(
-          code: 'VideoError',
-          message: 'Video player had error XYZ',
+          code: "VideoError",
+          message: "Video player had error XYZ",
         ),
       );
     } else {
@@ -41,12 +41,12 @@ class FakeVideoPlayerPlatform extends VideoPlayerPlatform {
 
   @override
   Future<void> dispose(int textureId) async {
-    calls.add('dispose');
+    calls.add("dispose");
   }
 
   @override
   Future<void> init() async {
-    calls.add('init');
+    calls.add("init");
     initialized.complete(true);
   }
 
@@ -57,44 +57,44 @@ class FakeVideoPlayerPlatform extends VideoPlayerPlatform {
 
   @override
   Future<void> pause(int textureId) async {
-    calls.add('pause');
+    calls.add("pause");
   }
 
   @override
   Future<void> play(int textureId) async {
-    calls.add('play');
+    calls.add("play");
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    calls.add('position');
+    calls.add("position");
     return _positions[textureId] ?? Duration.zero;
   }
 
   @override
   Future<void> seekTo(int textureId, Duration position) async {
-    calls.add('seekTo');
+    calls.add("seekTo");
     _positions[textureId] = position;
   }
 
   @override
   Future<void> setLooping(int textureId, bool looping) async {
-    calls.add('setLooping');
+    calls.add("setLooping");
   }
 
   @override
   Future<void> setVolume(int textureId, double volume) async {
-    calls.add('setVolume');
+    calls.add("setVolume");
   }
 
   @override
   Future<void> setPlaybackSpeed(int textureId, double speed) async {
-    calls.add('setPlaybackSpeed');
+    calls.add("setPlaybackSpeed");
   }
 
   @override
   Future<void> setMixWithOthers(bool mixWithOthers) async {
-    calls.add('setMixWithOthers');
+    calls.add("setMixWithOthers");
   }
 
   @override

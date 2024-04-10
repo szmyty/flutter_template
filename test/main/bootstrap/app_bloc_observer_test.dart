@@ -1,10 +1,10 @@
-import 'package:analytics_repository/analytics_repository.dart';
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/main/bootstrap/app_bloc_observer.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import "package:analytics_repository/analytics_repository.dart";
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/main/bootstrap/app_bloc_observer.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
@@ -12,13 +12,13 @@ class FakeBloc extends Fake implements Bloc<dynamic, dynamic> {}
 
 class TestAnalyticsEvent extends Equatable with AnalyticsEventMixin {
   @override
-  AnalyticsEvent get event => const AnalyticsEvent('TestAnalyticsEvent');
+  AnalyticsEvent get event => const AnalyticsEvent("TestAnalyticsEvent");
 }
 
 class FakeAnalyticsEvent extends Fake implements AnalyticsEvent {}
 
 void main() {
-  group('AppBlocObserver', () {
+  group("AppBlocObserver", () {
     late Bloc<dynamic, dynamic> bloc;
     late AnalyticsRepository analyticsRepository;
     late AppBlocObserver observer;
@@ -34,8 +34,8 @@ void main() {
       registerFallbackValue(FakeAnalyticsEvent());
     });
 
-    group('onTransition', () {
-      test('returns normally', () {
+    group("onTransition", () {
+      test("returns normally", () {
         final transition = Transition(
           currentState: TestAnalyticsEvent(),
           event: TestAnalyticsEvent(),
@@ -45,8 +45,8 @@ void main() {
       });
     });
 
-    group('onChange', () {
-      test('tracks analytics event', () {
+    group("onChange", () {
+      test("tracks analytics event", () {
         final change = Change(
           currentState: TestAnalyticsEvent(),
           nextState: TestAnalyticsEvent(),
@@ -58,16 +58,16 @@ void main() {
       });
     });
 
-    group('onEvent', () {
-      test('tracks analytics event', () {
+    group("onEvent", () {
+      test("tracks analytics event", () {
         final event = TestAnalyticsEvent();
         expect(() => observer.onEvent(bloc, event), returnsNormally);
         verify(() => analyticsRepository.track(event.event)).called(1);
       });
     });
 
-    group('onError', () {
-      test('returns normally', () {
+    group("onError", () {
+      test("returns normally", () {
         final error = Exception();
         const stackTrace = StackTrace.empty;
         expect(

@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:form_inputs/form_inputs.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:form_inputs/form_inputs.dart";
+import "package:news_repository/news_repository.dart";
 
-part 'newsletter_event.dart';
-part 'newsletter_state.dart';
+part "newsletter_event.dart";
+part "newsletter_state.dart";
 
 class NewsletterBloc extends Bloc<NewsletterEvent, NewsletterState> {
   NewsletterBloc({

@@ -1,13 +1,13 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/newsletter/newsletter.dart'
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/newsletter/newsletter.dart"
     hide NewsletterEvent;
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:news_repository/news_repository.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
 class Newsletter extends StatelessWidget {
   const Newsletter({super.key});
@@ -39,7 +39,7 @@ class _NewsletterViewState extends State<NewsletterView> {
         context.select<NewsletterBloc, bool>((bloc) => bloc.state.isValid);
 
     return VisibilityDetector(
-      key: const Key('newsletterView'),
+      key: const Key("newsletterView"),
       onVisibilityChanged: _newsletterShown
           ? null
           : (visibility) {

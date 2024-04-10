@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:user_repository/user_repository.dart";
 
 void main() {
-  group('UserProfileEvent', () {
-    group('UserProfileUpdated', () {
-      test('supports value comparisons', () {
+  group("UserProfileEvent", () {
+    group("UserProfileUpdated", () {
+      test("supports value comparisons", () {
         const user = User.anonymous;
         final userProfileUpdated = UserProfileUpdated(user);
         final userProfileUpdated2 = UserProfileUpdated(user);
@@ -16,8 +16,8 @@ void main() {
       });
     });
 
-    group('FetchNotificationsEnabled', () {
-      test('supports value comparisons', () {
+    group("FetchNotificationsEnabled", () {
+      test("supports value comparisons", () {
         final event1 = FetchNotificationsEnabled();
         final event2 = FetchNotificationsEnabled();
 
@@ -25,8 +25,8 @@ void main() {
       });
     });
 
-    group('ToggleNotifications', () {
-      test('supports value comparisons', () {
+    group("ToggleNotifications", () {
+      test("supports value comparisons", () {
         final event1 = ToggleNotifications();
         final event2 = ToggleNotifications();
 

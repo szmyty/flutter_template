@@ -1,20 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/home/home.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockCategoriesBloc extends MockBloc<CategoriesEvent, CategoriesState>
     implements CategoriesBloc {}
@@ -25,7 +25,7 @@ class MockUser extends Mock implements User {}
 
 class MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
 
-const _scaffoldKey = Key('__scaffold__');
+const _scaffoldKey = Key("__scaffold__");
 
 extension on WidgetTester {
   Future<void> pumpDrawer({
@@ -60,7 +60,7 @@ extension on WidgetTester {
 }
 
 void main() {
-  group('NavDrawer', () {
+  group("NavDrawer", () {
     late CategoriesBloc categoriesBloc;
     late AppBloc appBloc;
     late HomeCubit homeCubit;
@@ -82,7 +82,7 @@ void main() {
       when(() => appBloc.state).thenReturn(AppState.authenticated(user));
     });
 
-    testWidgets('renders Drawer', (tester) async {
+    testWidgets("renders Drawer", (tester) async {
       await tester.pumpDrawer(
         categoriesBloc: categoriesBloc,
         appBloc: appBloc,
@@ -91,7 +91,7 @@ void main() {
       expect(find.byType(Drawer), findsOneWidget);
     });
 
-    testWidgets('renders AppLogo', (tester) async {
+    testWidgets("renders AppLogo", (tester) async {
       await tester.pumpDrawer(
         categoriesBloc: categoriesBloc,
         appBloc: appBloc,
@@ -100,7 +100,7 @@ void main() {
       expect(find.byType(AppLogo), findsOneWidget);
     });
 
-    testWidgets('renders NavDrawerSections', (tester) async {
+    testWidgets("renders NavDrawerSections", (tester) async {
       await tester.pumpDrawer(
         categoriesBloc: categoriesBloc,
         appBloc: appBloc,
@@ -110,8 +110,8 @@ void main() {
     });
 
     testWidgets(
-        'renders NavDrawerSubscribe '
-        'when user is not subscribed', (tester) async {
+        "renders NavDrawerSubscribe "
+        "when user is not subscribed", (tester) async {
       final user = MockUser();
       when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.none);
       when(() => appBloc.state).thenReturn(
@@ -126,8 +126,8 @@ void main() {
     });
 
     testWidgets(
-        'does not render NavDrawerSubscribe '
-        'when user is subscribed', (tester) async {
+        "does not render NavDrawerSubscribe "
+        "when user is subscribed", (tester) async {
       final user = MockUser();
       when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.premium);
       when(() => appBloc.state).thenReturn(
@@ -141,8 +141,8 @@ void main() {
       expect(find.byType(NavDrawerSubscribe), findsNothing);
     });
 
-    group('when NavDrawerSectionItem is tapped', () {
-      testWidgets('closes drawer', (tester) async {
+    group("when NavDrawerSectionItem is tapped", () {
+      testWidgets("closes drawer", (tester) async {
         await tester.pumpDrawer(
           categoriesBloc: categoriesBloc,
           appBloc: appBloc,
@@ -165,7 +165,7 @@ void main() {
         expect(scaffoldState.isDrawerOpen, isFalse);
       });
 
-      testWidgets('adds CategorySelected to CategoriesBloc', (tester) async {
+      testWidgets("adds CategorySelected to CategoriesBloc", (tester) async {
         final category = categories.first;
 
         await tester.pumpDrawer(
@@ -189,7 +189,7 @@ void main() {
       });
 
       testWidgets(
-        'sets tab to zero when NavDrawerSectionItem is tapped ',
+        "sets tab to zero when NavDrawerSectionItem is tapped ",
         (tester) async {
           final category = categories.first;
 

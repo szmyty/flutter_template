@@ -1,37 +1,37 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('NavDrawerSubscribe', () {
-    testWidgets('renders NavDrawerSubscribeTitle', (tester) async {
+  group("NavDrawerSubscribe", () {
+    testWidgets("renders NavDrawerSubscribeTitle", (tester) async {
       await tester.pumpApp(NavDrawerSubscribe());
       expect(find.byType(NavDrawerSubscribeTitle), findsOneWidget);
     });
 
-    testWidgets('renders NavDrawerSubscribeSubtitle', (tester) async {
+    testWidgets("renders NavDrawerSubscribeSubtitle", (tester) async {
       await tester.pumpApp(NavDrawerSubscribe());
       expect(find.byType(NavDrawerSubscribeSubtitle), findsOneWidget);
     });
 
-    testWidgets('renders NavDrawerSubscribeButton', (tester) async {
+    testWidgets("renders NavDrawerSubscribeButton", (tester) async {
       await tester.pumpApp(NavDrawerSubscribe());
       expect(find.byType(NavDrawerSubscribeButton), findsOneWidget);
     });
 
-    group('NavDrawerSubscribeButton', () {
-      testWidgets('renders AppButton', (tester) async {
+    group("NavDrawerSubscribeButton", () {
+      testWidgets("renders AppButton", (tester) async {
         await tester.pumpApp(NavDrawerSubscribeButton());
         expect(find.byType(AppButton), findsOneWidget);
       });
 
-      testWidgets('opens PurchaseSubscriptionDialog when tapped',
+      testWidgets("opens PurchaseSubscriptionDialog when tapped",
           (tester) async {
         final inAppPurchaseRepository = MockInAppPurchaseRepository();
 

@@ -1,12 +1,12 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:sliver_tools/sliver_tools.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:sliver_tools/sliver_tools.dart";
 
 class ArticleTrailingContent extends StatelessWidget {
   const ArticleTrailingContent({super.key});
@@ -56,7 +56,7 @@ class ArticleTrailingContent extends StatelessWidget {
           const SliverPadding(
             padding: EdgeInsets.all(AppSpacing.lg),
             sliver: SliverToBoxAdapter(child: ArticleComments()),
-          )
+          ),
         ],
         if (isArticlePreview) ...[
           SliverList(
@@ -70,7 +70,7 @@ class ArticleTrailingContent extends StatelessWidget {
               ],
             ),
           ),
-        ]
+        ],
       ],
     );
   }

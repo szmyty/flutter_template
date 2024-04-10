@@ -1,13 +1,13 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
 @visibleForTesting
 class SubscribeModal extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SubscribeModalState extends State<SubscribeModal> {
     final articleTitle = context.select((ArticleBloc bloc) => bloc.state.title);
 
     return VisibilityDetector(
-      key: const Key('subscribeModal'),
+      key: const Key("subscribeModal"),
       onVisibilityChanged: _modalShown
           ? null
           : (visibility) {
@@ -40,7 +40,7 @@ class _SubscribeModalState extends State<SubscribeModal> {
                       TrackAnalyticsEvent(
                         PaywallPromptEvent.impression(
                           impression: PaywallPromptImpression.subscription,
-                          articleTitle: articleTitle ?? '',
+                          articleTitle: articleTitle ?? "",
                         ),
                       ),
                     );
@@ -78,13 +78,13 @@ class _SubscribeModalState extends State<SubscribeModal> {
                   horizontal: AppSpacing.lg + AppSpacing.xxs,
                 ),
                 child: AppButton.redWine(
-                  key: const Key('subscribeModal_subscribeButton'),
+                  key: const Key("subscribeModal_subscribeButton"),
                   child: Text(l10n.subscribeButtonText),
                   onPressed: () {
                     context.read<AnalyticsBloc>().add(
                           TrackAnalyticsEvent(
                             PaywallPromptEvent.click(
-                              articleTitle: articleTitle ?? '',
+                              articleTitle: articleTitle ?? "",
                             ),
                           ),
                         );
@@ -100,7 +100,7 @@ class _SubscribeModalState extends State<SubscribeModal> {
                     horizontal: AppSpacing.lg + AppSpacing.xxs,
                   ),
                   child: AppButton.outlinedTransparentWhite(
-                    key: const Key('subscribeModal_logInButton'),
+                    key: const Key("subscribeModal_logInButton"),
                     child: Text(l10n.subscribeModalLogInButton),
                     onPressed: () => showAppModal<void>(
                       context: context,
@@ -110,7 +110,7 @@ class _SubscribeModalState extends State<SubscribeModal> {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
-              ]
+              ],
             ],
           ),
         ),

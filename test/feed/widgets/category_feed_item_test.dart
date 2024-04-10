@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:article_repository/article_repository.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart' hide Spacer;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/newsletter/newsletter.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:article_repository/article_repository.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart" hide Spacer;
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/newsletter/newsletter.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:mocktail_image_network/mocktail_image_network.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockArticleRepository extends Mock implements ArticleRepository {}
 
@@ -26,7 +26,7 @@ class MockCategoriesBloc extends MockBloc<CategoriesEvent, CategoriesState>
 void main() {
   initMockHydratedStorage();
 
-  group('CategoryFeedItem', () {
+  group("CategoryFeedItem", () {
     late ArticleRepository articleRepository;
 
     setUp(() {
@@ -39,25 +39,25 @@ void main() {
 
       when(
         () => articleRepository.getArticle(
-          id: any(named: 'id'),
-          limit: any(named: 'limit'),
-          offset: any(named: 'offset'),
+          id: any(named: "id"),
+          limit: any(named: "limit"),
+          offset: any(named: "offset"),
         ),
       ).thenAnswer(
         (_) async => ArticleResponse(
-          title: 'title',
+          title: "title",
           content: [],
           totalCount: 0,
-          url: Uri.parse('https://www.dglobe.com/'),
+          url: Uri.parse("https://www.dglobe.com/"),
           isPremium: false,
           isPreview: false,
         ),
       );
       when(
         () => articleRepository.getRelatedArticles(
-          id: any(named: 'id'),
-          limit: any(named: 'limit'),
-          offset: any(named: 'offset'),
+          id: any(named: "id"),
+          limit: any(named: "limit"),
+          offset: any(named: "offset"),
         ),
       ).thenAnswer(
         (_) async => RelatedArticlesResponse(
@@ -68,8 +68,8 @@ void main() {
     });
 
     testWidgets(
-        'renders DividerHorizontal '
-        'for DividerHorizontalBlock', (tester) async {
+        "renders DividerHorizontal "
+        "for DividerHorizontalBlock", (tester) async {
       const block = DividerHorizontalBlock();
       await tester.pumpApp(
         CustomScrollView(slivers: [CategoryFeedItem(block: block)]),
@@ -83,8 +83,8 @@ void main() {
     });
 
     testWidgets(
-        'renders Spacer '
-        'for SpacerBlock', (tester) async {
+        "renders Spacer "
+        "for SpacerBlock", (tester) async {
       const block = SpacerBlock(spacing: Spacing.large);
       await tester.pumpApp(
         CustomScrollView(slivers: [CategoryFeedItem(block: block)]),
@@ -98,9 +98,9 @@ void main() {
     });
 
     testWidgets(
-        'renders SectionHeader '
-        'for SectionHeaderBlock', (tester) async {
-      const block = SectionHeaderBlock(title: 'title');
+        "renders SectionHeader "
+        "for SectionHeaderBlock", (tester) async {
+      const block = SectionHeaderBlock(title: "title");
       await tester.pumpApp(
         CustomScrollView(slivers: [CategoryFeedItem(block: block)]),
       );
@@ -113,15 +113,15 @@ void main() {
     });
 
     testWidgets(
-        'renders PostLarge '
-        'for PostLargeBlock', (tester) async {
+        "renders PostLarge "
+        "for PostLargeBlock", (tester) async {
       final block = PostLargeBlock(
-        id: 'id',
+        id: "id",
         category: PostCategory.technology,
-        author: 'author',
+        author: "author",
         publishedAt: DateTime(2022, 3, 9),
-        imageUrl: 'imageUrl',
-        title: 'title',
+        imageUrl: "imageUrl",
+        title: "title",
       );
       await mockNetworkImages(() async {
         await tester.pumpApp(
@@ -139,15 +139,15 @@ void main() {
     });
 
     testWidgets(
-        'renders PostMedium '
-        'for PostMediumBlock', (tester) async {
+        "renders PostMedium "
+        "for PostMediumBlock", (tester) async {
       final block = PostMediumBlock(
-        id: 'id',
+        id: "id",
         category: PostCategory.sports,
-        author: 'author',
+        author: "author",
         publishedAt: DateTime(2022, 3, 10),
-        imageUrl: 'imageUrl',
-        title: 'title',
+        imageUrl: "imageUrl",
+        title: "title",
       );
       await mockNetworkImages(() async {
         await tester.pumpApp(
@@ -163,15 +163,15 @@ void main() {
     });
 
     testWidgets(
-        'renders PostSmall '
-        'for PostSmallBlock', (tester) async {
+        "renders PostSmall "
+        "for PostSmallBlock", (tester) async {
       final block = PostSmallBlock(
-        id: 'id',
+        id: "id",
         category: PostCategory.health,
-        author: 'author',
+        author: "author",
         publishedAt: DateTime(2022, 3, 11),
-        imageUrl: 'imageUrl',
-        title: 'title',
+        imageUrl: "imageUrl",
+        title: "title",
       );
       await mockNetworkImages(() async {
         await tester.pumpApp(
@@ -187,19 +187,19 @@ void main() {
     });
 
     testWidgets(
-        'renders PostGrid '
-        'for PostGridGroupBlock', (tester) async {
+        "renders PostGrid "
+        "for PostGridGroupBlock", (tester) async {
       final block = PostGridGroupBlock(
         category: PostCategory.science,
         tiles: [
           PostGridTileBlock(
-            id: 'id',
+            id: "id",
             category: PostCategory.science,
-            author: 'author',
+            author: "author",
             publishedAt: DateTime(2022, 3, 12),
-            imageUrl: 'imageUrl',
-            title: 'title',
-          )
+            imageUrl: "imageUrl",
+            title: "title",
+          ),
         ],
       );
       await mockNetworkImages(() async {
@@ -218,8 +218,8 @@ void main() {
     });
 
     testWidgets(
-        'renders Newsletter '
-        'for NewsletterBlock', (tester) async {
+        "renders Newsletter "
+        "for NewsletterBlock", (tester) async {
       VisibilityDetectorController.instance.updateInterval = Duration.zero;
       final block = NewsletterBlock();
       await tester.pumpApp(
@@ -229,8 +229,8 @@ void main() {
     });
 
     testWidgets(
-        'renders BannerAd '
-        'for BannerAdBlock', (tester) async {
+        "renders BannerAd "
+        "for BannerAdBlock", (tester) async {
       final block = BannerAdBlock(size: BannerAdSize.normal);
       await tester.pumpApp(
         CustomScrollView(slivers: [CategoryFeedItem(block: block)]),
@@ -239,8 +239,8 @@ void main() {
     });
 
     testWidgets(
-        'renders SizedBox '
-        'for unsupported block', (tester) async {
+        "renders SizedBox "
+        "for unsupported block", (tester) async {
       final block = UnknownBlock();
       await tester.pumpApp(
         CustomScrollView(slivers: [CategoryFeedItem(block: block)]),
@@ -250,18 +250,18 @@ void main() {
     });
 
     group(
-        'navigates to ArticlePage '
-        'on NavigateToArticleAction', () {
-      const articleId = 'articleId';
+        "navigates to ArticlePage "
+        "on NavigateToArticleAction", () {
+      const articleId = "articleId";
 
-      testWidgets('from PostLarge', (tester) async {
+      testWidgets("from PostLarge", (tester) async {
         final block = PostLargeBlock(
           id: articleId,
           category: PostCategory.technology,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 9),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           isContentOverlaid: true,
           action: NavigateToArticleAction(articleId: articleId),
         );
@@ -285,14 +285,14 @@ void main() {
         );
       });
 
-      testWidgets('from PostMedium', (tester) async {
+      testWidgets("from PostMedium", (tester) async {
         final block = PostMediumBlock(
-          id: 'id',
+          id: "id",
           category: PostCategory.sports,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 10),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           isContentOverlaid: true,
           action: NavigateToArticleAction(articleId: articleId),
         );
@@ -318,14 +318,14 @@ void main() {
         );
       });
 
-      testWidgets('from PostSmall', (tester) async {
+      testWidgets("from PostSmall", (tester) async {
         final block = PostSmallBlock(
-          id: 'id',
+          id: "id",
           category: PostCategory.health,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 11),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           action: NavigateToArticleAction(articleId: articleId),
         );
         await mockNetworkImages(() async {
@@ -349,19 +349,19 @@ void main() {
         );
       });
 
-      testWidgets('from PostGrid', (tester) async {
+      testWidgets("from PostGrid", (tester) async {
         final block = PostGridGroupBlock(
           category: PostCategory.science,
           tiles: [
             PostGridTileBlock(
-              id: 'id',
+              id: "id",
               category: PostCategory.science,
-              author: 'author',
+              author: "author",
               publishedAt: DateTime(2022, 3, 12),
-              imageUrl: 'imageUrl',
-              title: 'title',
+              imageUrl: "imageUrl",
+              title: "title",
               action: NavigateToArticleAction(articleId: articleId),
-            )
+            ),
           ],
         );
 
@@ -390,18 +390,18 @@ void main() {
     });
 
     group(
-        'navigates to video ArticlePage '
-        'on NavigateToVideoArticleAction', () {
-      const articleId = 'articleId';
+        "navigates to video ArticlePage "
+        "on NavigateToVideoArticleAction", () {
+      const articleId = "articleId";
 
-      testWidgets('from PostLarge', (tester) async {
+      testWidgets("from PostLarge", (tester) async {
         final block = PostLargeBlock(
           id: articleId,
           category: PostCategory.technology,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 9),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           isContentOverlaid: true,
           action: NavigateToVideoArticleAction(articleId: articleId),
         );
@@ -430,14 +430,14 @@ void main() {
         );
       });
 
-      testWidgets('from PostMedium', (tester) async {
+      testWidgets("from PostMedium", (tester) async {
         final block = PostMediumBlock(
-          id: 'id',
+          id: "id",
           category: PostCategory.sports,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 10),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           isContentOverlaid: true,
           action: NavigateToVideoArticleAction(articleId: articleId),
         );
@@ -466,14 +466,14 @@ void main() {
         );
       });
 
-      testWidgets('from PostSmall', (tester) async {
+      testWidgets("from PostSmall", (tester) async {
         final block = PostSmallBlock(
-          id: 'id',
+          id: "id",
           category: PostCategory.health,
-          author: 'author',
+          author: "author",
           publishedAt: DateTime(2022, 3, 11),
-          imageUrl: 'imageUrl',
-          title: 'title',
+          imageUrl: "imageUrl",
+          title: "title",
           action: NavigateToVideoArticleAction(articleId: articleId),
         );
 
@@ -501,19 +501,19 @@ void main() {
         );
       });
 
-      testWidgets('from PostGrid', (tester) async {
+      testWidgets("from PostGrid", (tester) async {
         final block = PostGridGroupBlock(
           category: PostCategory.science,
           tiles: [
             PostGridTileBlock(
-              id: 'id',
+              id: "id",
               category: PostCategory.science,
-              author: 'author',
+              author: "author",
               publishedAt: DateTime(2022, 3, 12),
-              imageUrl: 'imageUrl',
-              title: 'title',
+              imageUrl: "imageUrl",
+              title: "title",
               action: NavigateToVideoArticleAction(articleId: articleId),
-            )
+            ),
           ],
         );
 
@@ -545,13 +545,13 @@ void main() {
     });
 
     testWidgets(
-        'adds CategorySelected to CategoriesBloc '
-        'on NavigateToFeedCategoryAction', (tester) async {
+        "adds CategorySelected to CategoriesBloc "
+        "on NavigateToFeedCategoryAction", (tester) async {
       final categoriesBloc = MockCategoriesBloc();
 
       const category = Category.top;
       const block = SectionHeaderBlock(
-        title: 'title',
+        title: "title",
         action: NavigateToFeedCategoryAction(category: category),
       );
 

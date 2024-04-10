@@ -1,1 +1,1 @@
-export 'manage_subscription_page.dart';
+export "manage_subscription_page.dart";

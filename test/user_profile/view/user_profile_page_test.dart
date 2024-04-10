@@ -1,21 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mockingjay/mockingjay.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mockingjay/mockingjay.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockUserProfileBloc extends MockBloc<UserProfileEvent, UserProfileState>
     implements UserProfileBloc {}
@@ -26,27 +26,27 @@ class MockAnalyticsBloc extends MockBloc<AnalyticsEvent, AnalyticsState>
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
 void main() {
-  const termsOfServiceItemKey = Key('userProfilePage_termsOfServiceItem');
+  const termsOfServiceItemKey = Key("userProfilePage_termsOfServiceItem");
 
-  group('UserProfilePage', () {
-    test('has a route', () {
+  group("UserProfilePage", () {
+    test("has a route", () {
       expect(UserProfilePage.route(), isA<MaterialPageRoute<void>>());
     });
 
-    testWidgets('renders UserProfileView', (tester) async {
+    testWidgets("renders UserProfileView", (tester) async {
       await tester.pumpApp(UserProfilePage());
       expect(find.byType(UserProfileView), findsOneWidget);
     });
 
-    group('UserProfileView', () {
+    group("UserProfileView", () {
       late InAppPurchaseRepository inAppPurchaseRepository;
       late UserProfileBloc userProfileBloc;
       late AnalyticsBloc analyticsBloc;
       late AppBloc appBloc;
 
       final user = User(
-        id: '1',
-        email: 'email',
+        id: "1",
+        email: "email",
         subscriptionPlan: SubscriptionPlan.none,
       );
       const notificationsEnabled = true;
@@ -78,8 +78,8 @@ void main() {
       });
 
       testWidgets(
-          'adds FetchNotificationsEnabled to UserProfileBloc '
-          'when initialized and each time the app is resumed', (tester) async {
+          "adds FetchNotificationsEnabled to UserProfileBloc "
+          "when initialized and each time the app is resumed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -108,8 +108,8 @@ void main() {
       });
 
       testWidgets(
-          'navigates back '
-          'when app back button is pressed', (tester) async {
+          "navigates back "
+          "when app back button is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -124,8 +124,8 @@ void main() {
       });
 
       testWidgets(
-          'navigates back '
-          'when user is unauthenticated', (tester) async {
+          "navigates back "
+          "when user is unauthenticated", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -140,10 +140,10 @@ void main() {
       });
 
       testWidgets(
-          'adds TrackAnalyticsEvent to AnalyticsBloc '
-          'with PushNotificationSubscriptionEvent '
-          'when status is togglingNotificationsSucceeded '
-          'and notificationsEnabled is true', (tester) async {
+          "adds TrackAnalyticsEvent to AnalyticsBloc "
+          "with PushNotificationSubscriptionEvent "
+          "when status is togglingNotificationsSucceeded "
+          "and notificationsEnabled is true", (tester) async {
         whenListen(
           userProfileBloc,
           Stream.fromIterable([
@@ -173,7 +173,7 @@ void main() {
         ).called(1);
       });
 
-      testWidgets('renders UserProfileTitle', (tester) async {
+      testWidgets("renders UserProfileTitle", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -187,7 +187,7 @@ void main() {
         );
       });
 
-      testWidgets('renders user email', (tester) async {
+      testWidgets("renders user email", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -204,8 +204,8 @@ void main() {
       });
 
       testWidgets(
-          'renders notifications item '
-          'with trailing AppSwitch', (tester) async {
+          "renders notifications item "
+          "with trailing AppSwitch", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -217,7 +217,7 @@ void main() {
           find.byWidgetPredicate(
             (widget) =>
                 widget is UserProfileItem &&
-                widget.key == Key('userProfilePage_notificationsItem') &&
+                widget.key == Key("userProfilePage_notificationsItem") &&
                 widget.trailing is AppSwitch,
           ),
           findsOneWidget,
@@ -233,9 +233,9 @@ void main() {
       });
 
       group(
-          'renders UserProfileSubscribeBox '
-          'when isUserSubscribed is false', () {
-        testWidgets('correctly', (tester) async {
+          "renders UserProfileSubscribeBox "
+          "when isUserSubscribed is false", () {
+        testWidgets("correctly", (tester) async {
           whenListen(
             appBloc,
             Stream.fromIterable([
@@ -254,7 +254,7 @@ void main() {
           expect(find.byType(UserProfileSubscribeBox), findsOneWidget);
         });
 
-        testWidgets('opens PurchaseSubscriptionDialog when tapped',
+        testWidgets("opens PurchaseSubscriptionDialog when tapped",
             (tester) async {
           whenListen(
             appBloc,
@@ -280,7 +280,7 @@ void main() {
             ),
           );
           final subscriptionButton =
-              find.byKey(Key('userProfileSubscribeBox_appButton'));
+              find.byKey(Key("userProfileSubscribeBox_appButton"));
           await tester.scrollUntilVisible(subscriptionButton, -50);
           await tester.tap(subscriptionButton);
           await tester.pump();
@@ -293,8 +293,8 @@ void main() {
       });
 
       testWidgets(
-          'renders notification preferences item '
-          'with trailing Icon', (tester) async {
+          "renders notification preferences item "
+          "with trailing Icon", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -306,14 +306,14 @@ void main() {
             (widget) =>
                 widget is UserProfileItem &&
                 widget.key ==
-                    Key('userProfilePage_notificationPreferencesItem') &&
+                    Key("userProfilePage_notificationPreferencesItem") &&
                 widget.trailing is Icon,
           ),
           findsOneWidget,
         );
       });
 
-      testWidgets('renders terms of use and privacy policy item',
+      testWidgets("renders terms of use and privacy policy item",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -325,13 +325,13 @@ void main() {
           find.byWidgetPredicate(
             (widget) =>
                 widget is UserProfileItem &&
-                widget.key == Key('userProfilePage_termsOfServiceItem'),
+                widget.key == Key("userProfilePage_termsOfServiceItem"),
           ),
           findsOneWidget,
         );
       });
 
-      testWidgets('renders about item', (tester) async {
+      testWidgets("renders about item", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -342,15 +342,15 @@ void main() {
           find.byWidgetPredicate(
             (widget) =>
                 widget is UserProfileItem &&
-                widget.key == Key('userProfilePage_aboutItem'),
+                widget.key == Key("userProfilePage_aboutItem"),
           ),
           findsOneWidget,
         );
       });
 
       testWidgets(
-          'adds ToggleNotifications to UserProfileBloc '
-          'when notifications item trailing is tapped', (tester) async {
+          "adds ToggleNotifications to UserProfileBloc "
+          "when notifications item trailing is tapped", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: userProfileBloc,
@@ -362,8 +362,8 @@ void main() {
       });
 
       testWidgets(
-          'does nothing '
-          'when notification preferences item trailing is tapped',
+          "does nothing "
+          "when notification preferences item trailing is tapped",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -372,7 +372,7 @@ void main() {
           ),
         );
         final preferencesItem = find.byKey(
-          Key('userProfilePage_notificationPreferencesItem_trailing'),
+          Key("userProfilePage_notificationPreferencesItem_trailing"),
         );
 
         await tester.ensureVisible(preferencesItem);
@@ -380,23 +380,23 @@ void main() {
         await tester.pumpAndSettle();
       });
 
-      group('UserProfileItem', () {
-        testWidgets('renders ListTile', (tester) async {
+      group("UserProfileItem", () {
+        testWidgets("renders ListTile", (tester) async {
           await tester.pumpApp(
             UserProfileItem(
-              title: 'title',
+              title: "title",
             ),
           );
 
-          expect(find.widgetWithText(ListTile, 'title'), findsOneWidget);
+          expect(find.widgetWithText(ListTile, "title"), findsOneWidget);
         });
 
-        testWidgets('renders leading', (tester) async {
-          const leadingKey = Key('__leading__');
+        testWidgets("renders leading", (tester) async {
+          const leadingKey = Key("__leading__");
 
           await tester.pumpApp(
             UserProfileItem(
-              title: 'title',
+              title: "title",
               leading: SizedBox(key: leadingKey),
             ),
           );
@@ -404,12 +404,12 @@ void main() {
           expect(find.byKey(leadingKey), findsOneWidget);
         });
 
-        testWidgets('renders trailing', (tester) async {
-          const trailingKey = Key('__trailing__');
+        testWidgets("renders trailing", (tester) async {
+          const trailingKey = Key("__trailing__");
 
           await tester.pumpApp(
             UserProfileItem(
-              title: 'title',
+              title: "title",
               trailing: SizedBox(key: trailingKey),
             ),
           );
@@ -417,11 +417,11 @@ void main() {
           expect(find.byKey(trailingKey), findsOneWidget);
         });
 
-        testWidgets('calls onTap when tapped', (tester) async {
+        testWidgets("calls onTap when tapped", (tester) async {
           var tapped = false;
           await tester.pumpApp(
             UserProfileItem(
-              title: 'title',
+              title: "title",
               onTap: () => tapped = true,
             ),
           );
@@ -432,15 +432,15 @@ void main() {
         });
       });
 
-      group('UserProfileLogoutButton', () {
-        testWidgets('renders AppButton', (tester) async {
+      group("UserProfileLogoutButton", () {
+        testWidgets("renders AppButton", (tester) async {
           await tester.pumpApp(UserProfileLogoutButton());
           expect(find.byType(AppButton), findsOneWidget);
         });
 
         testWidgets(
-            'adds AppLogoutRequested to AppBloc '
-            'when tapped', (tester) async {
+            "adds AppLogoutRequested to AppBloc "
+            "when tapped", (tester) async {
           await tester.pumpApp(
             UserProfileLogoutButton(),
             appBloc: appBloc,
@@ -452,8 +452,8 @@ void main() {
         });
       });
 
-      group('navigates', () {
-        testWidgets('when tapped on Terms of User & Privacy Policy',
+      group("navigates", () {
+        testWidgets("when tapped on Terms of User & Privacy Policy",
             (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
@@ -479,12 +479,12 @@ void main() {
         });
 
         testWidgets(
-            'to ManageSubscriptionPage '
-            'when isUserSubscribed is true and '
-            'tapped on Manage Subscription', (tester) async {
+            "to ManageSubscriptionPage "
+            "when isUserSubscribed is true and "
+            "tapped on Manage Subscription", (tester) async {
           final subscribedUser = User(
-            id: '1',
-            email: 'email',
+            id: "1",
+            email: "email",
             subscriptionPlan: SubscriptionPlan.premium,
           );
           whenListen(
@@ -501,7 +501,7 @@ void main() {
           );
 
           final subscriptionItem =
-              find.byKey(Key('userProfilePage_subscriptionItem'));
+              find.byKey(Key("userProfilePage_subscriptionItem"));
           await tester.ensureVisible(subscriptionItem);
           await tester.tap(subscriptionItem);
           await tester.pumpAndSettle();
@@ -510,8 +510,8 @@ void main() {
         });
 
         testWidgets(
-            'to NotificationPreferencesPage '
-            'when tapped on NotificationPreferences', (tester) async {
+            "to NotificationPreferencesPage "
+            "when tapped on NotificationPreferences", (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
               value: userProfileBloc,
@@ -520,7 +520,7 @@ void main() {
           );
 
           final subscriptionItem = find.byKey(
-            Key('userProfilePage_notificationPreferencesItem'),
+            Key("userProfilePage_notificationPreferencesItem"),
           );
           await tester.dragUntilVisible(
             subscriptionItem,

@@ -1,19 +1,19 @@
 // ignore_for_file: avoid_redundant_argument_values
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/magic_link_prompt/magic_link_prompt.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:form_inputs/form_inputs.dart';
-import 'package:mockingjay/mockingjay.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/magic_link_prompt/magic_link_prompt.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:form_inputs/form_inputs.dart";
+import "package:mockingjay/mockingjay.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockUserRepository extends Mock implements UserRepository {}
 
@@ -23,28 +23,28 @@ class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
 class MockEmail extends Mock implements Email {}
 
 void main() {
-  const nextButtonKey = Key('loginWithEmailForm_nextButton');
-  const emailInputKey = Key('loginWithEmailForm_emailInput_textField');
+  const nextButtonKey = Key("loginWithEmailForm_nextButton");
+  const emailInputKey = Key("loginWithEmailForm_emailInput_textField");
   const loginWithEmailFormHeaderTitleKey =
-      Key('loginWithEmailForm_header_title');
+      Key("loginWithEmailForm_header_title");
   const loginWithEmailFormTermsAndPrivacyPolicyKey =
-      Key('loginWithEmailForm_terms_and_privacy_policy');
+      Key("loginWithEmailForm_terms_and_privacy_policy");
   const loginWithEmailFormClearIconKey =
-      Key('loginWithEmailForm_clearIconButton');
+      Key("loginWithEmailForm_clearIconButton");
 
-  const testEmail = 'test@gmail.com';
-  const invalidTestEmail = 'test@g';
+  const testEmail = "test@gmail.com";
+  const invalidTestEmail = "test@g";
 
   late LoginBloc loginBloc;
 
-  group('LoginWithEmailForm', () {
+  group("LoginWithEmailForm", () {
     setUp(() {
       loginBloc = MockLoginBloc();
       when(() => loginBloc.state).thenReturn(const LoginState());
     });
 
-    group('adds', () {
-      testWidgets('LoginEmailChanged when email changes', (tester) async {
+    group("adds", () {
+      testWidgets("LoginEmailChanged when email changes", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: loginBloc,
@@ -56,7 +56,7 @@ void main() {
             .called(1);
       });
 
-      testWidgets('SendEmailLinkSubmitted when next button is pressed',
+      testWidgets("SendEmailLinkSubmitted when next button is pressed",
           (tester) async {
         when(() => loginBloc.state).thenReturn(
           const LoginState(valid: true),
@@ -71,7 +71,7 @@ void main() {
         verify(() => loginBloc.add(SendEmailLinkSubmitted())).called(1);
       });
 
-      testWidgets('LoginEmailChanged when pressed on suffixIcon',
+      testWidgets("LoginEmailChanged when pressed on suffixIcon",
           (tester) async {
         when(() => loginBloc.state).thenAnswer(
           (_) => const LoginState(email: Email.dirty(testEmail)),
@@ -88,11 +88,11 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(find.byKey(loginWithEmailFormClearIconKey));
         await tester.pumpAndSettle();
-        verify(() => loginBloc.add(const LoginEmailChanged(''))).called(1);
+        verify(() => loginBloc.add(const LoginEmailChanged(""))).called(1);
       });
 
-      group('renders', () {
-        testWidgets('header title', (tester) async {
+      group("renders", () {
+        testWidgets("header title", (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
               value: loginBloc,
@@ -103,7 +103,7 @@ void main() {
           expect(headerTitle, findsOneWidget);
         });
 
-        testWidgets('email text field', (tester) async {
+        testWidgets("email text field", (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
               value: loginBloc,
@@ -114,7 +114,7 @@ void main() {
           expect(emailTextField, findsOneWidget);
         });
 
-        testWidgets('terms and privacy policy text', (tester) async {
+        testWidgets("terms and privacy policy text", (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
               value: loginBloc,
@@ -126,13 +126,13 @@ void main() {
           expect(termsAndPrivacyPolicyText, findsOneWidget);
         });
 
-        testWidgets('Login with email failure SnackBar when submission fails',
+        testWidgets("Login with email failure SnackBar when submission fails",
             (tester) async {
           whenListen(
             loginBloc,
             Stream.fromIterable(const <LoginState>[
               LoginState(status: FormzSubmissionStatus.inProgress),
-              LoginState(status: FormzSubmissionStatus.failure)
+              LoginState(status: FormzSubmissionStatus.failure),
             ]),
           );
           await tester.pumpApp(
@@ -146,8 +146,8 @@ void main() {
         });
 
         testWidgets(
-            'TermsOfServiceModal when tapped on '
-            'Terms of Use and Privacy Policy text', (tester) async {
+            "TermsOfServiceModal when tapped on "
+            "Terms of Use and Privacy Policy text", (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
               value: loginBloc,
@@ -160,14 +160,14 @@ void main() {
 
           tapTextSpan(
             richText,
-            'Terms of Use and Privacy Policy',
+            "Terms of Use and Privacy Policy",
           );
 
           await tester.pumpAndSettle();
           expect(find.byType(TermsOfServiceModal), findsOneWidget);
         });
 
-        testWidgets('disabled next button when status is not validated',
+        testWidgets("disabled next button when status is not validated",
             (tester) async {
           when(() => loginBloc.state).thenReturn(
             const LoginState(valid: false),
@@ -184,7 +184,7 @@ void main() {
           expect(signUpButton.onPressed, null);
         });
 
-        testWidgets('disabled next button when invalid email is added',
+        testWidgets("disabled next button when invalid email is added",
             (tester) async {
           await tester.pumpApp(
             BlocProvider.value(
@@ -199,7 +199,7 @@ void main() {
           expect(signUpButton.onPressed, null);
         });
 
-        testWidgets('enabled next button when status is validated',
+        testWidgets("enabled next button when status is validated",
             (tester) async {
           when(() => loginBloc.state).thenReturn(
             const LoginState(valid: true),
@@ -218,15 +218,15 @@ void main() {
       });
     });
 
-    group('navigates', () {
-      testWidgets('to MagicLinkPromptPage when submission is success',
+    group("navigates", () {
+      testWidgets("to MagicLinkPromptPage when submission is success",
           (tester) async {
         whenListen(
           loginBloc,
           Stream.fromIterable(
             <LoginState>[
               const LoginState(status: FormzSubmissionStatus.inProgress),
-              const LoginState(status: FormzSubmissionStatus.success)
+              const LoginState(status: FormzSubmissionStatus.success),
             ],
           ),
           initialState: const LoginState(),
@@ -243,8 +243,8 @@ void main() {
       });
     });
 
-    group('disables', () {
-      testWidgets('email text field when status is inProgress', (tester) async {
+    group("disables", () {
+      testWidgets("email text field when status is inProgress", (tester) async {
         when(() => loginBloc.state).thenAnswer(
           (_) => const LoginState(status: FormzSubmissionStatus.inProgress),
         );
@@ -260,7 +260,7 @@ void main() {
         expect(emailTextField.readOnly, isTrue);
       });
 
-      testWidgets('clear icon button when status is inProgress',
+      testWidgets("clear icon button when status is inProgress",
           (tester) async {
         when(() => loginBloc.state).thenAnswer(
           (_) => const LoginState(status: FormzSubmissionStatus.inProgress),

@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:user_repository/user_repository.dart";
 
-part 'subscriptions_event.dart';
-part 'subscriptions_state.dart';
+part "subscriptions_event.dart";
+part "subscriptions_state.dart";
 
 class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
   SubscriptionsBloc({

@@ -1,4 +1,4 @@
-export 'package:analytics_repository/analytics_repository.dart'
+export "package:analytics_repository/analytics_repository.dart"
     show
         ArticleCommentEvent,
         ArticleMilestoneEvent,
@@ -11,4 +11,4 @@ export 'package:analytics_repository/analytics_repository.dart'
         SocialShareEvent,
         UserSubscriptionConversionEvent;
 
-export 'bloc/analytics_bloc.dart';
+export "bloc/analytics_bloc.dart";

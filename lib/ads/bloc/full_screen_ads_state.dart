@@ -1,4 +1,4 @@
-part of 'full_screen_ads_bloc.dart';
+part of "full_screen_ads_bloc.dart";
 
 enum FullScreenAdsStatus {
   initial,
@@ -63,17 +63,17 @@ class FullScreenAdsConfig {
 
   /// The Android test unit id of an interstitial ad.
   static const androidTestInterstitialAdUnitId =
-      'ca-app-pub-3940256099942544/1033173712';
+      "ca-app-pub-3940256099942544/1033173712";
 
   /// The Android test unit id of a rewarded ad.
   static const androidTestRewardedAdUnitId =
-      'ca-app-pub-3940256099942544/5224354917';
+      "ca-app-pub-3940256099942544/5224354917";
 
   /// The iOS test unit id of an interstitial ad.
   static const iosTestInterstitialAdUnitId =
-      'ca-app-pub-3940256099942544/4411468910';
+      "ca-app-pub-3940256099942544/4411468910";
 
   /// The iOS test unit id of a rewarded ad.
   static const iosTestRewardedAdUnitId =
-      'ca-app-pub-3940256099942544/1712485313';
+      "ca-app-pub-3940256099942544/1712485313";
 }

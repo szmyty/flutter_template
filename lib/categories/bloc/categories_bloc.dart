@@ -1,14 +1,14 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:collection/collection.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:collection/collection.dart";
+import "package:equatable/equatable.dart";
+import "package:hydrated_bloc/hydrated_bloc.dart";
+import "package:json_annotation/json_annotation.dart";
+import "package:news_repository/news_repository.dart";
 
-part 'categories_event.dart';
-part 'categories_state.dart';
-part 'categories_bloc.g.dart';
+part "categories_event.dart";
+part "categories_state.dart";
+part "categories_bloc.g.dart";
 
 class CategoriesBloc extends HydratedBloc<CategoriesEvent, CategoriesState> {
   CategoriesBloc({

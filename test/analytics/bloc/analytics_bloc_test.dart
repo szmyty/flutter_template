@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:analytics_repository/analytics_repository.dart' as analytics;
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:analytics_repository/analytics_repository.dart" as analytics;
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:user_repository/user_repository.dart";
 
 class MockAnalyticsRepository extends Mock
     implements analytics.AnalyticsRepository {}
@@ -19,7 +19,7 @@ class MockUser extends Mock implements User {}
 class MockAnalyticsEvent extends Mock implements analytics.AnalyticsEvent {}
 
 void main() {
-  group('AnalyticsBloc', () {
+  group("AnalyticsBloc", () {
     late analytics.AnalyticsRepository analyticsRepository;
     late UserRepository userRepository;
 
@@ -30,19 +30,19 @@ void main() {
       when(() => userRepository.user).thenAnswer((_) => Stream.empty());
     });
 
-    group('on UserRepository.user changed', () {
+    group("on UserRepository.user changed", () {
       late User user;
 
       setUp(() {
         user = MockUser();
-        when(() => user.id).thenReturn('id');
+        when(() => user.id).thenReturn("id");
         when(() => analyticsRepository.setUserId(any()))
             .thenAnswer((_) async {});
       });
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'calls AnalyticsRepository.setUserId '
-        'with null when user is anonymous',
+        "calls AnalyticsRepository.setUserId "
+        "with null when user is anonymous",
         setUp: () => when(() => userRepository.user)
             .thenAnswer((_) => Stream.value(User.anonymous)),
         build: () => AnalyticsBloc(
@@ -55,8 +55,8 @@ void main() {
       );
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'calls AnalyticsRepository.setUserId '
-        'with user id when user is not anonymous',
+        "calls AnalyticsRepository.setUserId "
+        "with user id when user is not anonymous",
         setUp: () => when(() => userRepository.user)
             .thenAnswer((_) => Stream.value(user)),
         build: () => AnalyticsBloc(
@@ -69,8 +69,8 @@ void main() {
       );
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'adds error '
-        'when AnalyticsRepository.setUserId throws',
+        "adds error "
+        "when AnalyticsRepository.setUserId throws",
         setUp: () {
           when(() => userRepository.user).thenAnswer((_) => Stream.value(user));
           when(() => analyticsRepository.setUserId(any()))
@@ -84,7 +84,7 @@ void main() {
       );
     });
 
-    group('on TrackAnalyticsEvent', () {
+    group("on TrackAnalyticsEvent", () {
       final event = MockAnalyticsEvent();
 
       setUp(() {
@@ -96,7 +96,7 @@ void main() {
       });
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'calls AnalyticsRepository.track',
+        "calls AnalyticsRepository.track",
         build: () => AnalyticsBloc(
           analyticsRepository: analyticsRepository,
           userRepository: userRepository,
@@ -108,8 +108,8 @@ void main() {
       );
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'adds error '
-        'when AnalyticsRepository.track throws',
+        "adds error "
+        "when AnalyticsRepository.track throws",
         setUp: () =>
             when(() => analyticsRepository.track(any())).thenThrow(Exception()),
         build: () => AnalyticsBloc(
@@ -121,7 +121,7 @@ void main() {
       );
     });
 
-    group('close', () {
+    group("close", () {
       late StreamController<User> userController;
 
       setUp(() {
@@ -131,7 +131,7 @@ void main() {
       });
 
       blocTest<AnalyticsBloc, AnalyticsState>(
-        'cancels UserRepository.user subscription',
+        "cancels UserRepository.user subscription",
         build: () => AnalyticsBloc(
           analyticsRepository: analyticsRepository,
           userRepository: userRepository,

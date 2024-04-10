@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:analytics_repository/analytics_repository.dart' as analytics;
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:analytics_repository/analytics_repository.dart" as analytics;
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
+import "package:user_repository/user_repository.dart";
 
-part 'analytics_event.dart';
-part 'analytics_state.dart';
+part "analytics_event.dart";
+part "analytics_state.dart";
 
 class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
   AnalyticsBloc({

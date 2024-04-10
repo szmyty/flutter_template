@@ -1,34 +1,34 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mocktail/mocktail.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../../app/view/app_test.dart';
+import "../../../app/view/app_test.dart";
 
 class MockInAppPurchaseRepository extends Mock
     implements InAppPurchaseRepository {}
 
 void main() {
-  group('SubscriptionBloc', () {
+  group("SubscriptionBloc", () {
     late InAppPurchaseRepository inAppPurchaseRepository;
     late UserRepository userRepository;
 
     final subscription = Subscription(
-      id: 'dd339fda-33e9-49d0-9eb5-0ccb77eb760f',
+      id: "dd339fda-33e9-49d0-9eb5-0ccb77eb760f",
       name: SubscriptionPlan.none,
       cost: SubscriptionCost(
         annual: 16200,
         monthly: 1499,
       ),
       benefits: const [
-        'test benefits',
-        'another test benefits',
+        "test benefits",
+        "another test benefits",
       ],
     );
 
@@ -41,10 +41,10 @@ void main() {
       ).thenAnswer((_) => Stream.empty());
     });
 
-    group('on SubscriptionsRequested ', () {
+    group("on SubscriptionsRequested ", () {
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'calls InAppPurchaseRepository.fetchSubscriptions '
-        'and emits state with fetched subscriptions',
+        "calls InAppPurchaseRepository.fetchSubscriptions "
+        "and emits state with fetched subscriptions",
         setUp: () => when(
           inAppPurchaseRepository.fetchSubscriptions,
         ).thenAnswer(
@@ -63,7 +63,7 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds error to state if fetchSubscriptions throws',
+        "adds error to state if fetchSubscriptions throws",
         setUp: () => when(
           inAppPurchaseRepository.fetchSubscriptions,
         ).thenThrow(Exception()),
@@ -77,10 +77,10 @@ void main() {
       );
     });
 
-    group('on SubscriptionPurchaseRequested ', () {
+    group("on SubscriptionPurchaseRequested ", () {
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'calls InAppPurchaseRepository.purchase '
-        'and emits pending state',
+        "calls InAppPurchaseRepository.purchase "
+        "and emits pending state",
         setUp: () => when(
           () => inAppPurchaseRepository.purchase(
             subscription: subscription,
@@ -102,7 +102,7 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds error to state if fetchSubscriptions throws',
+        "adds error to state if fetchSubscriptions throws",
         setUp: () => when(
           () => inAppPurchaseRepository.purchase(
             subscription: subscription,
@@ -123,10 +123,10 @@ void main() {
       );
     });
 
-    group('when InAppPurchaseRepository.purchaseUpdate', () {
+    group("when InAppPurchaseRepository.purchaseUpdate", () {
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds PurchasePurchased '
-        'changes purchaseStatus to pending',
+        "adds PurchasePurchased "
+        "changes purchaseStatus to pending",
         seed: () => SubscriptionsState.initial().copyWith(
           purchaseStatus: PurchaseStatus.none,
         ),
@@ -151,8 +151,8 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds PurchaseDelivered '
-        'changes purchaseStatus to completed',
+        "adds PurchaseDelivered "
+        "changes purchaseStatus to completed",
         seed: () => SubscriptionsState.initial().copyWith(
           purchaseStatus: PurchaseStatus.pending,
         ),
@@ -183,8 +183,8 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds PurchaseDelivered '
-        'changes purchaseStatus to completed',
+        "adds PurchaseDelivered "
+        "changes purchaseStatus to completed",
         seed: () => SubscriptionsState.initial().copyWith(
           purchaseStatus: PurchaseStatus.pending,
         ),
@@ -209,8 +209,8 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'adds PurchaseDelivered '
-        'changes purchaseStatus to completed',
+        "adds PurchaseDelivered "
+        "changes purchaseStatus to completed",
         seed: () => SubscriptionsState.initial().copyWith(
           purchaseStatus: PurchaseStatus.pending,
         ),
@@ -233,7 +233,7 @@ void main() {
       );
     });
 
-    group('close', () {
+    group("close", () {
       late StreamController<SubscriptionPlan> currentSubscriptionPlanController;
       late StreamController<PurchaseUpdate>
           subscriptionPurchaseUpdateController;
@@ -249,7 +249,7 @@ void main() {
       });
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'cancels InAppPurchaseRepository.currentSubscriptionPlan subscription',
+        "cancels InAppPurchaseRepository.currentSubscriptionPlan subscription",
         build: () => SubscriptionsBloc(
           inAppPurchaseRepository: inAppPurchaseRepository,
           userRepository: userRepository,
@@ -259,7 +259,7 @@ void main() {
       );
 
       blocTest<SubscriptionsBloc, SubscriptionsState>(
-        'cancels InAppPurchaseRepository.purchaseUpdate subscription',
+        "cancels InAppPurchaseRepository.purchaseUpdate subscription",
         build: () => SubscriptionsBloc(
           inAppPurchaseRepository: inAppPurchaseRepository,
           userRepository: userRepository,

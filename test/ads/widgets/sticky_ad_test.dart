@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('StickyAd', () {
+  group("StickyAd", () {
     testWidgets(
-        'renders StickyAdContainer '
-        'with anchoredAdaptive BannerAdContent', (tester) async {
+        "renders StickyAdContainer "
+        "with anchoredAdaptive BannerAdContent", (tester) async {
       await tester.pumpApp(StickyAd());
 
       expect(
@@ -29,8 +29,8 @@ void main() {
     });
 
     testWidgets(
-        'renders StickyAdCloseIconBackground and StickyAdCloseIcon '
-        'when ad is loaded', (tester) async {
+        "renders StickyAdCloseIconBackground and StickyAdCloseIcon "
+        "when ad is loaded", (tester) async {
       await tester.pumpApp(StickyAd());
 
       expect(find.byType(StickyAdCloseIconBackground), findsNothing);
@@ -45,7 +45,7 @@ void main() {
       expect(find.byType(StickyAdCloseIcon), findsOneWidget);
     });
 
-    testWidgets('hides ad when closed icon is tapped', (tester) async {
+    testWidgets("hides ad when closed icon is tapped", (tester) async {
       await tester.pumpApp(StickyAd());
 
       final bannerAdContent =

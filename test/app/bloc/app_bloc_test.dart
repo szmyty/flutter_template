@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mocktail/mocktail.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
 class MockUserRepository extends Mock implements UserRepository {}
 
@@ -17,7 +17,7 @@ class MockNotificationsRepository extends Mock
 class MockUser extends Mock implements User {}
 
 void main() {
-  group('AppBloc', () {
+  group("AppBloc", () {
     late User user;
     late UserRepository userRepository;
     late NotificationsRepository notificationsRepository;
@@ -34,7 +34,7 @@ void main() {
           .thenReturn(User.anonymous.subscriptionPlan);
     });
 
-    test('initial state is unauthenticated when user is anonymous', () {
+    test("initial state is unauthenticated when user is anonymous", () {
       expect(
         AppBloc(
           userRepository: userRepository,
@@ -45,7 +45,7 @@ void main() {
       );
     });
 
-    group('AppUserChanged', () {
+    group("AppUserChanged", () {
       late User returningUser;
       late User newUser;
 
@@ -53,17 +53,17 @@ void main() {
         returningUser = MockUser();
         newUser = MockUser();
         when(() => returningUser.isNewUser).thenReturn(false);
-        when(() => returningUser.id).thenReturn('id');
+        when(() => returningUser.id).thenReturn("id");
         when(() => returningUser.subscriptionPlan)
             .thenReturn(SubscriptionPlan.none);
         when(() => newUser.isNewUser).thenReturn(true);
-        when(() => newUser.id).thenReturn('id');
+        when(() => newUser.id).thenReturn("id");
         when(() => newUser.subscriptionPlan).thenReturn(SubscriptionPlan.none);
       });
 
       blocTest<AppBloc, AppState>(
-        'emits nothing when '
-        'state is unauthenticated and user is anonymous',
+        "emits nothing when "
+        "state is unauthenticated and user is anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(User.anonymous),
@@ -79,8 +79,8 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits unauthenticated when '
-        'state is onboardingRequired and user is anonymous',
+        "emits unauthenticated when "
+        "state is onboardingRequired and user is anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(User.anonymous),
@@ -96,7 +96,7 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits onboardingRequired when user is new and not anonymous',
+        "emits onboardingRequired when user is new and not anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(newUser),
@@ -111,7 +111,7 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits authenticated when user is returning and not anonymous',
+        "emits authenticated when user is returning and not anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(returningUser),
@@ -126,8 +126,8 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits authenticated '
-        'when authenticated user changes',
+        "emits authenticated "
+        "when authenticated user changes",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(returningUser),
@@ -143,8 +143,8 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits authenticated when '
-        'user is not anonymous and onboarding is complete',
+        "emits authenticated when "
+        "user is not anonymous and onboarding is complete",
         build: () => AppBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -156,8 +156,8 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits unauthenticated when '
-        'user is anonymous and onboarding is complete',
+        "emits unauthenticated when "
+        "user is anonymous and onboarding is complete",
         build: () => AppBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -169,7 +169,7 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits unauthenticated when user is anonymous',
+        "emits unauthenticated when user is anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(User.anonymous),
@@ -184,8 +184,8 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'emits nothing when '
-        'state is unauthenticated and user is anonymous',
+        "emits nothing when "
+        "state is unauthenticated and user is anonymous",
         setUp: () {
           when(() => userRepository.user).thenAnswer(
             (_) => Stream.value(User.anonymous),
@@ -201,11 +201,11 @@ void main() {
       );
     });
 
-    group('AppLogoutRequested', () {
+    group("AppLogoutRequested", () {
       setUp(() {
         when(
           () => notificationsRepository.toggleNotifications(
-            enable: any(named: 'enable'),
+            enable: any(named: "enable"),
           ),
         ).thenAnswer((_) async {});
 
@@ -213,7 +213,7 @@ void main() {
       });
 
       blocTest<AppBloc, AppState>(
-        'calls toggleNotifications off on NotificationsRepository',
+        "calls toggleNotifications off on NotificationsRepository",
         build: () => AppBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -228,7 +228,7 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'calls logOut on UserRepository',
+        "calls logOut on UserRepository",
         build: () => AppBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -241,7 +241,7 @@ void main() {
       );
     });
 
-    group('close', () {
+    group("close", () {
       late StreamController<User> userController;
 
       setUp(() {
@@ -252,7 +252,7 @@ void main() {
       });
 
       blocTest<AppBloc, AppState>(
-        'cancels UserRepository.user subscription',
+        "cancels UserRepository.user subscription",
         build: () => AppBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -262,12 +262,12 @@ void main() {
       );
     });
 
-    group('AppOpened', () {
+    group("AppOpened", () {
       blocTest<AppBloc, AppState>(
-        'calls UserRepository.incrementAppOpenedCount '
-        'and emits showLoginOverlay as true '
-        'when fetchAppOpenedCount returns a count value of 4 '
-        'and user is anonymous',
+        "calls UserRepository.incrementAppOpenedCount "
+        "and emits showLoginOverlay as true "
+        "when fetchAppOpenedCount returns a count value of 4 "
+        "and user is anonymous",
         setUp: () {
           when(() => userRepository.fetchAppOpenedCount())
               .thenAnswer((_) async => 4);
@@ -285,7 +285,7 @@ void main() {
           AppState(
             showLoginOverlay: true,
             status: AppStatus.unauthenticated,
-          )
+          ),
         ],
         verify: (_) {
           verify(
@@ -295,9 +295,9 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'calls UserRepository.incrementAppOpenedCount '
-        'when fetchAppOpenedCount returns a count value of 3 '
-        'and user is anonymous',
+        "calls UserRepository.incrementAppOpenedCount "
+        "when fetchAppOpenedCount returns a count value of 3 "
+        "and user is anonymous",
         setUp: () {
           when(() => userRepository.fetchAppOpenedCount())
               .thenAnswer((_) async => 3);
@@ -320,9 +320,9 @@ void main() {
       );
 
       blocTest<AppBloc, AppState>(
-        'does not call UserRepository.incrementAppOpenedCount '
-        'when fetchAppOpenedCount returns a count value of 6 '
-        'and user is anonymous',
+        "does not call UserRepository.incrementAppOpenedCount "
+        "when fetchAppOpenedCount returns a count value of 6 "
+        "and user is anonymous",
         setUp: () {
           when(() => userRepository.fetchAppOpenedCount())
               .thenAnswer((_) async => 6);

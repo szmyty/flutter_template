@@ -1,15 +1,15 @@
-import 'package:app_ui/app_ui.dart'
+import "package:app_ui/app_ui.dart"
     show AppButton, AppColors, AppSpacing, Assets, showAppModal;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
 @visibleForTesting
 class SubscribeWithArticleLimitModal extends StatefulWidget {
@@ -37,7 +37,7 @@ class _SubscribeWithArticleLimitModalState
         l10n.subscribeWithArticleLimitModalWatchVideoButton;
 
     return VisibilityDetector(
-      key: const Key('subscribeWithArticleLimitModal_visibilityDetector'),
+      key: const Key("subscribeWithArticleLimitModal_visibilityDetector"),
       onVisibilityChanged: _modalShown
           ? null
           : (visibility) {
@@ -46,7 +46,7 @@ class _SubscribeWithArticleLimitModalState
                       TrackAnalyticsEvent(
                         PaywallPromptEvent.impression(
                           impression: PaywallPromptImpression.rewarded,
-                          articleTitle: articleTitle ?? '',
+                          articleTitle: articleTitle ?? "",
                         ),
                       ),
                     );
@@ -85,7 +85,7 @@ class _SubscribeWithArticleLimitModalState
                 ),
                 child: AppButton.redWine(
                   key: const Key(
-                    'subscribeWithArticleLimitModal_subscribeButton',
+                    "subscribeWithArticleLimitModal_subscribeButton",
                   ),
                   child: Text(l10n.subscribeButtonText),
                   onPressed: () {
@@ -93,7 +93,7 @@ class _SubscribeWithArticleLimitModalState
                     context.read<AnalyticsBloc>().add(
                           TrackAnalyticsEvent(
                             PaywallPromptEvent.click(
-                              articleTitle: articleTitle ?? '',
+                              articleTitle: articleTitle ?? "",
                             ),
                           ),
                         );
@@ -108,7 +108,7 @@ class _SubscribeWithArticleLimitModalState
                   ),
                   child: AppButton.outlinedTransparentWhite(
                     key:
-                        const Key('subscribeWithArticleLimitModal_logInButton'),
+                        const Key("subscribeWithArticleLimitModal_logInButton"),
                     child: Text(l10n.subscribeWithArticleLimitModalLogInButton),
                     onPressed: () => showAppModal<void>(
                       context: context,
@@ -125,7 +125,7 @@ class _SubscribeWithArticleLimitModalState
                 ),
                 child: AppButton.transparentWhite(
                   key: const Key(
-                    'subscribeWithArticleLimitModal_watchVideoButton',
+                    "subscribeWithArticleLimitModal_watchVideoButton",
                   ),
                   onPressed: () => context
                       .read<FullScreenAdsBloc>()

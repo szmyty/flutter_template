@@ -1,4 +1,4 @@
-part of 'subscriptions_bloc.dart';
+part of "subscriptions_bloc.dart";
 
 enum PurchaseStatus {
   none,

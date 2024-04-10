@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:news_blocks/news_blocks.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:news_blocks/news_blocks.dart";
 
 class FeedView extends StatelessWidget {
   const FeedView({super.key});
@@ -13,7 +13,7 @@ class FeedView extends StatelessWidget {
         context.select((CategoriesBloc bloc) => bloc.state.categories) ?? [];
 
     if (categories.isEmpty) {
-      return const SizedBox(key: Key('feedView_empty'));
+      return const SizedBox(key: Key("feedView_empty"));
     }
 
     return FeedViewPopulated(categories: categories);

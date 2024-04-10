@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/network_error/network_error.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/network_error/network_error.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  const tapMeText = 'Tap Me';
+  const tapMeText = "Tap Me";
 
-  group('NetworkError', () {
-    testWidgets('renders correctly', (tester) async {
+  group("NetworkError", () {
+    testWidgets("renders correctly", (tester) async {
       await tester.pumpApp(NetworkError());
 
       expect(find.byType(NetworkError), findsOneWidget);
     });
 
-    testWidgets('router returns a valid navigation route', (tester) async {
+    testWidgets("router returns a valid navigation route", (tester) async {
       await tester.pumpApp(
         Scaffold(
           body: Builder(

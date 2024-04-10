@@ -1,16 +1,16 @@
-import 'package:app_ui/app_ui.dart'
+import "package:app_ui/app_ui.dart"
     show AppBackButton, AppButton, AppColors, AppSpacing, AppSwitch, Assets;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -104,9 +104,9 @@ class _UserProfileViewState extends State<UserProfileView>
                     const UserProfileTitle(),
                     if (!user.isAnonymous) ...[
                       UserProfileItem(
-                        key: const Key('userProfilePage_userItem'),
+                        key: const Key("userProfilePage_userItem"),
                         leading: Assets.icons.profileIcon.svg(),
-                        title: user.email ?? '',
+                        title: user.email ?? "",
                       ),
                       const UserProfileLogoutButton(),
                     ],
@@ -117,7 +117,7 @@ class _UserProfileViewState extends State<UserProfileView>
                     ),
                     if (isUserSubscribed)
                       UserProfileItem(
-                        key: const Key('userProfilePage_subscriptionItem'),
+                        key: const Key("userProfilePage_subscriptionItem"),
                         title: l10n.manageSubscriptionTile,
                         trailing: const Icon(Icons.chevron_right),
                         onTap: () => Navigator.of(context).push(
@@ -134,7 +134,7 @@ class _UserProfileViewState extends State<UserProfileView>
                       subtitle: l10n.userProfileSettingsSubtitle,
                     ),
                     UserProfileItem(
-                      key: const Key('userProfilePage_notificationsItem'),
+                      key: const Key("userProfilePage_notificationsItem"),
                       leading: Assets.icons.notificationsIcon.svg(),
                       title: l10n.userProfileSettingsNotificationsTitle,
                       trailing: AppSwitch(
@@ -148,13 +148,13 @@ class _UserProfileViewState extends State<UserProfileView>
                     ),
                     UserProfileItem(
                       key: const Key(
-                        'userProfilePage_notificationPreferencesItem',
+                        "userProfilePage_notificationPreferencesItem",
                       ),
                       title: l10n.notificationPreferencesTitle,
                       trailing: const Icon(
                         Icons.chevron_right,
                         key: Key(
-                          '''userProfilePage_notificationPreferencesItem_trailing''',
+                          """userProfilePage_notificationPreferencesItem_trailing""",
                         ),
                       ),
                       onTap: () => Navigator.of(context).push(
@@ -166,7 +166,7 @@ class _UserProfileViewState extends State<UserProfileView>
                       subtitle: l10n.userProfileLegalSubtitle,
                     ),
                     UserProfileItem(
-                      key: const Key('userProfilePage_termsOfServiceItem'),
+                      key: const Key("userProfilePage_termsOfServiceItem"),
                       leading: Assets.icons.termsOfUseIcon.svg(),
                       title:
                           l10n.userProfileLegalTermsOfUseAndPrivacyPolicyTitle,
@@ -174,7 +174,7 @@ class _UserProfileViewState extends State<UserProfileView>
                           .push<void>(TermsOfServicePage.route()),
                     ),
                     UserProfileItem(
-                      key: const Key('userProfilePage_aboutItem'),
+                      key: const Key("userProfilePage_aboutItem"),
                       leading: Assets.icons.aboutIcon.svg(),
                       title: l10n.userProfileLegalAboutTitle,
                     ),

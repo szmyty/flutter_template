@@ -1,10 +1,10 @@
-import 'package:app_ui/app_ui.dart' hide Assets;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/search/search.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:app_ui/app_ui.dart" hide Assets;
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/search/search.dart";
+import "package:news_repository/news_repository.dart";
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -67,7 +67,7 @@ class _SearchViewState extends State<SearchView> {
               delegate: SliverChildListDelegate(
                 [
                   SearchTextField(
-                    key: const Key('searchPage_searchTextField'),
+                    key: const Key("searchPage_searchTextField"),
                     controller: _controller,
                   ),
                   SearchHeadlineText(
@@ -87,7 +87,7 @@ class _SearchViewState extends State<SearchView> {
                       children: state.topics
                           .map<Widget>(
                             (topic) => SearchFilterChip(
-                              key: Key('searchFilterChip_$topic'),
+                              key: Key("searchFilterChip_$topic"),
                               chipText: topic,
                               onSelected: (text) => _controller.text = text,
                             ),
@@ -105,7 +105,7 @@ class _SearchViewState extends State<SearchView> {
             ),
             ...state.articles.map<Widget>(
               (newsBlock) => CategoryFeedItem(block: newsBlock),
-            )
+            ),
           ],
         );
       },

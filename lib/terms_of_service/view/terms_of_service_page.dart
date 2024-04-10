@@ -1,7 +1,7 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
 
 class TermsOfServicePage extends StatelessWidget {
   const TermsOfServicePage({super.key});
@@ -26,7 +26,7 @@ class TermsOfServicePage extends StatelessWidget {
               vertical: AppSpacing.xs,
             ),
           ),
-          SizedBox(height: AppSpacing.lg)
+          SizedBox(height: AppSpacing.lg),
         ],
       ),
     );

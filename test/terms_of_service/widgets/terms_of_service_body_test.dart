@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/terms_of_service/terms_of_service.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/terms_of_service/terms_of_service.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  const termsOfServiceBodyTextKey = Key('termsOfServiceBody_text');
+  const termsOfServiceBodyTextKey = Key("termsOfServiceBody_text");
 
-  group('TermsOfServiceBody', () {
-    group('renders', () {
-      testWidgets('SingleChildScrollView', (tester) async {
+  group("TermsOfServiceBody", () {
+    group("renders", () {
+      testWidgets("SingleChildScrollView", (tester) async {
         await tester.pumpApp(
           Column(
             children: const [
@@ -22,7 +22,7 @@ void main() {
         expect(find.byType(SingleChildScrollView), findsOneWidget);
       });
 
-      testWidgets('terms of service body text', (tester) async {
+      testWidgets("terms of service body text", (tester) async {
         await tester.pumpApp(
           Column(
             children: const [

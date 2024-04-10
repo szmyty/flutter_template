@@ -1,13 +1,13 @@
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
 // ignore: lines_longer_than_80_chars
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_blocks/news_blocks.dart';
+import "package:flutter_test/flutter_test.dart";
+import "package:news_blocks/news_blocks.dart";
 
 void main() {
-  group('NotificationPreferencesState', () {
-    test('initial has correct status', () {
+  group("NotificationPreferencesState", () {
+    test("initial has correct status", () {
       final initialState = NotificationPreferencesState.initial();
 
       expect(
@@ -22,7 +22,7 @@ void main() {
       );
     });
 
-    test('supports value comparison', () {
+    test("supports value comparison", () {
       expect(
         NotificationPreferencesState.initial(),
         equals(
@@ -31,10 +31,10 @@ void main() {
       );
     });
 
-    group('copyWith ', () {
+    group("copyWith ", () {
       test(
-          'returns same object '
-          'when no parameters changed', () {
+          "returns same object "
+          "when no parameters changed", () {
         expect(
           NotificationPreferencesState.initial().copyWith(),
           equals(NotificationPreferencesState.initial()),
@@ -42,8 +42,8 @@ void main() {
       });
 
       test(
-          'returns object with updated categories '
-          'when categories changed', () {
+          "returns object with updated categories "
+          "when categories changed", () {
         expect(
           NotificationPreferencesState.initial().copyWith(
             categories: {Category.business},
@@ -58,8 +58,8 @@ void main() {
         );
       });
       test(
-          'returns object with updated status '
-          'when status changed', () {
+          "returns object with updated status "
+          "when status changed", () {
         expect(
           NotificationPreferencesState.initial().copyWith(
             status: NotificationPreferencesStatus.success,
@@ -75,8 +75,8 @@ void main() {
       });
 
       test(
-          'returns object with updated selectedCategories '
-          'when selectedCategories changed', () {
+          "returns object with updated selectedCategories "
+          "when selectedCategories changed", () {
         expect(
           NotificationPreferencesState.initial().copyWith(
             selectedCategories: {Category.business},

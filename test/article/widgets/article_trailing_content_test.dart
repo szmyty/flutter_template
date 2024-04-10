@@ -1,21 +1,21 @@
 // ignore_for_file: prefer_const_constructors, avoid_redundant_argument_values
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_template_api/client.dart' hide User;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:user_repository/user_repository.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_template_api/client.dart" hide User;
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:user_repository/user_repository.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockArticleBloc extends MockBloc<ArticleEvent, ArticleState>
     implements ArticleBloc {}
@@ -25,30 +25,30 @@ class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 class MockUser extends Mock implements User {}
 
 void main() {
-  group('ArticleTrailingContent', () {
+  group("ArticleTrailingContent", () {
     late ArticleBloc articleBloc;
     late AppBloc appBloc;
 
     final postSmallBlock = PostSmallBlock(
-      id: '36f4a017-d099-4fce-8727-1d9ca6a0398c',
+      id: "36f4a017-d099-4fce-8727-1d9ca6a0398c",
       category: PostCategory.technology,
-      author: 'Tom Phillips',
+      author: "Tom Phillips",
       publishedAt: DateTime(2022, 6, 2),
       imageUrl:
-          'https://assets.reedpopcdn.com/stray_XlfRQmc.jpg/BROK/thumbnail/'
-          '1600x900/format/jpg/quality/80/stray_XlfRQmc.jpg',
-      title: 'Stray launches next month, included in pricier PlayStation '
-          'Plus tiers on day one',
+          "https://assets.reedpopcdn.com/stray_XlfRQmc.jpg/BROK/thumbnail/"
+          "1600x900/format/jpg/quality/80/stray_XlfRQmc.jpg",
+      title: "Stray launches next month, included in pricier PlayStation "
+          "Plus tiers on day one",
       description: "Stray, everyone's favorite upcoming cyberpunk cat game, "
-          'launches for PC, PlayStation 4 and PS5 on 19th July.',
+          "launches for PC, PlayStation 4 and PS5 on 19th July.",
       action: const NavigateToArticleAction(
-        articleId: '36f4a017-d099-4fce-8727-1d9ca6a0398c',
+        articleId: "36f4a017-d099-4fce-8727-1d9ca6a0398c",
       ),
     );
 
     final relatedArticles = [
       postSmallBlock,
-      PostSmallBlock.fromJson(postSmallBlock.toJson()..['id'] = 'newId'),
+      PostSmallBlock.fromJson(postSmallBlock.toJson()..["id"] = "newId"),
     ];
 
     setUp(() {
@@ -57,15 +57,15 @@ void main() {
     });
 
     testWidgets(
-        'renders relatedArticles '
-        'when article is not preview', (tester) async {
+        "renders relatedArticles "
+        "when article is not preview", (tester) async {
       final user = MockUser();
       when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.premium);
       when(() => articleBloc.state).thenReturn(
         ArticleState(
           content: const [
-            TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-            TextParagraphBlock(text: 'text'),
+            TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+            TextParagraphBlock(text: "text"),
           ],
           status: ArticleStatus.populated,
           hasMoreContent: false,
@@ -101,13 +101,13 @@ void main() {
     });
 
     testWidgets(
-        'renders only ArticleComments when '
-        'relatedArticles is empty', (tester) async {
+        "renders only ArticleComments when "
+        "relatedArticles is empty", (tester) async {
       when(() => articleBloc.state).thenAnswer(
         (invocation) => ArticleState(
           content: const [
-            TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-            TextParagraphBlock(text: 'text'),
+            TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+            TextParagraphBlock(text: "text"),
           ],
           status: ArticleStatus.populated,
           hasMoreContent: false,
@@ -127,15 +127,15 @@ void main() {
       expect(find.byType(ArticleComments), findsOneWidget);
     });
 
-    group('when article is preview', () {
+    group("when article is preview", () {
       setUp(() {
         final user = MockUser();
         when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.none);
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: const [
-              TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-              TextParagraphBlock(text: 'text'),
+              TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+              TextParagraphBlock(text: "text"),
             ],
             status: ArticleStatus.populated,
             hasMoreContent: false,
@@ -147,7 +147,7 @@ void main() {
         when(() => appBloc.state).thenReturn(AppState.authenticated(user));
       });
 
-      testWidgets('does not render relatedArticles', (tester) async {
+      testWidgets("does not render relatedArticles", (tester) async {
         await tester.pumpApp(
           MultiBlocProvider(
             providers: [
@@ -163,7 +163,7 @@ void main() {
         expect(find.byType(CategoryFeedItem), findsNothing);
       });
 
-      testWidgets('does not render ArticleComments', (tester) async {
+      testWidgets("does not render ArticleComments", (tester) async {
         await tester.pumpApp(
           MultiBlocProvider(
             providers: [
@@ -180,14 +180,14 @@ void main() {
       });
 
       testWidgets(
-          'renders SubscribeModal '
-          'when article is premium and user is not a subscriber',
+          "renders SubscribeModal "
+          "when article is premium and user is not a subscriber",
           (tester) async {
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: const [
-              TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-              TextParagraphBlock(text: 'text'),
+              TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+              TextParagraphBlock(text: "text"),
             ],
             status: ArticleStatus.populated,
             hasMoreContent: false,
@@ -215,15 +215,15 @@ void main() {
       });
 
       testWidgets(
-          'does not render SubscribeModal '
-          'when article is premium and user is a subscriber', (tester) async {
+          "does not render SubscribeModal "
+          "when article is premium and user is a subscriber", (tester) async {
         final user = MockUser();
         when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.premium);
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: const [
-              TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-              TextParagraphBlock(text: 'text'),
+              TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+              TextParagraphBlock(text: "text"),
             ],
             status: ArticleStatus.populated,
             hasMoreContent: false,
@@ -256,15 +256,15 @@ void main() {
       });
 
       testWidgets(
-          'renders SubscribeWithArticleLimitModal '
-          'when article is not premium '
-          'and user has reached article views limit '
-          'and user is not a subscriber', (tester) async {
+          "renders SubscribeWithArticleLimitModal "
+          "when article is not premium "
+          "and user has reached article views limit "
+          "and user is not a subscriber", (tester) async {
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: const [
-              TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-              TextParagraphBlock(text: 'text'),
+              TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+              TextParagraphBlock(text: "text"),
             ],
             status: ArticleStatus.populated,
             hasMoreContent: false,
@@ -293,17 +293,17 @@ void main() {
       });
 
       testWidgets(
-          'does not render SubscribeWithArticleLimitModal '
-          'when article is not premium '
-          'and user has reached article views limit '
-          'and user is a subscriber', (tester) async {
+          "does not render SubscribeWithArticleLimitModal "
+          "when article is not premium "
+          "and user has reached article views limit "
+          "and user is a subscriber", (tester) async {
         final user = MockUser();
         when(() => user.subscriptionPlan).thenReturn(SubscriptionPlan.premium);
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: const [
-              TextCaptionBlock(text: 'text', color: TextCaptionColor.normal),
-              TextParagraphBlock(text: 'text'),
+              TextCaptionBlock(text: "text", color: TextCaptionColor.normal),
+              TextParagraphBlock(text: "text"),
             ],
             status: ArticleStatus.populated,
             hasMoreContent: false,

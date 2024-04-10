@@ -1,4 +1,4 @@
-part of 'analytics_bloc.dart';
+part of "analytics_bloc.dart";
 
 abstract class AnalyticsEvent extends Equatable {
   const AnalyticsEvent();

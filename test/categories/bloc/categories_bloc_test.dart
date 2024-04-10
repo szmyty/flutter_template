@@ -1,20 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockNewsRepository extends Mock implements NewsRepository {}
 
 void main() {
   initMockHydratedStorage();
 
-  group('CategoriesBloc', () {
+  group("CategoriesBloc", () {
     late NewsRepository newsRepository;
     late CategoriesBloc categoriesBloc;
 
@@ -27,7 +27,7 @@ void main() {
       categoriesBloc = CategoriesBloc(newsRepository: newsRepository);
     });
 
-    test('can be (de)serialized', () {
+    test("can be (de)serialized", () {
       final categoriesState = CategoriesState(
         status: CategoriesStatus.populated,
         categories: categoriesResponse.categories,
@@ -40,10 +40,10 @@ void main() {
       expect(deserialized, categoriesState);
     });
 
-    group('CategoriesRequested', () {
+    group("CategoriesRequested", () {
       blocTest<CategoriesBloc, CategoriesState>(
-        'emits [loading, populated] '
-        'when getCategories succeeds',
+        "emits [loading, populated] "
+        "when getCategories succeeds",
         setUp: () => when(newsRepository.getCategories)
             .thenAnswer((_) async => categoriesResponse),
         build: () => categoriesBloc,
@@ -59,8 +59,8 @@ void main() {
       );
 
       blocTest<CategoriesBloc, CategoriesState>(
-        'emits [loading, failure] '
-        'when getCategories fails',
+        "emits [loading, failure] "
+        "when getCategories fails",
         setUp: () => when(newsRepository.getCategories).thenThrow(Exception()),
         build: () => categoriesBloc,
         act: (bloc) => bloc.add(CategoriesRequested()),
@@ -71,9 +71,9 @@ void main() {
       );
     });
 
-    group('CategorySelected', () {
+    group("CategorySelected", () {
       blocTest<CategoriesBloc, CategoriesState>(
-        'emits selectedCategory',
+        "emits selectedCategory",
         build: () => categoriesBloc,
         act: (bloc) => bloc.add(CategorySelected(category: Category.top)),
         expect: () => <CategoriesState>[

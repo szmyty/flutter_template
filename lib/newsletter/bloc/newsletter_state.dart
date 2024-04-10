@@ -1,4 +1,4 @@
-part of 'newsletter_bloc.dart';
+part of "newsletter_bloc.dart";
 
 enum NewsletterStatus {
   initial,

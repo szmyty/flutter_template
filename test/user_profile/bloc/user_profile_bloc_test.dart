@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:authentication_client/authentication_client.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
-import 'package:flutter_template_api/client.dart' hide User;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:authentication_client/authentication_client.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
+import "package:flutter_template_api/client.dart" hide User;
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:user_repository/user_repository.dart";
 
 class MockUserRepository extends Mock implements UserRepository {}
 
@@ -19,12 +19,12 @@ class MockNotificationsRepository extends Mock
 class MockAuthenticationClient extends Mock implements AuthenticationClient {}
 
 void main() {
-  group('UserProfileBloc', () {
+  group("UserProfileBloc", () {
     late UserRepository userRepository;
     late NotificationsRepository notificationsRepository;
 
-    const user1 = User(id: '1', subscriptionPlan: SubscriptionPlan.none);
-    const user2 = User(id: '2', subscriptionPlan: SubscriptionPlan.none);
+    const user1 = User(id: "1", subscriptionPlan: SubscriptionPlan.none);
+    const user2 = User(id: "2", subscriptionPlan: SubscriptionPlan.none);
 
     late StreamController<User> userController;
 
@@ -36,7 +36,7 @@ void main() {
       when(() => userRepository.user).thenAnswer((_) => userController.stream);
     });
 
-    test('initial state is UserProfileState.initial', () {
+    test("initial state is UserProfileState.initial", () {
       expect(
         UserProfileBloc(
           userRepository: userRepository,
@@ -46,10 +46,10 @@ void main() {
       );
     });
 
-    group('on user changes', () {
+    group("on user changes", () {
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits populated user '
-        'when user is added to user stream',
+        "emits populated user "
+        "when user is added to user stream",
         build: () => UserProfileBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -70,8 +70,8 @@ void main() {
       );
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'adds error '
-        'when user stream throws an error',
+        "adds error "
+        "when user stream throws an error",
         build: () => UserProfileBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -82,8 +82,8 @@ void main() {
       );
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits populated user '
-        'when user is added to user stream after it throws an error',
+        "emits populated user "
+        "when user is added to user stream after it throws an error",
         build: () => UserProfileBloc(
           userRepository: userRepository,
           notificationsRepository: notificationsRepository,
@@ -102,11 +102,11 @@ void main() {
       );
     });
 
-    group('on FetchNotificationsEnabled', () {
+    group("on FetchNotificationsEnabled", () {
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits '
-        '[fetchingNotificationsEnabled, fetchingNotificationsEnabledSucceeded] '
-        'when fetchNotificationsEnabled succeeds',
+        "emits "
+        "[fetchingNotificationsEnabled, fetchingNotificationsEnabledSucceeded] "
+        "when fetchNotificationsEnabled succeeds",
         setUp: () => when(notificationsRepository.fetchNotificationsEnabled)
             .thenAnswer((_) async => true),
         build: () => UserProfileBloc(
@@ -126,9 +126,9 @@ void main() {
       );
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits '
-        '[fetchingNotificationsEnabled, fetchingNotificationsEnabledFailed] '
-        'when fetchNotificationsEnabled fails',
+        "emits "
+        "[fetchingNotificationsEnabled, fetchingNotificationsEnabledFailed] "
+        "when fetchNotificationsEnabled fails",
         setUp: () => when(notificationsRepository.fetchNotificationsEnabled)
             .thenThrow(Exception()),
         build: () => UserProfileBloc(
@@ -147,20 +147,20 @@ void main() {
       );
     });
 
-    group('on ToggleNotifications', () {
+    group("on ToggleNotifications", () {
       setUp(() {
         when(
           () => notificationsRepository.toggleNotifications(
-            enable: any(named: 'enable'),
+            enable: any(named: "enable"),
           ),
         ).thenAnswer((_) async {});
       });
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits '
-        '[togglingNotifications, togglingNotificationsSucceeded] '
-        'when notifications are enabled '
-        'and toggleNotifications succeeds',
+        "emits "
+        "[togglingNotifications, togglingNotificationsSucceeded] "
+        "when notifications are enabled "
+        "and toggleNotifications succeeds",
         seed: () => UserProfileState.initial().copyWith(
           notificationsEnabled: true,
         ),
@@ -185,10 +185,10 @@ void main() {
       );
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits '
-        '[togglingNotifications, togglingNotificationsSucceeded] '
-        'when notifications are disabled '
-        'and toggleNotifications succeeds',
+        "emits "
+        "[togglingNotifications, togglingNotificationsSucceeded] "
+        "when notifications are disabled "
+        "and toggleNotifications succeeds",
         seed: () => UserProfileState.initial().copyWith(
           notificationsEnabled: false,
         ),
@@ -213,12 +213,12 @@ void main() {
       );
 
       blocTest<UserProfileBloc, UserProfileState>(
-        'emits '
-        '[togglingNotifications, togglingNotificationsFailed] '
-        'when toggleNotifications fails',
+        "emits "
+        "[togglingNotifications, togglingNotificationsFailed] "
+        "when toggleNotifications fails",
         setUp: () => when(
           () => notificationsRepository.toggleNotifications(
-            enable: any(named: 'enable'),
+            enable: any(named: "enable"),
           ),
         ).thenThrow(Exception()),
         build: () => UserProfileBloc(
@@ -240,7 +240,7 @@ void main() {
     });
 
     blocTest<UserProfileBloc, UserProfileState>(
-      'closes subscriptions',
+      "closes subscriptions",
       build: () => UserProfileBloc(
         userRepository: userRepository,
         notificationsRepository: notificationsRepository,

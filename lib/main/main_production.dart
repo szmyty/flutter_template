@@ -1,21 +1,21 @@
-import 'package:ads_consent_client/ads_consent_client.dart';
-import 'package:article_repository/article_repository.dart';
-import 'package:deep_link_client/deep_link_client.dart';
-import 'package:firebase_authentication_client/firebase_authentication_client.dart';
-import 'package:firebase_notifications_client/firebase_notifications_client.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/main/bootstrap/bootstrap.dart';
-import 'package:flutter_template/src/version.dart';
-import 'package:flutter_template_api/client.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
-import 'package:package_info_client/package_info_client.dart';
-import 'package:permission_client/permission_client.dart';
-import 'package:persistent_storage/persistent_storage.dart';
-import 'package:purchase_client/purchase_client.dart';
-import 'package:token_storage/token_storage.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:ads_consent_client/ads_consent_client.dart";
+import "package:article_repository/article_repository.dart";
+import "package:deep_link_client/deep_link_client.dart";
+import "package:firebase_authentication_client/firebase_authentication_client.dart";
+import "package:firebase_notifications_client/firebase_notifications_client.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/main/bootstrap/bootstrap.dart";
+import "package:flutter_template/src/version.dart";
+import "package:flutter_template_api/client.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
+import "package:package_info_client/package_info_client.dart";
+import "package:permission_client/permission_client.dart";
+import "package:persistent_storage/persistent_storage.dart";
+import "package:purchase_client/purchase_client.dart";
+import "package:token_storage/token_storage.dart";
+import "package:user_repository/user_repository.dart";
 
 void main() {
   bootstrap(
@@ -38,8 +38,8 @@ void main() {
       );
 
       final packageInfoClient = PackageInfoClient(
-        appName: 'Flutter Template [DEV]',
-        packageName: 'com.github.szmyty.flutter.dev',
+        appName: "Flutter Template [DEV]",
+        packageName: "com.github.szmyty.flutter.dev",
         packageVersion: packageVersion,
       );
 

@@ -1,20 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
-import 'package:mockingjay/mockingjay.dart';
-import 'package:user_repository/user_repository.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
+import "package:mockingjay/mockingjay.dart";
+import "package:user_repository/user_repository.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockArticleBloc extends MockBloc<ArticleEvent, ArticleState>
     implements ArticleBloc {}
@@ -32,8 +32,8 @@ void main() {
   late AnalyticsBloc analyticsBloc;
   late ArticleBloc articleBloc;
 
-  const subscribeButtonKey = Key('subscribeModal_subscribeButton');
-  const logInButtonKey = Key('subscribeModal_logInButton');
+  const subscribeButtonKey = Key("subscribeModal_subscribeButton");
+  const logInButtonKey = Key("subscribeModal_logInButton");
 
   setUp(() {
     user = MockUser();
@@ -42,16 +42,16 @@ void main() {
     articleBloc = MockArticleBloc();
 
     when(() => articleBloc.state).thenReturn(
-      ArticleState(status: ArticleStatus.initial, title: 'title'),
+      ArticleState(status: ArticleStatus.initial, title: "title"),
     );
     when(() => appBloc.state).thenReturn(AppState.unauthenticated());
 
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
 
-  group('SubscribeModal', () {
-    group('renders', () {
-      testWidgets('subscribe button when user is authenticated',
+  group("SubscribeModal", () {
+    group("renders", () {
+      testWidgets("subscribe button when user is authenticated",
           (tester) async {
         when(() => appBloc.state).thenReturn(AppState.authenticated(user));
         await tester.pumpApp(
@@ -65,7 +65,7 @@ void main() {
         expect(find.byKey(logInButtonKey), findsNothing);
       });
 
-      testWidgets('subscribe and log in buttons when user is unauthenticated',
+      testWidgets("subscribe and log in buttons when user is unauthenticated",
           (tester) async {
         when(() => appBloc.state).thenReturn(AppState.unauthenticated());
         await tester.pumpApp(
@@ -80,7 +80,7 @@ void main() {
       });
     });
 
-    group('opens PurchaseSubscriptionDialog', () {
+    group("opens PurchaseSubscriptionDialog", () {
       late InAppPurchaseRepository inAppPurchaseRepository;
       late ArticleBloc articleBloc;
 
@@ -97,13 +97,13 @@ void main() {
         );
 
         when(() => articleBloc.state).thenReturn(
-          ArticleState(status: ArticleStatus.initial, title: 'title'),
+          ArticleState(status: ArticleStatus.initial, title: "title"),
         );
       });
 
       testWidgets(
-          'when tapped on subscribe button '
-          'adding PaywallPromptEvent.click to AnalyticsBloc', (tester) async {
+          "when tapped on subscribe button "
+          "adding PaywallPromptEvent.click to AnalyticsBloc", (tester) async {
         final analyticsBloc = MockAnalyticsBloc();
 
         await tester.pumpApp(
@@ -121,7 +121,7 @@ void main() {
         verify(
           () => analyticsBloc.add(
             TrackAnalyticsEvent(
-              PaywallPromptEvent.click(articleTitle: 'title'),
+              PaywallPromptEvent.click(articleTitle: "title"),
             ),
           ),
         ).called(1);
@@ -129,8 +129,8 @@ void main() {
     });
 
     testWidgets(
-        'shows LoginModal '
-        'when tapped on log in button', (tester) async {
+        "shows LoginModal "
+        "when tapped on log in button", (tester) async {
       whenListen(
         appBloc,
         Stream.value(AppState.unauthenticated()),
@@ -152,9 +152,9 @@ void main() {
     });
 
     testWidgets(
-        'adds TrackAnalyticsEvent to AnalyticsBloc '
-        'with PaywallPromptEvent.impression subscription '
-        'when shown', (tester) async {
+        "adds TrackAnalyticsEvent to AnalyticsBloc "
+        "with PaywallPromptEvent.impression subscription "
+        "when shown", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: articleBloc,
@@ -168,7 +168,7 @@ void main() {
         () => analyticsBloc.add(
           TrackAnalyticsEvent(
             PaywallPromptEvent.impression(
-              articleTitle: 'title',
+              articleTitle: "title",
               impression: PaywallPromptImpression.subscription,
             ),
           ),

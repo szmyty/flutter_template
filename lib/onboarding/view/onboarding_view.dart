@@ -1,9 +1,9 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/onboarding/onboarding.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/onboarding/onboarding.dart";
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -40,7 +40,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         slivers: [
           SliverToBoxAdapter(
             child: Column(
-              key: const Key('onboarding_scrollableColumn'),
+              key: const Key("onboarding_scrollableColumn"),
               mainAxisSize: MainAxisSize.min,
               children: [
                 const _OnboardingTitle(),
@@ -48,18 +48,18 @@ class _OnboardingViewState extends State<OnboardingView> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .59,
                   child: PageView(
-                    key: const Key('onboarding_pageView'),
+                    key: const Key("onboarding_pageView"),
                     controller: _controller,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       OnboardingViewItem(
-                        key: const Key('onboarding_pageOne'),
+                        key: const Key("onboarding_pageOne"),
                         pageNumberTitle: l10n.onboardingItemFirstNumberTitle,
                         title: l10n.onboardingItemFirstTitle,
                         subtitle: l10n.onboardingItemFirstSubtitleTitle,
                         primaryButton: AppButton.darkAqua(
                           key:
-                              const Key('onboardingItem_primaryButton_pageOne'),
+                              const Key("onboardingItem_primaryButton_pageOne"),
                           onPressed: () => context
                               .read<OnboardingBloc>()
                               .add(const EnableAdTrackingRequested()),
@@ -67,7 +67,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                         ),
                         secondaryButton: AppButton.smallTransparent(
                           key: const Key(
-                            'onboardingItem_secondaryButton_pageOne',
+                            "onboardingItem_secondaryButton_pageOne",
                           ),
                           onPressed: () => _controller.animateToPage(
                             _onboardingPageTwo,
@@ -80,13 +80,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                         ),
                       ),
                       OnboardingViewItem(
-                        key: const Key('onboarding_pageTwo'),
+                        key: const Key("onboarding_pageTwo"),
                         pageNumberTitle: l10n.onboardingItemSecondNumberTitle,
                         title: l10n.onboardingItemSecondTitle,
                         subtitle: l10n.onboardingItemSecondSubtitleTitle,
                         primaryButton: AppButton.darkAqua(
                           key:
-                              const Key('onboardingItem_primaryButton_pageTwo'),
+                              const Key("onboardingItem_primaryButton_pageTwo"),
                           onPressed: () => context
                               .read<OnboardingBloc>()
                               .add(const EnableNotificationsRequested()),
@@ -94,7 +94,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                         ),
                         secondaryButton: AppButton.smallTransparent(
                           key: const Key(
-                            'onboardingItem_secondaryButton_pageTwo',
+                            "onboardingItem_secondaryButton_pageTwo",
                           ),
                           onPressed: () => context
                               .read<AppBloc>()
@@ -130,7 +130,7 @@ class _OnboardingTitle extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      key: const Key('onboardingView_onboardingTitle'),
+      key: const Key("onboardingView_onboardingTitle"),
       padding: const EdgeInsets.only(
         top: AppSpacing.xxxlg + AppSpacing.sm,
         bottom: AppSpacing.xxs,
@@ -154,7 +154,7 @@ class _OnboardingSubtitle extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      key: const Key('onboardingView_onboardingSubtitle'),
+      key: const Key("onboardingView_onboardingSubtitle"),
       padding: const EdgeInsets.only(
         top: AppSpacing.xlg,
       ),

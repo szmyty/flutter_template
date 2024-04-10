@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_repository/news_repository.dart";
 
 void main() {
-  group('FeedEvent', () {
-    group('FeedRequested', () {
-      test('supports value comparisons', () {
+  group("FeedEvent", () {
+    group("FeedRequested", () {
+      test("supports value comparisons", () {
         final event1 = FeedRequested(category: Category.health);
         final event2 = FeedRequested(category: Category.health);
 
@@ -15,8 +15,8 @@ void main() {
       });
     });
 
-    group('FeedRefreshRequested', () {
-      test('supports value comparisons', () {
+    group("FeedRefreshRequested", () {
+      test("supports value comparisons", () {
         final event1 = FeedRefreshRequested(category: Category.science);
         final event2 = FeedRefreshRequested(category: Category.science);
 

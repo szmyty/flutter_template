@@ -1,32 +1,32 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart'
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart"
     hide PurchaseCompleted;
-import 'package:mockingjay/mockingjay.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:mockingjay/mockingjay.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../../helpers/helpers.dart';
+import "../../../helpers/helpers.dart";
 
 void main() {
   late InAppPurchaseRepository inAppPurchaseRepository;
   late UserRepository userRepository;
 
   const subscription = Subscription(
-    id: 'dd339fda-33e9-49d0-9eb5-0ccb77eb760f',
+    id: "dd339fda-33e9-49d0-9eb5-0ccb77eb760f",
     name: SubscriptionPlan.premium,
     cost: SubscriptionCost(
       annual: 16200,
       monthly: 1499,
     ),
     benefits: [
-      'first',
-      'second',
-      'third',
+      "first",
+      "second",
+      "third",
     ],
   );
 
@@ -47,14 +47,14 @@ void main() {
     ).thenAnswer((_) async {});
   });
 
-  group('showPurchaseSubscriptionDialog', () {
-    testWidgets('renders PurchaseSubscriptionDialog', (tester) async {
+  group("showPurchaseSubscriptionDialog", () {
+    testWidgets("renders PurchaseSubscriptionDialog", (tester) async {
       await tester.pumpApp(
         Builder(
           builder: (context) {
             return ElevatedButton(
-              key: const Key('tester_elevatedButton'),
-              child: const Text('test'),
+              key: const Key("tester_elevatedButton"),
+              child: const Text("test"),
               onPressed: () => showPurchaseSubscriptionDialog(context: context),
             );
           },
@@ -62,7 +62,7 @@ void main() {
         inAppPurchaseRepository: inAppPurchaseRepository,
       );
 
-      await tester.tap(find.byKey(const Key('tester_elevatedButton')));
+      await tester.tap(find.byKey(const Key("tester_elevatedButton")));
 
       await tester.pump();
 
@@ -70,9 +70,9 @@ void main() {
     });
   });
 
-  group('PurchaseSubscriptionDialog', () {
+  group("PurchaseSubscriptionDialog", () {
     testWidgets(
-      'renders PurchaseSubscriptionDialogView',
+      "renders PurchaseSubscriptionDialogView",
       (WidgetTester tester) async {
         await tester.pumpApp(
           const PurchaseSubscriptionDialog(),
@@ -83,19 +83,19 @@ void main() {
     );
   });
 
-  group('PurchaseSubscriptionDialogView', () {
-    testWidgets('renders list of SubscriptionCard', (tester) async {
+  group("PurchaseSubscriptionDialogView", () {
+    testWidgets("renders list of SubscriptionCard", (tester) async {
       const otherSubscription = Subscription(
-        id: 'other_subscription_id',
+        id: "other_subscription_id",
         name: SubscriptionPlan.premium,
         cost: SubscriptionCost(
           annual: 16200,
           monthly: 1499,
         ),
         benefits: [
-          'first',
-          'second',
-          'third',
+          "first",
+          "second",
+          "third",
         ],
       );
 
@@ -124,7 +124,7 @@ void main() {
       }
     });
 
-    testWidgets('closes dialog on close button tap', (tester) async {
+    testWidgets("closes dialog on close button tap", (tester) async {
       final navigator = MockNavigator();
 
       when(navigator.pop).thenAnswer((_) async => true);
@@ -137,7 +137,7 @@ void main() {
       await tester.pump();
       await tester.tap(
         find.byKey(
-          const Key('purchaseSubscriptionDialog_closeIconButton'),
+          const Key("purchaseSubscriptionDialog_closeIconButton"),
         ),
       );
       await tester.pump();
@@ -146,9 +146,9 @@ void main() {
     });
 
     testWidgets(
-        'shows PurchaseCompleted dialog '
-        'and adds UserSubscriptionConversionEvent to AnalyticsBloc '
-        'when SubscriptionsBloc emits purchaseStatus.completed',
+        "shows PurchaseCompleted dialog "
+        "and adds UserSubscriptionConversionEvent to AnalyticsBloc "
+        "when SubscriptionsBloc emits purchaseStatus.completed",
         (tester) async {
       final navigator = MockNavigator();
       final analyticsBloc = MockAnalyticsBloc();
@@ -184,15 +184,15 @@ void main() {
     });
   });
 
-  group('PurchaseCompletedDialog', () {
-    testWidgets('closes after 3 seconds', (tester) async {
-      const buttonText = 'buttonText';
+  group("PurchaseCompletedDialog", () {
+    testWidgets("closes after 3 seconds", (tester) async {
+      const buttonText = "buttonText";
 
       await tester.pumpApp(
         Builder(
           builder: (context) {
             return AppButton.black(
-              child: const Text('buttonText'),
+              child: const Text("buttonText"),
               onPressed: () => showAppModal<void>(
                 context: context,
                 builder: (context) => const PurchaseCompletedDialog(),

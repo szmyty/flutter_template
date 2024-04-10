@@ -1,29 +1,29 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_blocks/news_blocks.dart';
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_blocks/news_blocks.dart";
 
 void main() {
-  group('FeedState', () {
-    test('initial has correct status', () {
+  group("FeedState", () {
+    test("initial has correct status", () {
       expect(
         FeedState.initial().status,
         equals(FeedStatus.initial),
       );
     });
 
-    test('supports value comparisons', () {
+    test("supports value comparisons", () {
       expect(
         FeedState.initial(),
         equals(FeedState.initial()),
       );
     });
 
-    group('copyWith', () {
+    group("copyWith", () {
       test(
-          'returns same object '
-          'when no properties are passed', () {
+          "returns same object "
+          "when no properties are passed", () {
         expect(
           FeedState.initial().copyWith(),
           equals(FeedState.initial()),
@@ -31,8 +31,8 @@ void main() {
       });
 
       test(
-          'returns object with updated status '
-          'when status is passed', () {
+          "returns object with updated status "
+          "when status is passed", () {
         expect(
           FeedState.initial().copyWith(
             status: FeedStatus.loading,
@@ -46,10 +46,10 @@ void main() {
       });
 
       test(
-          'returns object with updated feed '
-          'when feed is passed', () {
+          "returns object with updated feed "
+          "when feed is passed", () {
         final feed = {
-          Category.health: [SectionHeaderBlock(title: 'Health')],
+          Category.health: [SectionHeaderBlock(title: "Health")],
         };
 
         expect(
@@ -64,8 +64,8 @@ void main() {
       });
 
       test(
-          'returns object with updated hasMoreNews '
-          'when hasMoreNews is passed', () {
+          "returns object with updated hasMoreNews "
+          "when hasMoreNews is passed", () {
         final hasMoreNews = {
           Category.health: false,
         };

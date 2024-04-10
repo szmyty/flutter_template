@@ -1,18 +1,18 @@
-import 'package:flutter_template/search/search.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter_template/search/search.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('SearchHeadlineText', () {
-    testWidgets('renders headerText uppercased', (tester) async {
+  group("SearchHeadlineText", () {
+    testWidgets("renders headerText uppercased", (tester) async {
       await tester.pumpApp(
         const SearchHeadlineText(
-          headerText: 'text',
+          headerText: "text",
         ),
       );
 
-      expect(find.text('TEXT'), findsOneWidget);
+      expect(find.text("TEXT"), findsOneWidget);
     });
   });
 }

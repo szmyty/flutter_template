@@ -1,19 +1,19 @@
-import 'package:flutter_template/subscriptions/subscriptions.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:in_app_purchase_repository/in_app_purchase_repository.dart';
+import "package:flutter_template/subscriptions/subscriptions.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:in_app_purchase_repository/in_app_purchase_repository.dart";
 
 void main() {
-  group('SubscriptionsEvent', () {
-    group('SubscriptionsRequested', () {
-      test('supports value comparisons', () {
+  group("SubscriptionsEvent", () {
+    group("SubscriptionsRequested", () {
+      test("supports value comparisons", () {
         final event1 = SubscriptionsRequested();
         final event2 = SubscriptionsRequested();
 
         expect(event1, equals(event2));
       });
     });
-    group('SubscriptionPurchaseRequested', () {
-      test('supports value comparisons', () {
+    group("SubscriptionPurchaseRequested", () {
+      test("supports value comparisons", () {
         final event1 = SubscriptionPurchaseRequested(
           subscription: const Subscription(
             benefits: [],
@@ -21,7 +21,7 @@ void main() {
               annual: 0,
               monthly: 0,
             ),
-            id: '1',
+            id: "1",
             name: SubscriptionPlan.none,
           ),
         );
@@ -32,7 +32,7 @@ void main() {
               annual: 0,
               monthly: 0,
             ),
-            id: '1',
+            id: "1",
             name: SubscriptionPlan.none,
           ),
         );
@@ -41,8 +41,8 @@ void main() {
       });
     });
 
-    group('SubscriptionPurchaseCompleted', () {
-      test('supports value comparisons', () {
+    group("SubscriptionPurchaseCompleted", () {
+      test("supports value comparisons", () {
         final event1 = SubscriptionPurchaseCompleted(
           subscription: const Subscription(
             benefits: [],
@@ -50,7 +50,7 @@ void main() {
               annual: 0,
               monthly: 0,
             ),
-            id: '1',
+            id: "1",
             name: SubscriptionPlan.none,
           ),
         );
@@ -61,7 +61,7 @@ void main() {
               annual: 0,
               monthly: 0,
             ),
-            id: '1',
+            id: "1",
             name: SubscriptionPlan.none,
           ),
         );
@@ -70,8 +70,8 @@ void main() {
       });
     });
 
-    group('SubscriptionPurchaseUpdated', () {
-      test('supports value comparisons', () {
+    group("SubscriptionPurchaseUpdated", () {
+      test("supports value comparisons", () {
         final event1 = SubscriptionPurchaseUpdated(
           purchase: const PurchaseCanceled(),
         );

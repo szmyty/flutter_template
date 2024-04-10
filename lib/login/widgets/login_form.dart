@@ -1,10 +1,10 @@
-import 'package:app_ui/app_ui.dart' show AppButton, AppSpacing, Assets;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:form_inputs/form_inputs.dart';
+import "package:app_ui/app_ui.dart" show AppButton, AppSpacing, Assets;
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:flutter_template/login/login.dart";
+import "package:form_inputs/form_inputs.dart";
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -69,7 +69,7 @@ class _LoginContent extends StatelessWidget {
               const SizedBox(height: AppSpacing.lg),
               _TwitterLoginButton(),
               const SizedBox(height: AppSpacing.lg),
-              _ContinueWithEmailLoginButton()
+              _ContinueWithEmailLoginButton(),
             ],
           ),
         );
@@ -95,7 +95,7 @@ class _LoginTitleAndCloseButton extends StatelessWidget {
           ),
         ),
         IconButton(
-          key: const Key('loginForm_closeModal_iconButton'),
+          key: const Key("loginForm_closeModal_iconButton"),
           constraints: const BoxConstraints.tightFor(width: 24, height: 36),
           padding: EdgeInsets.zero,
           onPressed: () => Navigator.pop(context),
@@ -122,7 +122,7 @@ class _AppleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.black(
-      key: const Key('loginForm_appleLogin_appButton'),
+      key: const Key("loginForm_appleLogin_appButton"),
       onPressed: () => context.read<LoginBloc>().add(LoginAppleSubmitted()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -143,7 +143,7 @@ class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.outlinedWhite(
-      key: const Key('loginForm_googleLogin_appButton'),
+      key: const Key("loginForm_googleLogin_appButton"),
       onPressed: () => context.read<LoginBloc>().add(LoginGoogleSubmitted()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -164,7 +164,7 @@ class _FacebookLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.blueDress(
-      key: const Key('loginForm_facebookLogin_appButton'),
+      key: const Key("loginForm_facebookLogin_appButton"),
       onPressed: () => context.read<LoginBloc>().add(LoginFacebookSubmitted()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +182,7 @@ class _TwitterLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.crystalBlue(
-      key: const Key('loginForm_twitterLogin_appButton'),
+      key: const Key("loginForm_twitterLogin_appButton"),
       onPressed: () => context.read<LoginBloc>().add(LoginTwitterSubmitted()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -200,7 +200,7 @@ class _ContinueWithEmailLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.outlinedTransparentDarkAqua(
-      key: const Key('loginForm_emailLogin_appButton'),
+      key: const Key("loginForm_emailLogin_appButton"),
       onPressed: () => Navigator.of(context).push<void>(
         LoginWithEmailPage.route(),
       ),

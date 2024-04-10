@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/login/login.dart";
+import "package:user_repository/user_repository.dart";
 
 class LoginModal extends StatelessWidget {
   const LoginModal({super.key});
@@ -9,7 +9,7 @@ class LoginModal extends StatelessWidget {
   static Route<void> route() =>
       MaterialPageRoute<void>(builder: (_) => const LoginModal());
 
-  static const String name = '/loginModal';
+  static const String name = "/loginModal";
 
   @override
   Widget build(BuildContext context) {

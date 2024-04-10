@@ -1,8 +1,8 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart' hide Spacer;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/l10n/l10n.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart" hide Spacer;
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/l10n/l10n.dart";
 
 class ArticleComments extends StatelessWidget {
   const ArticleComments({super.key});
@@ -15,7 +15,7 @@ class ArticleComments extends StatelessWidget {
         Text(
           context.l10n.discussion,
           style: Theme.of(context).textTheme.displaySmall,
-          key: const Key('articleComments_discussionTitle'),
+          key: const Key("articleComments_discussionTitle"),
         ),
         const SizedBox(height: AppSpacing.lg),
         ConstrainedBox(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class CategoriesTabBar extends StatelessWidget implements PreferredSizeWidget {
   const CategoriesTabBar({

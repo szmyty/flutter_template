@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:fake_async/fake_async.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart' as ads;
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:platform/platform.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:fake_async/fake_async.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart" as ads;
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:platform/platform.dart";
 
 class MockInterstitialAd extends Mock implements ads.InterstitialAd {}
 
@@ -69,7 +69,7 @@ class MockLoadAdError extends Mock implements ads.LoadAdError {}
 class MockLocalPlatform extends Mock implements LocalPlatform {}
 
 void main() {
-  group('FullScreenAdsBloc', () {
+  group("FullScreenAdsBloc", () {
     String? capturedAdUnitId;
 
     late LocalPlatform localPlatform;
@@ -98,7 +98,7 @@ void main() {
       rewardedAd = MockRewardedAd();
       when(
         () => rewardedAd.show(
-          onUserEarnedReward: any(named: 'onUserEarnedReward'),
+          onUserEarnedReward: any(named: "onUserEarnedReward"),
         ),
       ).thenAnswer((_) async {});
       when(rewardedAd.dispose).thenAnswer((_) async {});
@@ -112,9 +112,9 @@ void main() {
       };
     });
 
-    group('LoadInterstitialAdRequested', () {
+    group("LoadInterstitialAdRequested", () {
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly on Android',
+        "loads ad object correctly on Android",
         build: () => FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -131,7 +131,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly on iOS',
+        "loads ad object correctly on iOS",
         setUp: () {
           when(() => localPlatform.isIOS).thenReturn(true);
           when(() => localPlatform.isAndroid).thenReturn(false);
@@ -152,7 +152,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly using provided FullScreenAdsConfig',
+        "loads ad object correctly using provided FullScreenAdsConfig",
         setUp: () {
           when(() => localPlatform.isIOS).thenReturn(true);
           when(() => localPlatform.isAndroid).thenReturn(false);
@@ -163,16 +163,16 @@ void main() {
           interstitialAdLoader: interstitialAdLoader,
           rewardedAdLoader: rewardedAdLoader,
           fullScreenAdsConfig:
-              FullScreenAdsConfig(interstitialAdUnitId: 'interstitialAdUnitId'),
+              FullScreenAdsConfig(interstitialAdUnitId: "interstitialAdUnitId"),
         ),
         act: (bloc) => bloc.add(LoadInterstitialAdRequested()),
         verify: (bloc) {
-          expect(capturedAdUnitId, equals('interstitialAdUnitId'));
+          expect(capturedAdUnitId, equals("interstitialAdUnitId"));
         },
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'emits ad when ad is loaded',
+        "emits ad when ad is loaded",
         setUp: () {
           interstitialAdLoader = ({
             required String adUnitId,
@@ -201,7 +201,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'adds error when ad fails to load',
+        "adds error when ad fails to load",
         setUp: () {
           interstitialAdLoader = ({
             required String adUnitId,
@@ -210,7 +210,7 @@ void main() {
           }) async {
             await Future.microtask(
               () => adLoadCallback.onAdFailedToLoad(
-                ads.LoadAdError(0, 'domain', 'message', null),
+                ads.LoadAdError(0, "domain", "message", null),
               ),
             );
           };
@@ -231,7 +231,7 @@ void main() {
         errors: () => [isA<ads.LoadAdError>()],
       );
 
-      test('retries loading ad based on AdsRetryPolicy', () async {
+      test("retries loading ad based on AdsRetryPolicy", () async {
         final fakeAsync = FakeAsync();
 
         unawaited(
@@ -245,7 +245,7 @@ void main() {
             }) async {
               await Future.microtask(
                 () => adLoadCallback.onAdFailedToLoad(
-                  ads.LoadAdError(0, 'domain', 'message', null),
+                  ads.LoadAdError(0, "domain", "message", null),
                 ),
               );
             };
@@ -290,11 +290,11 @@ void main() {
       });
     });
 
-    group('ShowInterstitialAdRequested', () {
+    group("ShowInterstitialAdRequested", () {
       final ad = FakeInterstitialAd();
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'shows ad and loads next ad',
+        "shows ad and loads next ad",
         seed: () => FullScreenAdsState(
           status: FullScreenAdsStatus.loadingInterstitialAdSucceeded,
           interstitialAd: interstitialAd,
@@ -325,7 +325,7 @@ void main() {
         },
       );
 
-      test('disposes ad on ad dismissed', () async {
+      test("disposes ad on ad dismissed", () async {
         final bloc = FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -359,7 +359,7 @@ void main() {
         expect(ad.disposeCalled, isTrue);
       });
 
-      test('disposes ad when ads fails to show', () async {
+      test("disposes ad when ads fails to show", () async {
         final bloc = FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -398,13 +398,13 @@ void main() {
       });
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'adds error when ad fails to show',
+        "adds error when ad fails to show",
         seed: () => FullScreenAdsState(
           status: FullScreenAdsStatus.loadingInterstitialAdSucceeded,
           interstitialAd: interstitialAd,
         ),
         setUp: () {
-          when(interstitialAd.show).thenThrow(Exception('Oops'));
+          when(interstitialAd.show).thenThrow(Exception("Oops"));
         },
         build: () => FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
@@ -427,9 +427,9 @@ void main() {
       );
     });
 
-    group('LoadRewardedAdRequested', () {
+    group("LoadRewardedAdRequested", () {
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly on Android',
+        "loads ad object correctly on Android",
         build: () => FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -446,7 +446,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly on iOS',
+        "loads ad object correctly on iOS",
         setUp: () {
           when(() => localPlatform.isIOS).thenReturn(true);
           when(() => localPlatform.isAndroid).thenReturn(false);
@@ -467,7 +467,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'loads ad object correctly using provided FullScreenAdsConfig',
+        "loads ad object correctly using provided FullScreenAdsConfig",
         setUp: () {
           when(() => localPlatform.isIOS).thenReturn(true);
           when(() => localPlatform.isAndroid).thenReturn(false);
@@ -478,16 +478,16 @@ void main() {
           interstitialAdLoader: interstitialAdLoader,
           rewardedAdLoader: rewardedAdLoader,
           fullScreenAdsConfig:
-              FullScreenAdsConfig(rewardedAdUnitId: 'rewardedAdUnitId'),
+              FullScreenAdsConfig(rewardedAdUnitId: "rewardedAdUnitId"),
         ),
         act: (bloc) => bloc.add(LoadRewardedAdRequested()),
         verify: (bloc) {
-          expect(capturedAdUnitId, equals('rewardedAdUnitId'));
+          expect(capturedAdUnitId, equals("rewardedAdUnitId"));
         },
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'emits ad when ad is loaded',
+        "emits ad when ad is loaded",
         setUp: () {
           rewardedAdLoader = ({
             required String adUnitId,
@@ -516,7 +516,7 @@ void main() {
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'adds error when ad fails to load',
+        "adds error when ad fails to load",
         setUp: () {
           rewardedAdLoader = ({
             required String adUnitId,
@@ -525,7 +525,7 @@ void main() {
           }) async {
             await Future.microtask(
               () => rewardedAdLoadCallback.onAdFailedToLoad(
-                ads.LoadAdError(0, 'domain', 'message', null),
+                ads.LoadAdError(0, "domain", "message", null),
               ),
             );
           };
@@ -546,7 +546,7 @@ void main() {
         errors: () => [isA<ads.LoadAdError>()],
       );
 
-      test('retries loading ad based on AdsRetryPolicy', () async {
+      test("retries loading ad based on AdsRetryPolicy", () async {
         final fakeAsync = FakeAsync();
 
         unawaited(
@@ -560,7 +560,7 @@ void main() {
             }) async {
               await Future.microtask(
                 () => rewardedAdLoadCallback.onAdFailedToLoad(
-                  ads.LoadAdError(0, 'domain', 'message', null),
+                  ads.LoadAdError(0, "domain", "message", null),
                 ),
               );
             };
@@ -605,12 +605,12 @@ void main() {
       });
     });
 
-    group('ShowRewardedAdRequested', () {
+    group("ShowRewardedAdRequested", () {
       final ad = FakeRewardedAd();
       final rewardItem = MockRewardItem();
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'shows ad and loads next ad',
+        "shows ad and loads next ad",
         seed: () => FullScreenAdsState(
           status: FullScreenAdsStatus.loadingRewardedAdSucceeded,
           rewardedAd: rewardedAd,
@@ -639,14 +639,14 @@ void main() {
         verify: (bloc) {
           verify(
             () => rewardedAd.show(
-              onUserEarnedReward: any(named: 'onUserEarnedReward'),
+              onUserEarnedReward: any(named: "onUserEarnedReward"),
             ),
           ).called(1);
         },
       );
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'emits earned reward when ad is watched',
+        "emits earned reward when ad is watched",
         seed: () => FullScreenAdsState(
           status: FullScreenAdsStatus.loadingRewardedAdSucceeded,
           rewardedAd: rewardedAd,
@@ -654,10 +654,10 @@ void main() {
         setUp: () {
           when(
             () => rewardedAd.show(
-              onUserEarnedReward: any(named: 'onUserEarnedReward'),
+              onUserEarnedReward: any(named: "onUserEarnedReward"),
             ),
           ).thenAnswer((invocation) async {
-            (invocation.namedArguments[Symbol('onUserEarnedReward')]
+            (invocation.namedArguments[Symbol("onUserEarnedReward")]
                     as ads.OnUserEarnedRewardCallback)
                 .call(ad, rewardItem);
           });
@@ -681,7 +681,7 @@ void main() {
         ],
       );
 
-      test('disposes ad on ad dismissed', () async {
+      test("disposes ad on ad dismissed", () async {
         final bloc = FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -715,7 +715,7 @@ void main() {
         expect(ad.disposeCalled, isTrue);
       });
 
-      test('disposes ad when ads fails to show', () async {
+      test("disposes ad when ads fails to show", () async {
         final bloc = FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),
           localPlatform: localPlatform,
@@ -754,7 +754,7 @@ void main() {
       });
 
       blocTest<FullScreenAdsBloc, FullScreenAdsState>(
-        'adds error when ad fails to show',
+        "adds error when ad fails to show",
         seed: () => FullScreenAdsState(
           status: FullScreenAdsStatus.loadingRewardedAdSucceeded,
           rewardedAd: rewardedAd,
@@ -762,9 +762,9 @@ void main() {
         setUp: () {
           when(
             () => rewardedAd.show(
-              onUserEarnedReward: any(named: 'onUserEarnedReward'),
+              onUserEarnedReward: any(named: "onUserEarnedReward"),
             ),
-          ).thenThrow(Exception('Oops'));
+          ).thenThrow(Exception("Oops"));
         },
         build: () => FullScreenAdsBloc(
           adsRetryPolicy: AdsRetryPolicy(),

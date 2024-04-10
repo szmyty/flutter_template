@@ -1,18 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/newsletter/newsletter.dart'
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/newsletter/newsletter.dart"
     hide NewsletterEvent;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockNewsletterBloc extends Mock implements NewsletterBloc {}
 
@@ -30,8 +30,8 @@ void main() {
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
 
-  group('Newsletter', () {
-    testWidgets('renders NewsletterView', (tester) async {
+  group("Newsletter", () {
+    testWidgets("renders NewsletterView", (tester) async {
       await tester.pumpApp(
         Newsletter(),
       );
@@ -42,8 +42,8 @@ void main() {
     });
   });
 
-  group('NewsletterView', () {
-    testWidgets('renders NewsletterSignUp', (tester) async {
+  group("NewsletterView", () {
+    testWidgets("renders NewsletterSignUp", (tester) async {
       whenListen(
         newsletterBloc,
         Stream.fromIterable([initialState]),
@@ -60,7 +60,7 @@ void main() {
       expect(find.byType(NewsletterSignUp), findsOneWidget);
     });
 
-    testWidgets('renders disabled button when status is not valid',
+    testWidgets("renders disabled button when status is not valid",
         (tester) async {
       whenListen(
         newsletterBloc,
@@ -81,7 +81,7 @@ void main() {
       );
     });
 
-    testWidgets('renders enabled button when status is valid', (tester) async {
+    testWidgets("renders enabled button when status is valid", (tester) async {
       whenListen(
         newsletterBloc,
         Stream.fromIterable([initialState.copyWith(isValid: true)]),
@@ -103,8 +103,8 @@ void main() {
     });
 
     testWidgets(
-        'adds EmailChanged to NewsletterBloc '
-        'on email text field filled', (tester) async {
+        "adds EmailChanged to NewsletterBloc "
+        "on email text field filled", (tester) async {
       whenListen(
         newsletterBloc,
         Stream.fromIterable([initialState.copyWith(isValid: true)]),
@@ -118,7 +118,7 @@ void main() {
         ),
       );
 
-      const changedEmail = 'test@test.com';
+      const changedEmail = "test@test.com";
       await tester.enterText(find.byType(AppEmailTextField), changedEmail);
 
       verify(() => newsletterBloc.add(EmailChanged(email: changedEmail)))
@@ -126,9 +126,9 @@ void main() {
     });
 
     testWidgets(
-        'adds TrackAnalyticsEvent to AnalyticsBloc '
-        'with NewsletterEvent.impression '
-        'when shown', (tester) async {
+        "adds TrackAnalyticsEvent to AnalyticsBloc "
+        "with NewsletterEvent.impression "
+        "when shown", (tester) async {
       final AnalyticsBloc analyticsBloc = MockAnalyticsBloc();
 
       whenListen(
@@ -155,9 +155,9 @@ void main() {
     });
 
     testWidgets(
-        'adds TrackAnalyticsEvent to AnalyticsBloc '
-        'with NewsletterEvent.signUp '
-        'when status is success', (tester) async {
+        "adds TrackAnalyticsEvent to AnalyticsBloc "
+        "with NewsletterEvent.signUp "
+        "when status is success", (tester) async {
       final AnalyticsBloc analyticsBloc = MockAnalyticsBloc();
 
       whenListen(
@@ -188,7 +188,7 @@ void main() {
       ).called(1);
     });
 
-    testWidgets('renders NewsletterSuccess when NewsletterStatus is success',
+    testWidgets("renders NewsletterSuccess when NewsletterStatus is success",
         (tester) async {
       whenListen(
         newsletterBloc,
@@ -208,7 +208,7 @@ void main() {
       expect(find.byType(NewsletterSucceeded), findsOneWidget);
     });
 
-    testWidgets('shows SnackBar when NewsletterStatus is failure',
+    testWidgets("shows SnackBar when NewsletterStatus is failure",
         (tester) async {
       whenListen(
         newsletterBloc,

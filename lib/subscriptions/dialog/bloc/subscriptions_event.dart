@@ -1,4 +1,4 @@
-part of 'subscriptions_bloc.dart';
+part of "subscriptions_bloc.dart";
 
 abstract class SubscriptionsEvent extends Equatable {}
 

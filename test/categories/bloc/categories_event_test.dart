@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_blocks/news_blocks.dart';
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_blocks/news_blocks.dart";
 
 void main() {
-  group('CategoriesEvent', () {
-    group('CategoriesRequested', () {
-      test('supports value comparisons', () {
+  group("CategoriesEvent", () {
+    group("CategoriesRequested", () {
+      test("supports value comparisons", () {
         final event1 = CategoriesRequested();
         final event2 = CategoriesRequested();
 
@@ -15,8 +15,8 @@ void main() {
       });
     });
 
-    group('CategorySelected', () {
-      test('supports value comparisons', () {
+    group("CategorySelected", () {
+      test("supports value comparisons", () {
         final event1 = CategorySelected(category: Category.top);
         final event2 = CategorySelected(category: Category.top);
 

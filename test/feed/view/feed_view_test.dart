@@ -1,19 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart' hide Spacer;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/gestures.dart";
+import "package:flutter/material.dart" hide Spacer;
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockFeedBloc extends MockBloc<FeedEvent, FeedState> implements FeedBloc {}
 
@@ -21,7 +21,7 @@ class MockCategoriesBloc extends MockBloc<CategoriesEvent, CategoriesState>
     implements CategoriesBloc {}
 
 void main() {
-  group('FeedView', () {
+  group("FeedView", () {
     late CategoriesBloc categoriesBloc;
     late FeedBloc feedBloc;
 
@@ -29,7 +29,7 @@ void main() {
 
     final feed = <Category, List<NewsBlock>>{
       Category.top: [
-        SectionHeaderBlock(title: 'Top'),
+        SectionHeaderBlock(title: "Top"),
         SpacerBlock(spacing: Spacing.medium),
         SpacerBlock(spacing: Spacing.extraLarge),
         SpacerBlock(spacing: Spacing.extraLarge),
@@ -45,7 +45,7 @@ void main() {
         DividerHorizontalBlock(),
       ],
       Category.technology: [
-        SectionHeaderBlock(title: 'Technology'),
+        SectionHeaderBlock(title: "Technology"),
         DividerHorizontalBlock(),
         SpacerBlock(spacing: Spacing.medium),
       ],
@@ -71,8 +71,8 @@ void main() {
     });
 
     testWidgets(
-        'renders empty feed '
-        'when categories are empty', (tester) async {
+        "renders empty feed "
+        "when categories are empty", (tester) async {
       when(() => categoriesBloc.state).thenReturn(
         CategoriesState(
           categories: const [],
@@ -90,13 +90,13 @@ void main() {
         ),
       );
 
-      expect(find.byKey(Key('feedView_empty')), findsOneWidget);
+      expect(find.byKey(Key("feedView_empty")), findsOneWidget);
       expect(find.byType(FeedViewPopulated), findsNothing);
     });
 
     testWidgets(
-        'renders FeedViewPopulated '
-        'when categories are available', (tester) async {
+        "renders FeedViewPopulated "
+        "when categories are available", (tester) async {
       await tester.pumpApp(
         MultiBlocProvider(
           providers: [
@@ -114,11 +114,11 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.byKey(Key('feedView_empty')), findsNothing);
+      expect(find.byKey(Key("feedView_empty")), findsNothing);
     });
 
     testWidgets(
-      'adds FeedResumed when the app is resumed',
+      "adds FeedResumed when the app is resumed",
       (tester) async {
         await tester.pumpApp(
           MultiBlocProvider(
@@ -140,8 +140,8 @@ void main() {
       },
     );
 
-    group('FeedViewPopulated', () {
-      testWidgets('renders CategoryTabBar with CategoryTab for each category',
+    group("FeedViewPopulated", () {
+      testWidgets("renders CategoryTabBar with CategoryTab for each category",
           (tester) async {
         await tester.pumpApp(
           MultiBlocProvider(
@@ -170,7 +170,7 @@ void main() {
         }
       });
 
-      testWidgets('renders TabBarView', (tester) async {
+      testWidgets("renders TabBarView", (tester) async {
         await tester.pumpApp(
           MultiBlocProvider(
             providers: [
@@ -186,8 +186,8 @@ void main() {
       });
 
       testWidgets(
-          'adds CategorySelected to CategoriesBloc '
-          'when CategoryTab is tapped', (tester) async {
+          "adds CategorySelected to CategoriesBloc "
+          "when CategoryTab is tapped", (tester) async {
         final selectedCategory = categories[1];
 
         await tester.pumpApp(
@@ -218,8 +218,8 @@ void main() {
       });
 
       testWidgets(
-          'animates to CategoryFeed in TabBarView '
-          'when selectedCategory changes', (tester) async {
+          "animates to CategoryFeed in TabBarView "
+          "when selectedCategory changes", (tester) async {
         final categoriesStateController =
             StreamController<CategoriesState>.broadcast();
 
@@ -266,7 +266,7 @@ void main() {
       });
 
       testWidgets(
-        'scrolls to the top of CategoryFeed on double tap on CategoryTab',
+        "scrolls to the top of CategoryFeed on double tap on CategoryTab",
         (tester) async {
           await tester.pumpApp(
             MultiBlocProvider(
@@ -283,7 +283,7 @@ void main() {
             findsNothing,
           );
           expect(
-            find.text('Top'),
+            find.text("Top"),
             findsOneWidget,
           );
 
@@ -316,7 +316,7 @@ void main() {
             findsNothing,
           );
           expect(
-            find.text('Top'),
+            find.text("Top"),
             findsOneWidget,
           );
         },

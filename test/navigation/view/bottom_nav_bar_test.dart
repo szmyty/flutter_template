@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_test/flutter_test.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('BottomNavBar', () {
+  group("BottomNavBar", () {
     testWidgets(
-      'renders with currentIndex to 0 by default.',
+      "renders with currentIndex to 0 by default.",
       (tester) async {
         await tester.pumpApp(
           BottomNavBar(
@@ -24,7 +24,7 @@ void main() {
     );
   });
 
-  testWidgets('calls onTap when navigation bar item is tapped', (tester) async {
+  testWidgets("calls onTap when navigation bar item is tapped", (tester) async {
     final completer = Completer<void>();
 
     await tester.pumpApp(
@@ -42,7 +42,7 @@ void main() {
   });
 
   testWidgets(
-    'renders BottomNavigationBar with currentIndex',
+    "renders BottomNavigationBar with currentIndex",
     (tester) async {
       const currentIndex = 1;
       await tester.pumpApp(

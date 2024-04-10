@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_repository/news_repository.dart';
+import "package:flutter/material.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_repository/news_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 void main() {
-  group('CategoriesTabBar', () {
-    testWidgets('has correct preferredSize', (tester) async {
+  group("CategoriesTabBar", () {
+    testWidgets("has correct preferredSize", (tester) async {
       expect(
         CategoriesTabBar(
           controller: TabController(length: 0, vsync: tester),
@@ -19,7 +19,7 @@ void main() {
       );
     });
 
-    testWidgets('renders TabBar with tabs', (tester) async {
+    testWidgets("renders TabBar with tabs", (tester) async {
       final tabs = [
         CategoryTab(
           key: ValueKey(Category.top),
@@ -56,8 +56,8 @@ void main() {
     });
   });
 
-  group('CategoryTab', () {
-    testWidgets('renders category name uppercased', (tester) async {
+  group("CategoryTab", () {
+    testWidgets("renders category name uppercased", (tester) async {
       await tester.pumpApp(
         CategoryTab(
           categoryName: Category.top.name,

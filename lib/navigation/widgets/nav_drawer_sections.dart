@@ -1,10 +1,10 @@
-import 'package:app_ui/app_ui.dart' show AppColors, AppSpacing;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/categories/categories.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:flutter_template/l10n/l10n.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
+import "package:app_ui/app_ui.dart" show AppColors, AppSpacing;
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/categories/categories.dart";
+import "package:flutter_template/home/home.dart";
+import "package:flutter_template/l10n/l10n.dart";
+import "package:intl/intl.dart" show toBeginningOfSentenceCase;
 
 class NavDrawerSections extends StatelessWidget {
   const NavDrawerSections({super.key});
@@ -24,7 +24,7 @@ class NavDrawerSections extends StatelessWidget {
           for (final category in categories)
             NavDrawerSectionItem(
               key: ValueKey(category),
-              title: toBeginningOfSentenceCase(category.name) ?? '',
+              title: toBeginningOfSentenceCase(category.name) ?? "",
               selected: category == selectedCategory,
               onTap: () {
                 Scaffold.of(context).closeDrawer();
@@ -33,7 +33,7 @@ class NavDrawerSections extends StatelessWidget {
                     .read<CategoriesBloc>()
                     .add(CategorySelected(category: category));
               },
-            )
+            ),
         ],
       ],
     );

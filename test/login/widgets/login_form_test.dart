@@ -1,19 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:app_ui/app_ui.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:form_inputs/form_inputs.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:user_repository/user_repository.dart';
+import "package:app_ui/app_ui.dart";
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:form_inputs/form_inputs.dart";
+import "package:mocktail/mocktail.dart";
+import "package:user_repository/user_repository.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockUser extends Mock implements User {}
 
@@ -23,14 +23,14 @@ class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
 class MockAppBloc extends MockBloc<AppEvent, AppState> implements AppBloc {}
 
 void main() {
-  const loginButtonKey = Key('loginForm_emailLogin_appButton');
-  const signInWithGoogleButtonKey = Key('loginForm_googleLogin_appButton');
-  const signInWithAppleButtonKey = Key('loginForm_appleLogin_appButton');
-  const signInWithFacebookButtonKey = Key('loginForm_facebookLogin_appButton');
-  const signInWithTwitterButtonKey = Key('loginForm_twitterLogin_appButton');
-  const loginFormCloseModalKey = Key('loginForm_closeModal_iconButton');
+  const loginButtonKey = Key("loginForm_emailLogin_appButton");
+  const signInWithGoogleButtonKey = Key("loginForm_googleLogin_appButton");
+  const signInWithAppleButtonKey = Key("loginForm_appleLogin_appButton");
+  const signInWithFacebookButtonKey = Key("loginForm_facebookLogin_appButton");
+  const signInWithTwitterButtonKey = Key("loginForm_twitterLogin_appButton");
+  const loginFormCloseModalKey = Key("loginForm_closeModal_iconButton");
 
-  group('LoginForm', () {
+  group("LoginForm", () {
     late LoginBloc loginBloc;
     late AppBloc appBloc;
     late User user;
@@ -43,10 +43,10 @@ void main() {
       when(() => loginBloc.state).thenReturn(const LoginState());
     });
 
-    group('adds', () {
+    group("adds", () {
       testWidgets(
-          'LoginGoogleSubmitted to LoginBloc '
-          'when sign in with google button is pressed', (tester) async {
+          "LoginGoogleSubmitted to LoginBloc "
+          "when sign in with google button is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
         );
@@ -56,8 +56,8 @@ void main() {
       });
 
       testWidgets(
-          'LoginTwitterSubmitted to LoginBloc '
-          'when sign in with Twitter button is pressed', (tester) async {
+          "LoginTwitterSubmitted to LoginBloc "
+          "when sign in with Twitter button is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
         );
@@ -67,8 +67,8 @@ void main() {
       });
 
       testWidgets(
-          'LoginFacebookSubmitted to LoginBloc '
-          'when sign in with Facebook button is pressed', (tester) async {
+          "LoginFacebookSubmitted to LoginBloc "
+          "when sign in with Facebook button is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
         );
@@ -78,8 +78,8 @@ void main() {
       });
 
       testWidgets(
-          'LoginAppleSubmitted to LoginBloc '
-          'when sign in with apple button is pressed', (tester) async {
+          "LoginAppleSubmitted to LoginBloc "
+          "when sign in with apple button is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
           platform: TargetPlatform.iOS,
@@ -89,7 +89,7 @@ void main() {
         verify(() => loginBloc.add(LoginAppleSubmitted())).called(1);
       });
 
-      testWidgets('AuthenticationFailure SnackBar when submission fails',
+      testWidgets("AuthenticationFailure SnackBar when submission fails",
           (tester) async {
         whenListen(
           loginBloc,
@@ -105,7 +105,7 @@ void main() {
         expect(find.byType(SnackBar), findsOneWidget);
       });
 
-      testWidgets('nothing when login is canceled', (tester) async {
+      testWidgets("nothing when login is canceled", (tester) async {
         whenListen(
           loginBloc,
           Stream.fromIterable(const <LoginState>[
@@ -116,8 +116,8 @@ void main() {
       });
     });
 
-    group('renders', () {
-      testWidgets('Sign in with Google and Apple on iOS', (tester) async {
+    group("renders", () {
+      testWidgets("Sign in with Google and Apple on iOS", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
           platform: TargetPlatform.iOS,
@@ -126,7 +126,7 @@ void main() {
         expect(find.byKey(signInWithGoogleButtonKey), findsOneWidget);
       });
 
-      testWidgets('only Sign in with Google on Android', (tester) async {
+      testWidgets("only Sign in with Google on Android", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
           platform: TargetPlatform.android,
@@ -135,14 +135,14 @@ void main() {
         expect(find.byKey(signInWithGoogleButtonKey), findsOneWidget);
       });
 
-      testWidgets('Sign in with Facebook', (tester) async {
+      testWidgets("Sign in with Facebook", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
         );
         expect(find.byKey(signInWithFacebookButtonKey), findsOneWidget);
       });
 
-      testWidgets('Sign in with Twitter', (tester) async {
+      testWidgets("Sign in with Twitter", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
         );
@@ -150,8 +150,8 @@ void main() {
       });
     });
 
-    group('navigates', () {
-      testWidgets('to LoginWithEmailPage when Continue with email is pressed',
+    group("navigates", () {
+      testWidgets("to LoginWithEmailPage when Continue with email is pressed",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(value: loginBloc, child: const LoginForm()),
@@ -163,10 +163,10 @@ void main() {
       });
     });
 
-    group('closes modal', () {
-      const buttonText = 'button';
+    group("closes modal", () {
+      const buttonText = "button";
 
-      testWidgets('when the close icon is pressed', (tester) async {
+      testWidgets("when the close icon is pressed", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: loginBloc,
@@ -193,7 +193,7 @@ void main() {
         expect(find.byType(LoginForm), findsNothing);
       });
 
-      testWidgets('when user is authenticated', (tester) async {
+      testWidgets("when user is authenticated", (tester) async {
         final appStateController = StreamController<AppState>();
 
         whenListen(
@@ -235,7 +235,7 @@ void main() {
         expect(find.byType(LoginForm), findsNothing);
       });
 
-      testWidgets('when user is authenticated and onboarding is required',
+      testWidgets("when user is authenticated and onboarding is required",
           (tester) async {
         final appStateController = StreamController<AppState>();
 

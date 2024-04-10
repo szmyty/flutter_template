@@ -1,5 +1,5 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
 
 /// Renders a widget containing a progress indicator that calls
 /// [onPresented] when the item becomes visible.

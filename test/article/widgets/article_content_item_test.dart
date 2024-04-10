@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart' hide Image, Spacer;
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/newsletter/newsletter.dart';
-import 'package:flutter_template/slideshow/slideshow.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:news_blocks_ui/news_blocks_ui.dart';
-import 'package:video_player_platform_interface/video_player_platform_interface.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:flutter/material.dart" hide Image, Spacer;
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/newsletter/newsletter.dart";
+import "package:flutter_template/slideshow/slideshow.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:news_blocks_ui/news_blocks_ui.dart";
+import "package:video_player_platform_interface/video_player_platform_interface.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
-import '../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
+import "../helpers/helpers.dart";
 
 void main() {
   initMockHydratedStorage();
@@ -21,10 +21,10 @@ void main() {
     VideoPlayerPlatform.instance = fakeVideoPlayerPlatform;
   }
 
-  group('ArticleContentItem', () {
+  group("ArticleContentItem", () {
     testWidgets(
-        'renders DividerHorizontal '
-        'for DividerHorizontalBlock', (tester) async {
+        "renders DividerHorizontal "
+        "for DividerHorizontalBlock", (tester) async {
       const block = DividerHorizontalBlock();
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
@@ -36,8 +36,8 @@ void main() {
     });
 
     testWidgets(
-        'renders Spacer '
-        'for SpacerBlock', (tester) async {
+        "renders Spacer "
+        "for SpacerBlock", (tester) async {
       const block = SpacerBlock(spacing: Spacing.large);
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
@@ -49,9 +49,9 @@ void main() {
     });
 
     testWidgets(
-        'renders Image '
-        'for ImageBlock', (tester) async {
-      const block = ImageBlock(imageUrl: 'imageUrl');
+        "renders Image "
+        "for ImageBlock", (tester) async {
+      const block = ImageBlock(imageUrl: "imageUrl");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
         find.byWidgetPredicate(
@@ -62,11 +62,11 @@ void main() {
     });
 
     testWidgets(
-        'renders TextCaption '
-        'with colorValues from ArticleThemeColors '
-        'for TextCaptionBlock', (tester) async {
+        "renders TextCaption "
+        "with colorValues from ArticleThemeColors "
+        "for TextCaptionBlock", (tester) async {
       const block = TextCaptionBlock(
-        text: 'text',
+        text: "text",
         color: TextCaptionColor.normal,
       );
 
@@ -97,9 +97,9 @@ void main() {
     });
 
     testWidgets(
-        'renders TextHeadline '
-        'for TextHeadlineBlock', (tester) async {
-      const block = TextHeadlineBlock(text: 'text');
+        "renders TextHeadline "
+        "for TextHeadlineBlock", (tester) async {
+      const block = TextHeadlineBlock(text: "text");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
         find.byWidgetPredicate(
@@ -110,9 +110,9 @@ void main() {
     });
 
     testWidgets(
-        'renders TextLeadParagraph '
-        'for TextLeadParagraphBlock', (tester) async {
-      const block = TextLeadParagraphBlock(text: 'text');
+        "renders TextLeadParagraph "
+        "for TextLeadParagraphBlock", (tester) async {
+      const block = TextLeadParagraphBlock(text: "text");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
         find.byWidgetPredicate(
@@ -123,9 +123,9 @@ void main() {
     });
 
     testWidgets(
-        'renders TextParagraph '
-        'for TextParagraphBlock', (tester) async {
-      const block = TextParagraphBlock(text: 'text');
+        "renders TextParagraph "
+        "for TextParagraphBlock", (tester) async {
+      const block = TextParagraphBlock(text: "text");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
         find.byWidgetPredicate(
@@ -136,10 +136,10 @@ void main() {
     });
 
     testWidgets(
-        'renders Video '
-        'for VideoBlock', (tester) async {
+        "renders Video "
+        "for VideoBlock", (tester) async {
       setUpVideoPlayerPlatform();
-      const block = VideoBlock(videoUrl: 'videoUrl');
+      const block = VideoBlock(videoUrl: "videoUrl");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(
         find.byWidgetPredicate(
@@ -150,14 +150,14 @@ void main() {
     });
 
     testWidgets(
-        'renders ArticleIntroduction '
-        'for ArticleIntroductionBlock', (tester) async {
+        "renders ArticleIntroduction "
+        "for ArticleIntroductionBlock", (tester) async {
       final block = ArticleIntroductionBlock(
         category: PostCategory.technology,
-        author: 'author',
+        author: "author",
         publishedAt: DateTime(2022, 3, 9),
-        imageUrl: 'imageUrl',
-        title: 'title',
+        imageUrl: "imageUrl",
+        title: "title",
       );
       await tester.pumpApp(
         ListView(
@@ -175,14 +175,14 @@ void main() {
     });
 
     testWidgets(
-        'renders VideoIntroduction '
-        'for VideoIntroductionBlock', (tester) async {
+        "renders VideoIntroduction "
+        "for VideoIntroductionBlock", (tester) async {
       setUpVideoPlayerPlatform();
 
       final block = VideoIntroductionBlock(
         category: PostCategory.technology,
-        title: 'title',
-        videoUrl: 'videoUrl',
+        title: "title",
+        videoUrl: "videoUrl",
       );
       await tester.pumpApp(
         ListView(
@@ -200,16 +200,16 @@ void main() {
     });
 
     testWidgets(
-        'renders BannerAd '
-        'for BannerAdBlock', (tester) async {
+        "renders BannerAd "
+        "for BannerAdBlock", (tester) async {
       final block = BannerAdBlock(size: BannerAdSize.normal);
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(find.byType(BannerAd), findsOneWidget);
     });
 
     testWidgets(
-        'renders Newsletter '
-        'for NewsletterBlock', (tester) async {
+        "renders Newsletter "
+        "for NewsletterBlock", (tester) async {
       VisibilityDetectorController.instance.updateInterval = Duration.zero;
       final block = NewsletterBlock();
       await tester.pumpApp(ArticleContentItem(block: block));
@@ -217,25 +217,25 @@ void main() {
     });
 
     testWidgets(
-        'renders Html '
-        'for HtmlBlock', (tester) async {
-      final block = HtmlBlock(content: '<p>Lorem</p>');
+        "renders Html "
+        "for HtmlBlock", (tester) async {
+      final block = HtmlBlock(content: "<p>Lorem</p>");
       await tester.pumpApp(ArticleContentItem(block: block));
       expect(find.byType(Html), findsOneWidget);
     });
 
     testWidgets(
-        'renders SlideshowIntroduction '
-        'for SlideshowIntroductionBlock', (tester) async {
+        "renders SlideshowIntroduction "
+        "for SlideshowIntroductionBlock", (tester) async {
       final block = SlideshowIntroductionBlock(
-        title: 'title',
-        coverImageUrl: 'coverImageUrl',
+        title: "title",
+        coverImageUrl: "coverImageUrl",
         action: NavigateToSlideshowAction(
           slideshow: SlideshowBlock(
             slides: [],
-            title: 'title',
+            title: "title",
           ),
-          articleId: 'articleId',
+          articleId: "articleId",
         ),
       );
       await tester.pumpApp(
@@ -257,23 +257,23 @@ void main() {
   });
 
   testWidgets(
-      'renders SizedBox '
-      'for unsupported block', (tester) async {
+      "renders SizedBox "
+      "for unsupported block", (tester) async {
     final block = UnknownBlock();
     await tester.pumpApp(ArticleContentItem(block: block));
     expect(find.byType(SizedBox), findsOneWidget);
   });
 
   testWidgets(
-      'renders TrendingStory '
-      'for TrendingStoryBlock', (tester) async {
+      "renders TrendingStory "
+      "for TrendingStoryBlock", (tester) async {
     final content = PostSmallBlock(
-      id: 'id',
+      id: "id",
       category: PostCategory.health,
-      author: 'author',
+      author: "author",
       publishedAt: DateTime(2022, 3, 11),
-      imageUrl: 'imageUrl',
-      title: 'title',
+      imageUrl: "imageUrl",
+      title: "title",
     );
     final block = TrendingStoryBlock(content: content);
     await tester.pumpApp(ArticleContentItem(block: block));

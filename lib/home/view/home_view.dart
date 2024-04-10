@@ -1,13 +1,13 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/app.dart';
-import 'package:flutter_template/feed/feed.dart';
-import 'package:flutter_template/home/home.dart';
-import 'package:flutter_template/login/login.dart';
-import 'package:flutter_template/navigation/navigation.dart';
-import 'package:flutter_template/search/search.dart';
-import 'package:flutter_template/user_profile/user_profile.dart';
+import "package:app_ui/app_ui.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/app/app.dart";
+import "package:flutter_template/feed/feed.dart";
+import "package:flutter_template/home/home.dart";
+import "package:flutter_template/login/login.dart";
+import "package:flutter_template/navigation/navigation.dart";
+import "package:flutter_template/search/search.dart";
+import "package:flutter_template/user_profile/user_profile.dart";
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

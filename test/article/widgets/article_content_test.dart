@@ -2,26 +2,26 @@
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ads/ads.dart';
-import 'package:flutter_template/analytics/analytics.dart';
-import 'package:flutter_template/article/article.dart';
-import 'package:flutter_template/network_error/network_error.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_blocks/news_blocks.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_template/ads/ads.dart";
+import "package:flutter_template/analytics/analytics.dart";
+import "package:flutter_template/article/article.dart";
+import "package:flutter_template/network_error/network_error.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_blocks/news_blocks.dart";
+import "package:visibility_detector/visibility_detector.dart";
 
-import '../../helpers/helpers.dart';
+import "../../helpers/helpers.dart";
 
 class MockArticleBloc extends MockBloc<ArticleEvent, ArticleState>
     implements ArticleBloc {}
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 
-const networkErrorButtonText = 'Try Again';
+const networkErrorButtonText = "Try Again";
 
 void main() {
   late ArticleBloc articleBloc;
@@ -29,8 +29,8 @@ void main() {
   final content = <NewsBlock>[
     DividerHorizontalBlock(),
     SpacerBlock(spacing: Spacing.medium),
-    TextParagraphBlock(text: 'text'),
-    ImageBlock(imageUrl: 'imageUrl'),
+    TextParagraphBlock(text: "text"),
+    ImageBlock(imageUrl: "imageUrl"),
   ];
 
   setUp(() {
@@ -42,8 +42,8 @@ void main() {
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
 
-  group('ArticleContent', () {
-    testWidgets('renders a SelectionArea', (tester) async {
+  group("ArticleContent", () {
+    testWidgets("renders a SelectionArea", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: articleBloc,
@@ -54,7 +54,7 @@ void main() {
       expect(find.byType(SelectionArea), findsOneWidget);
     });
 
-    testWidgets('renders StickyAd', (tester) async {
+    testWidgets("renders StickyAd", (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
           value: articleBloc,
@@ -65,7 +65,7 @@ void main() {
       expect(find.byType(StickyAd), findsOneWidget);
     });
 
-    group('when ArticleStatus is failure and content is present', () {
+    group("when ArticleStatus is failure and content is present", () {
       setUp(() {
         whenListen(
           articleBloc,
@@ -76,7 +76,7 @@ void main() {
         );
       });
 
-      testWidgets('shows NetworkErrorAlert', (tester) async {
+      testWidgets("shows NetworkErrorAlert", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: articleBloc,
@@ -90,7 +90,7 @@ void main() {
         );
       });
 
-      testWidgets('shows ArticleContentItem for each content block',
+      testWidgets("shows ArticleContentItem for each content block",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -109,7 +109,7 @@ void main() {
         }
       });
 
-      testWidgets('NetworkErrorAlert requests article on press',
+      testWidgets("NetworkErrorAlert requests article on press",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -133,7 +133,7 @@ void main() {
       });
     });
 
-    group('when ArticleStatus is failure and content is absent', () {
+    group("when ArticleStatus is failure and content is absent", () {
       setUpAll(() {
         registerFallbackValue(NetworkError.route());
       });
@@ -148,7 +148,7 @@ void main() {
         );
       });
 
-      testWidgets('pushes NetworkErrorAlert on Scaffold', (tester) async {
+      testWidgets("pushes NetworkErrorAlert on Scaffold", (tester) async {
         final navigatorObserver = MockNavigatorObserver();
 
         await tester.pumpApp(
@@ -170,7 +170,7 @@ void main() {
         );
       });
 
-      testWidgets('NetworkErrorAlert requests article on press',
+      testWidgets("NetworkErrorAlert requests article on press",
           (tester) async {
         final navigatorObserver = MockNavigatorObserver();
 
@@ -201,7 +201,7 @@ void main() {
       });
     });
 
-    group('when ArticleStatus is shareFailure', () {
+    group("when ArticleStatus is shareFailure", () {
       setUp(() {
         whenListen(
           articleBloc,
@@ -212,7 +212,7 @@ void main() {
         );
       });
 
-      testWidgets('shows SnackBar with error message', (tester) async {
+      testWidgets("shows SnackBar with error message", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: articleBloc,
@@ -221,14 +221,14 @@ void main() {
         );
 
         expect(
-          find.byKey(const Key('articleContent_shareFailure_snackBar')),
+          find.byKey(const Key("articleContent_shareFailure_snackBar")),
           findsOneWidget,
         );
       });
     });
 
-    group('when ArticleStatus is populated', () {
-      final uri = Uri(path: 'notEmptyUrl');
+    group("when ArticleStatus is populated", () {
+      final uri = Uri(path: "notEmptyUrl");
       setUp(() {
         whenListen(
           articleBloc,
@@ -243,7 +243,7 @@ void main() {
         );
       });
 
-      testWidgets('shows ArticleContentItem for each content block',
+      testWidgets("shows ArticleContentItem for each content block",
           (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
@@ -263,8 +263,8 @@ void main() {
       });
 
       testWidgets(
-          'adds ShareRequested to ArticleBloc '
-          'when ArticleContentItem onSharePressed is called', (tester) async {
+          "adds ShareRequested to ArticleBloc "
+          "when ArticleContentItem onSharePressed is called", (tester) async {
         await tester.pumpApp(
           BlocProvider.value(
             value: articleBloc,
@@ -279,13 +279,13 @@ void main() {
       });
 
       testWidgets(
-          'adds ArticleContentSeen to ArticleBloc '
-          'for every visible content block', (tester) async {
+          "adds ArticleContentSeen to ArticleBloc "
+          "for every visible content block", (tester) async {
         final longContent = <NewsBlock>[
           DividerHorizontalBlock(),
           SpacerBlock(spacing: Spacing.medium),
-          TextParagraphBlock(text: 'text'),
-          ImageBlock(imageUrl: 'imageUrl'),
+          TextParagraphBlock(text: "text"),
+          ImageBlock(imageUrl: "imageUrl"),
           SpacerBlock(spacing: Spacing.extraLarge),
           SpacerBlock(spacing: Spacing.extraLarge),
           SpacerBlock(spacing: Spacing.extraLarge),
@@ -295,7 +295,7 @@ void main() {
           SpacerBlock(spacing: Spacing.extraLarge),
           SpacerBlock(spacing: Spacing.extraLarge),
           SpacerBlock(spacing: Spacing.extraLarge),
-          TextLeadParagraphBlock(text: 'text'),
+          TextLeadParagraphBlock(text: "text"),
         ];
 
         final state =
@@ -342,11 +342,11 @@ void main() {
       });
 
       testWidgets(
-          'adds TrackAnalyticsEvent to AnalyticsBloc '
-          'with ArticleMilestoneEvent '
-          'when contentMilestone changes', (tester) async {
+          "adds TrackAnalyticsEvent to AnalyticsBloc "
+          "with ArticleMilestoneEvent "
+          "when contentMilestone changes", (tester) async {
         final analyticsBloc = MockAnalyticsBloc();
-        final initialState = ArticleState.initial().copyWith(title: 'title');
+        final initialState = ArticleState.initial().copyWith(title: "title");
         final states = [
           initialState.copyWith(contentSeenCount: 3, contentTotalCount: 10),
           initialState.copyWith(contentSeenCount: 5, contentTotalCount: 10),
@@ -381,9 +381,9 @@ void main() {
       });
     });
 
-    group('ArticleContentLoaderItem', () {
-      group('is shown', () {
-        testWidgets('when ArticleStatus is initial', (tester) async {
+    group("ArticleContentLoaderItem", () {
+      group("is shown", () {
+        testWidgets("when ArticleStatus is initial", (tester) async {
           whenListen(
             articleBloc,
             Stream.fromIterable([
@@ -399,12 +399,12 @@ void main() {
           );
 
           expect(
-            find.byKey(Key('articleContent_empty_loaderItem')),
+            find.byKey(Key("articleContent_empty_loaderItem")),
             findsOneWidget,
           );
         });
 
-        testWidgets('when ArticleStatus is loading', (tester) async {
+        testWidgets("when ArticleStatus is loading", (tester) async {
           whenListen(
             articleBloc,
             Stream.fromIterable([
@@ -420,14 +420,14 @@ void main() {
           );
 
           expect(
-            find.byKey(Key('articleContent_moreContent_loaderItem')),
+            find.byKey(Key("articleContent_moreContent_loaderItem")),
             findsOneWidget,
           );
         });
 
         testWidgets(
-            'when ArticleStatus is populated '
-            'and hasMoreContent is true', (tester) async {
+            "when ArticleStatus is populated "
+            "and hasMoreContent is true", (tester) async {
           whenListen(
             articleBloc,
             Stream.fromIterable([
@@ -436,7 +436,7 @@ void main() {
                 status: ArticleStatus.populated,
                 content: content,
                 hasMoreContent: true,
-              )
+              ),
             ]),
           );
 
@@ -448,16 +448,16 @@ void main() {
           );
 
           expect(
-            find.byKey(Key('articleContent_moreContent_loaderItem')),
+            find.byKey(Key("articleContent_moreContent_loaderItem")),
             findsOneWidget,
           );
         });
       });
 
       testWidgets(
-          'is not shown and ArticleTrailingContent is shown '
-          'when ArticleStatus is populated '
-          'and hasMoreContent is false', (tester) async {
+          "is not shown and ArticleTrailingContent is shown "
+          "when ArticleStatus is populated "
+          "and hasMoreContent is false", (tester) async {
         whenListen(
           articleBloc,
           Stream.fromIterable([
@@ -466,7 +466,7 @@ void main() {
               status: ArticleStatus.populated,
               content: content,
               hasMoreContent: false,
-            )
+            ),
           ]),
         );
 
@@ -481,7 +481,7 @@ void main() {
         expect(find.byType(ArticleTrailingContent), findsOneWidget);
       });
 
-      testWidgets('adds ArticleRequested to ArticleBloc', (tester) async {
+      testWidgets("adds ArticleRequested to ArticleBloc", (tester) async {
         whenListen(
           articleBloc,
           Stream.fromIterable([
@@ -490,7 +490,7 @@ void main() {
               status: ArticleStatus.populated,
               content: content,
               hasMoreContent: true,
-            )
+            ),
           ]),
           initialState: ArticleState.initial(),
         );
@@ -506,8 +506,8 @@ void main() {
       });
 
       testWidgets(
-          'does not add ArticleRequested to ArticleBloc '
-          'when ArticleStatus is loading', (tester) async {
+          "does not add ArticleRequested to ArticleBloc "
+          "when ArticleStatus is loading", (tester) async {
         whenListen(
           articleBloc,
           Stream.fromIterable([
@@ -516,7 +516,7 @@ void main() {
               status: ArticleStatus.loading,
               content: content,
               hasMoreContent: true,
-            )
+            ),
           ]),
           initialState: ArticleState.initial(),
         );
@@ -532,8 +532,8 @@ void main() {
       });
     });
 
-    group('when isArticlePreview is true ', () {
-      testWidgets('renders ArticleTrailingShadow', (tester) async {
+    group("when isArticlePreview is true ", () {
+      testWidgets("renders ArticleTrailingShadow", (tester) async {
         when(() => articleBloc.state).thenReturn(
           ArticleState(
             content: content,

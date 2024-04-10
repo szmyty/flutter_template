@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_template/notification_preferences/notification_preferences.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:news_repository/news_repository.dart';
-import 'package:notifications_repository/notifications_repository.dart';
+import "package:bloc_test/bloc_test.dart";
+import "package:flutter_template/notification_preferences/notification_preferences.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
+import "package:news_repository/news_repository.dart";
+import "package:notifications_repository/notifications_repository.dart";
 
 class MockNotificationsRepository extends Mock
     implements NotificationsRepository {}
@@ -18,12 +18,12 @@ void main() {
   final notificationsRepository = MockNotificationsRepository();
   final newsRepository = MockNewsRepository();
 
-  group('NotificationPreferencesBloc', () {
-    group('on CategoriesPreferenceToggled ', () {
+  group("NotificationPreferencesBloc", () {
+    group("on CategoriesPreferenceToggled ", () {
       blocTest<NotificationPreferencesBloc, NotificationPreferencesState>(
-        'emits [loading, success, loading, success] '
-        'with updated selectedCategories '
-        'when toggled category twice ',
+        "emits [loading, success, loading, success] "
+        "with updated selectedCategories "
+        "when toggled category twice ",
         setUp: () => when(
           () => notificationsRepository.setCategoriesPreferences(any()),
         ).thenAnswer((_) async {}),
@@ -55,9 +55,9 @@ void main() {
       );
 
       blocTest<NotificationPreferencesBloc, NotificationPreferencesState>(
-        'emits [loading, failed] '
-        'when toggled category '
-        'and setCategoriesPreferences throws',
+        "emits [loading, failed] "
+        "when toggled category "
+        "and setCategoriesPreferences throws",
         setUp: () => when(
           () => notificationsRepository.setCategoriesPreferences(any()),
         ).thenThrow(Exception()),
@@ -79,10 +79,10 @@ void main() {
       );
     });
 
-    group('on InitialCategoriesPreferencesRequested ', () {
+    group("on InitialCategoriesPreferencesRequested ", () {
       blocTest<NotificationPreferencesBloc, NotificationPreferencesState>(
-        'emits [loading, success] '
-        'with updated selectedCategories and categories ',
+        "emits [loading, success] "
+        "with updated selectedCategories and categories ",
         setUp: () {
           when(
             notificationsRepository.fetchCategoriesPreferences,
@@ -118,8 +118,8 @@ void main() {
       );
 
       blocTest<NotificationPreferencesBloc, NotificationPreferencesState>(
-        'emits [loading, failed] '
-        'when fetchCategoriesPreferences throws',
+        "emits [loading, failed] "
+        "when fetchCategoriesPreferences throws",
         setUp: () => when(
           notificationsRepository.fetchCategoriesPreferences,
         ).thenThrow(Exception()),
