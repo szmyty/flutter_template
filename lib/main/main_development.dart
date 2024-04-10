@@ -111,20 +111,3 @@ void main() {
     },
   );
 }
-
-
-class TempView extends StatelessWidget {
-  const TempView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      themeMode: ThemeMode.light,
-      theme: const AppTheme().themeData,
-      darkTheme: const AppDarkTheme().themeData,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Text("Temp View"),
-    );
-  }
-}

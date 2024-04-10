@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_template_api/client.dart';
@@ -164,6 +165,7 @@ class FlutterTemplateApiClient {
     int? limit,
     int? offset,
   }) async {
+    log("getFeed called with category: $category, limit: $limit, offset: $offset");
     final uri = Uri.parse('$_baseUrl/api/v1/feed').replace(
       queryParameters: <String, String>{
         if (category != null) 'category': category.name,

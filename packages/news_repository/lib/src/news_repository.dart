@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template_api/client.dart';
 
@@ -71,6 +73,7 @@ class NewsRepository {
     int? offset,
   }) async {
     try {
+      log("Fetching feed for category: $category");
       return await _apiClient.getFeed(
         category: category,
         limit: limit,
